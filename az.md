@@ -55,24 +55,24 @@ This phase will cover all crypto related aspects of the SDK:
 - PoW
 
 # Funding
-Total Requested Funding: 1500 ZNN
+Total Requested Funding: 1500 ZNN, 100 QSR
 Project Duration: 80 to 100 hours
 
 How did you calculate your budget?
 Based on my work on the Zenon .NET SDK I can make an accurate estimation of the total amount of work needed.
 
 ## Phase 1 - API and Models
-Funding Request: 50% (750 ZNN)
+Funding Request: 50% (750 ZNN, 50 QSR)
 
 Duration: 40-50 hours
 
 ## Phase 2 - Contracts
-Funding Request: 25% (375 ZNN)
+Funding Request: 25% (375 ZNN, 25 QSR)
 
 Duration: 20-25 hours
 
 ## Phase 3 - Wallet
-Funding Request: 25% (375 ZNN)
+Funding Request: 25% (375 ZNN, 25 QSR)
 
 Duration: 20-25 hours
 
