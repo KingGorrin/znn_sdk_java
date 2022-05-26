@@ -5,7 +5,7 @@
 Development of a Zenon SDK written for the standard Java compiler. Having a Java SDK will help us in on-boarding new developers, who in-turn will help expand the Zenon ecosystem.
 
 **URL:** 
-https://github.com/KingGorrin/znn_sdk_java/az.md
+https://github.com/KingGorrin/znn_sdk_java/blob/main/az.md
 
 **Team**:
 
