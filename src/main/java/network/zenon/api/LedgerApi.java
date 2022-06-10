@@ -115,14 +115,14 @@ public class LedgerApi {
         return new MomentumList(response);
     }
 
-    public DetailedMomentumList GetDetailedMomentumsByHeight(long height, long count) {
+    public DetailedMomentumList getDetailedMomentumsByHeight(long height, long count) {
         height = height < 1 ? 1 : height;
         count = count > Constants.RPC_MAX_PAGE_SIZE ? Constants.RPC_MAX_PAGE_SIZE : count;
         JDetailedMomentumList response = this.client.sendRequest("ledger.getDetailedMomentumsByHeight", new Object[] { height, count }, JDetailedMomentumList.class);
         return new DetailedMomentumList(response);
     }
 
-    public AccountInfo GetAccountInfoByAddress(Address address) {
+    public AccountInfo getAccountInfoByAddress(Address address) {
     	JAccountInfo response = this.client.sendRequest("ledger.getAccountInfoByAddress", new Object[] { address.toString() }, JAccountInfo.class);
         return new AccountInfo(response);
     }

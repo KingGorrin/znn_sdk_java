@@ -26,7 +26,7 @@ WsClient client = new WsClient(url);
 client.connect();
 			
 LedgerApi ledger = new LedgerApi(client);
-AccountInfo info = ledger.GetAccountInfoByAddress(address);
+AccountInfo info = ledger.getAccountInfoByAddress(address);
 			
 System.out.println("AccountInfo: " + info.toString());
 			
