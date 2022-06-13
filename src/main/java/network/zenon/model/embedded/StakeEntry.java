@@ -8,13 +8,13 @@ import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
 public class StakeEntry implements IJsonConvertible<JStakeEntry> {
-	private final long amount;
-	private final long weightedAmount;
-	private final long startTimestamp;
-	private final long expirationTimestamp;
-	private final Address address;
+    private final long amount;
+    private final long weightedAmount;
+    private final long startTimestamp;
+    private final long expirationTimestamp;
+    private final Address address;
     private final Hash id;
-    	
+
     public StakeEntry(JStakeEntry json) {
         this.amount = json.amount;
         this.weightedAmount = json.weightedAmount;
@@ -24,13 +24,8 @@ public class StakeEntry implements IJsonConvertible<JStakeEntry> {
         this.id = Hash.parse(json.id);
     }
 
-    public StakeEntry(
-    		long amount, 
-    		long weightedAmount, 
-    		long startTimestamp, 
-    		long expirationTimestamp, 
-    		Address address, 
-    		Hash id) {
+    public StakeEntry(long amount, long weightedAmount, long startTimestamp, long expirationTimestamp, Address address,
+            Hash id) {
         this.amount = amount;
         this.weightedAmount = weightedAmount;
         this.startTimestamp = startTimestamp;
@@ -40,32 +35,32 @@ public class StakeEntry implements IJsonConvertible<JStakeEntry> {
     }
 
     public long getAmount() {
-    	return this.amount;
+        return this.amount;
     }
-    
+
     public long getWeightedAmount() {
-    	return this.weightedAmount;
+        return this.weightedAmount;
     }
-    
+
     public long getStartTimestamp() {
-    	return this.startTimestamp;
+        return this.startTimestamp;
     }
-    
+
     public long getExpirationTimestamp() {
-    	return this.expirationTimestamp;
+        return this.expirationTimestamp;
     }
-    
+
     public Address getAddress() {
-    	return this.address;
+        return this.address;
     }
-    
+
     public Hash getId() {
-    	return this.id;
+        return this.id;
     }
 
     @Override
     public JStakeEntry toJson() {
-    	JStakeEntry json = new JStakeEntry();
+        JStakeEntry json = new JStakeEntry();
         json.amount = this.amount;
         json.weightedAmount = this.weightedAmount;
         json.startTimestamp = this.startTimestamp;
@@ -74,9 +69,9 @@ public class StakeEntry implements IJsonConvertible<JStakeEntry> {
         json.id = this.id.toString();
         return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

@@ -13,38 +13,25 @@ import network.zenon.utils.BytesUtils;
 
 public class AccountBlockTemplate implements IJsonConvertible<JAccountBlockTemplate> {
     public static AccountBlockTemplate Receive(Hash fromBlockHash) {
-    	return new AccountBlockTemplate(BlockTypeEnum.USER_RECEIVE, 
-    			null, null, null, 
-    			fromBlockHash, null);
+        return new AccountBlockTemplate(BlockTypeEnum.USER_RECEIVE, null, null, null, fromBlockHash, null);
     }
 
-    public static AccountBlockTemplate Send(Address toAddress, 
-    		TokenStandard tokenStandard, long amount) {
-    	return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, 
-    			toAddress, 
-    			Long.valueOf(amount), 
-    			tokenStandard, 
-    			null, null);
-    }
-    
-    public static AccountBlockTemplate Send(Address toAddress, 
-    		TokenStandard tokenStandard, long amount, byte[] data) {
-    	return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, 
-    			toAddress, 
-    			Long.valueOf(amount),
-    			tokenStandard, 
-    			null, data);
+    public static AccountBlockTemplate Send(Address toAddress, TokenStandard tokenStandard, long amount) {
+        return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, toAddress, Long.valueOf(amount), tokenStandard, null,
+                null);
     }
 
-    public static AccountBlockTemplate CallContract(Address toAddress, 
-    		TokenStandard tokenStandard, long amount, byte[] data) {
-    	return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, 
-    			toAddress, 
-    			Long.valueOf(amount),
-    			tokenStandard, 
-    			null, data);
+    public static AccountBlockTemplate Send(Address toAddress, TokenStandard tokenStandard, long amount, byte[] data) {
+        return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, toAddress, Long.valueOf(amount), tokenStandard, null,
+                data);
     }
-    
+
+    public static AccountBlockTemplate CallContract(Address toAddress, TokenStandard tokenStandard, long amount,
+            byte[] data) {
+        return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, toAddress, Long.valueOf(amount), tokenStandard, null,
+                data);
+    }
+
     private final int version;
     private final int chainIdentifier;
     private final BlockTypeEnum blockType;
@@ -91,26 +78,18 @@ public class AccountBlockTemplate implements IJsonConvertible<JAccountBlockTempl
         this.amount = json.amount;
         this.tokenStandard = TokenStandard.parse(json.tokenStandard);
         this.fromBlockHash = Hash.parse(json.fromBlockHash);
-        this.data = (json.data == null || json.data.isEmpty()) 
-        		? new byte[0] 
-        		: BytesUtils.fromBase64String(json.data);
+        this.data = (json.data == null || json.data.isEmpty()) ? new byte[0] : BytesUtils.fromBase64String(json.data);
         this.fusedPlasma = json.fusedPlasma;
         this.difficulty = json.difficulty;
         this.nonce = json.nonce;
-        this.publicKey = (json.publicKey == null || json.publicKey.isEmpty()) 
-        		? new byte[0] 
-        		: BytesUtils.fromBase64String(json.publicKey);
-        this.signature = (json.signature == null || json.signature.isEmpty()) 
-        		? new byte[0] 
-        		: BytesUtils.fromBase64String(json.signature);
+        this.publicKey = (json.publicKey == null || json.publicKey.isEmpty()) ? new byte[0]
+                : BytesUtils.fromBase64String(json.publicKey);
+        this.signature = (json.signature == null || json.signature.isEmpty()) ? new byte[0]
+                : BytesUtils.fromBase64String(json.signature);
     }
 
-    public AccountBlockTemplate(BlockTypeEnum blockType,
-        Address toAddress,
-        Long amount,
-        TokenStandard tokenStandard,
-        Hash fromBlockHash,
-        byte[] data) {
+    public AccountBlockTemplate(BlockTypeEnum blockType, Address toAddress, Long amount, TokenStandard tokenStandard,
+            Hash fromBlockHash, byte[] data) {
         this.version = 1;
         this.chainIdentifier = Constants.NET_ID;
         this.blockType = blockType;
@@ -132,125 +111,125 @@ public class AccountBlockTemplate implements IJsonConvertible<JAccountBlockTempl
     }
 
     public int getVersion() {
-    	return this.version;
+        return this.version;
     }
-    
+
     public int getChainIdentifier() {
-    	return this.chainIdentifier;
+        return this.chainIdentifier;
     }
-    
+
     public BlockTypeEnum getBlockType() {
-    	return this.blockType;
+        return this.blockType;
     }
 
     public Hash getHash() {
-    	return this.hash;
+        return this.hash;
     }
-    
+
     public void setHash(Hash value) {
-    	this.hash = value;
+        this.hash = value;
     }
-    
+
     public Hash getPreviousHash() {
-    	return this.previousHash;
+        return this.previousHash;
     }
-    
+
     public void setPreviousHash(Hash value) {
-    	this.previousHash = value;
+        this.previousHash = value;
     }
-    
+
     public long getHeight() {
-    	return this.height;
+        return this.height;
     }
-    
+
     public void setHeight(long value) {
-    	this.height = value;
+        this.height = value;
     }
-    
+
     public HashHeight getMomentumAcknowledged() {
-    	return this.momentumAcknowledged;
+        return this.momentumAcknowledged;
     }
-    
+
     public void setMomentumAcknowledged(HashHeight value) {
-    	this.momentumAcknowledged = value;
+        this.momentumAcknowledged = value;
     }
 
     public Address getAddress() {
-    	return this.address;
+        return this.address;
     }
-    
+
     public void setAddress(Address value) {
-    	this.address = value;
+        this.address = value;
     }
 
     // Send information
     public Address getToAddress() {
-    	return this.toAddress;
+        return this.toAddress;
     }
 
     public long getAmount() {
-    	return this.amount;
+        return this.amount;
     }
-    
+
     public TokenStandard getTokenStandard() {
-    	return this.tokenStandard;
+        return this.tokenStandard;
     }
 
     // Receive information
     public Hash getFromBlockHash() {
-    	return this.fromBlockHash;
+        return this.fromBlockHash;
     }
 
     public byte[] getData() {
-    	return this.data;
+        return this.data;
     }
 
     // PoW
     public long getFusedPlasma() {
-    	return this.fusedPlasma;
+        return this.fusedPlasma;
     }
-    
+
     public void setFusedPlasma(long value) {
-    	this.fusedPlasma = value;
+        this.fusedPlasma = value;
     }
-    
+
     public long getDifficulty() {
-    	return this.difficulty;
+        return this.difficulty;
     }
-    
+
     public void setDifficulty(long value) {
-    	this.difficulty = value;
+        this.difficulty = value;
     }
 
     // Hex representation of 8 byte nonce
     public String getNonce() {
-    	return this.nonce;
+        return this.nonce;
     }
-    
+
     public void setNonce(String value) {
-    	this.nonce = value;
+        this.nonce = value;
     }
 
     // Verification
     public byte[] getPublicKey() {
-    	return this.publicKey;
+        return this.publicKey;
     }
-    
+
     public void getPublicKey(byte[] value) {
-    	this.publicKey = value;
+        this.publicKey = value;
     }
-    
+
     public byte[] getSignature() {
-    	return this.signature;
+        return this.signature;
     }
-    
+
     public void getSignature(byte[] value) {
-    	this.signature = value;
+        this.signature = value;
     }
 
     @Override
     public JAccountBlockTemplate toJson() {
-    	JAccountBlockTemplate json = new JAccountBlockTemplate();
+        JAccountBlockTemplate json = new JAccountBlockTemplate();
         this.toJson(json);
         return json;
     }
@@ -278,6 +257,6 @@ public class AccountBlockTemplate implements IJsonConvertible<JAccountBlockTempl
 
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

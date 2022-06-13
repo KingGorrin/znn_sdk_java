@@ -1,7 +1,6 @@
 package network.zenon.model.embedded.json;
 
-public class JAcceleratorProject
-{
+public class JAcceleratorProject {
     public String id;
     public String name;
     public String description;

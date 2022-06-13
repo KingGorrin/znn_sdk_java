@@ -10,14 +10,10 @@ It provides a simple integration with any Java based projects.
 ### API
 
 ```java
-package network.zenon;
-
 import network.zenon.api.LedgerApi;
 import network.zenon.client.WsClient;
 import network.zenon.model.nom.AccountInfo;
 import network.zenon.model.primitives.Address;
-
-import java.io.IOException;
 
 String url = "ws://nodes.zenon.place:35998";
 Address address = Address.parse("z1qq0hffeyj0htmnr4gc6grd8zmqfvwzgrydt402");

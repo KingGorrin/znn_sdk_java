@@ -7,8 +7,8 @@ import network.zenon.model.embedded.json.JSwapLegacyPillarEntry;
 import network.zenon.model.primitives.Hash;
 
 public class SwapLegacyPillarEntry implements IJsonConvertible<JSwapLegacyPillarEntry> {
-	private final long numPillars;
-	private final Hash keyIdHash;
+    private final long numPillars;
+    private final Hash keyIdHash;
 
     public SwapLegacyPillarEntry(JSwapLegacyPillarEntry json) {
         this.numPillars = json.numPillars;
@@ -21,16 +21,16 @@ public class SwapLegacyPillarEntry implements IJsonConvertible<JSwapLegacyPillar
     }
 
     public long getNumPillars() {
-    	return this.numPillars;
+        return this.numPillars;
     }
-    
+
     public Hash getKeyIdHash() {
-    	return this.keyIdHash;
+        return this.keyIdHash;
     }
 
     @Override
     public JSwapLegacyPillarEntry toJson() {
-    	JSwapLegacyPillarEntry json = new JSwapLegacyPillarEntry();
+        JSwapLegacyPillarEntry json = new JSwapLegacyPillarEntry();
         json.numPillars = this.numPillars;
         json.keyIdHash = this.keyIdHash.toString();
         return json;
@@ -38,6 +38,6 @@ public class SwapLegacyPillarEntry implements IJsonConvertible<JSwapLegacyPillar
 
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

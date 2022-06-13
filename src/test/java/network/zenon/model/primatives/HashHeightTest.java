@@ -16,9 +16,11 @@ import network.zenon.utils.BytesUtils;
 import network.zenon.utils.NullableConverter;
 
 public class HashHeightTest {
-	@ParameterizedTest
-	@CsvSource({"'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', 259, 'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b90000000000000103'"})
-    public void whenGetBytesExpectToEqual(String hashString, @ConvertWith(NullableConverter.class) Long height, String byteString) {
+    @ParameterizedTest
+    @CsvSource({
+            "'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', 259, 'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b90000000000000103'" })
+    public void whenGetBytesExpectToEqual(String hashString, @ConvertWith(NullableConverter.class) Long height,
+            String byteString) {
         // Setup
         HashHeight hh = new HashHeight(Hash.parse(hashString), height);
 
@@ -29,32 +31,36 @@ public class HashHeightTest {
         assertArrayEquals(BytesUtils.fromHexString(byteString), bytes);
     }
 
-	@ParameterizedTest
-	@CsvSource({"'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', 259, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":259}'",
-		"'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', null, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":null}'"})
-    public void whenSerializeExpectToEqual(String hashString, @ConvertWith(NullableConverter.class) Long height, String expectedJson) {
+    @ParameterizedTest
+    @CsvSource({
+            "'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', 259, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":259}'",
+            "'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', null, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":null}'" })
+    public void whenSerializeExpectToEqual(String hashString, @ConvertWith(NullableConverter.class) Long height,
+            String expectedJson) {
         // Setup
-		HashHeight hh = new HashHeight(Hash.parse(hashString), height);
+        HashHeight hh = new HashHeight(Hash.parse(hashString), height);
 
         // Execute
         String json = hh.toString();
-        
+
         // Validate
         assertEquals(expectedJson, json);
     }
 
-	@ParameterizedTest
-	@CsvSource({"'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', 259, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":259}'",
-		"'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', null, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":null}'"})
-    public void whenDeserializeExpectToEqual(String hashString, @ConvertWith(NullableConverter.class) Long height, String json) {
+    @ParameterizedTest
+    @CsvSource({
+            "'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', 259, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":259}'",
+            "'b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9', null, '{\"hash\":\"b3a023d751681b6aed507f7f7c4fa8a59dbee7ee11b3d3e39c294fc078d9b7b9\",\"height\":null}'" })
+    public void whenDeserializeExpectToEqual(String hashString, @ConvertWith(NullableConverter.class) Long height,
+            String json) {
         // Setup
-		HashHeight exprectedHh = new HashHeight(Hash.parse(hashString), height);
+        HashHeight exprectedHh = new HashHeight(Hash.parse(hashString), height);
 
         // Execute
-		HashHeight hh = new HashHeight(JsonIterator.deserialize(json, JHashHeight.class));
+        HashHeight hh = new HashHeight(JsonIterator.deserialize(json, JHashHeight.class));
 
         // Validate
-		assertEquals(exprectedHh.getHash(), hh.getHash());
-		assertEquals(exprectedHh.getHeight(), hh.getHeight());
+        assertEquals(exprectedHh.getHash(), hh.getHash());
+        assertEquals(exprectedHh.getHeight(), hh.getHeight());
     }
 }

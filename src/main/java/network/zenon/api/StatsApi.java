@@ -7,33 +7,29 @@ import network.zenon.model.json.JProcessInfo;
 import network.zenon.model.json.JSyncInfo;
 
 public class StatsApi {
-	private final IClient client;
-	
+    private final IClient client;
+
     public StatsApi(IClient client) {
         this.client = client;
     }
 
     public IClient getClient() {
-    	return this.client;
+        return this.client;
     }
 
-    public JOsInfo osInfo()
-    {
+    public JOsInfo osInfo() {
         return this.client.sendRequest("stats.osInfo", null, JOsInfo.class);
     }
 
-    public JProcessInfo processInfo()
-    {
+    public JProcessInfo processInfo() {
         return this.client.sendRequest("stats.processInfo", null, JProcessInfo.class);
     }
 
-    public JNetworkInfo networkInfo()
-    {
+    public JNetworkInfo networkInfo() {
         return this.client.sendRequest("stats.networkInfo", null, JNetworkInfo.class);
     }
 
-    public JSyncInfo syncInfo()
-    {
+    public JSyncInfo syncInfo() {
         return this.client.sendRequest("stats.syncInfo", null, JSyncInfo.class);
     }
 }

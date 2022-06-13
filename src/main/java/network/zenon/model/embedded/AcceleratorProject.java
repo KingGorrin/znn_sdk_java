@@ -6,16 +6,16 @@ import network.zenon.model.primitives.Hash;
 import network.zenon.utils.AmountUtils;
 
 public abstract class AcceleratorProject {
-	private final Hash id;
-	private final String name;
-	private final String description;
-	private final String url;
-	private final long znnFundsNeeded;
-	private final long qsrFundsNeeded;
-	private final long creationTimestamp;
-	private final AcceleratorProjectStatus status;
-	private final VoteBreakdown voteBreakdown;
-    
+    private final Hash id;
+    private final String name;
+    private final String description;
+    private final String url;
+    private final long znnFundsNeeded;
+    private final long qsrFundsNeeded;
+    private final long creationTimestamp;
+    private final AcceleratorProjectStatus status;
+    private final VoteBreakdown voteBreakdown;
+
     public AcceleratorProject(JAcceleratorProject json) {
         this.id = Hash.parse(json.id);
         this.name = json.name;
@@ -28,60 +28,53 @@ public abstract class AcceleratorProject {
         this.voteBreakdown = new VoteBreakdown(json.votes);
     }
 
-    public AcceleratorProject(
-        Hash id,
-        String name,
-        String description,
-        String url,
-        long znnFundsNeeded,
-        long qsrFundsNeeded,
-        long creationTimestamp,
-        AcceleratorProjectStatus status,
-        VoteBreakdown voteBreakdown) {
-    	this.id = id;
-    	this.name = name;
-    	this.description = description;
-    	this.url = url;
-    	this.znnFundsNeeded = znnFundsNeeded;
-    	this.qsrFundsNeeded = qsrFundsNeeded;
-    	this.creationTimestamp = creationTimestamp;
-    	this.status = status;
-    	this.voteBreakdown = voteBreakdown;
+    public AcceleratorProject(Hash id, String name, String description, String url, long znnFundsNeeded,
+            long qsrFundsNeeded, long creationTimestamp, AcceleratorProjectStatus status, VoteBreakdown voteBreakdown) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+        this.znnFundsNeeded = znnFundsNeeded;
+        this.qsrFundsNeeded = qsrFundsNeeded;
+        this.creationTimestamp = creationTimestamp;
+        this.status = status;
+        this.voteBreakdown = voteBreakdown;
     }
 
-    public Hash getId() { 
-    	return this.id; 
+    public Hash getId() {
+        return this.id;
     }
-    
-    public String getName() { 
-    	return this.name; 
+
+    public String getName() {
+        return this.name;
     }
-    
-    public String getDescription() { 
-    	return this.description; 
+
+    public String getDescription() {
+        return this.description;
     }
-    
-    public String getUrl() { 
-    	return this.url; 
-    	}
-    public long getZnnFundsNeeded() { 
-    	return this.znnFundsNeeded;
+
+    public String getUrl() {
+        return this.url;
     }
-    
-    public long getQsrFundsNeeded() { 
-    	return this.qsrFundsNeeded;
+
+    public long getZnnFundsNeeded() {
+        return this.znnFundsNeeded;
     }
-    
-    public long getCreationTimestamp() { 
-    	return this.creationTimestamp; 
+
+    public long getQsrFundsNeeded() {
+        return this.qsrFundsNeeded;
     }
-    
-    public AcceleratorProjectStatus getStatus() { 
-    	return this.status; 
+
+    public long getCreationTimestamp() {
+        return this.creationTimestamp;
     }
-    
-    public VoteBreakdown getVoteBreakdown() { 
-    	return this.voteBreakdown; 
+
+    public AcceleratorProjectStatus getStatus() {
+        return this.status;
+    }
+
+    public VoteBreakdown getVoteBreakdown() {
+        return this.voteBreakdown;
     }
 
     public double getZnnFundsNeededWithDecimals() {
@@ -89,7 +82,7 @@ public abstract class AcceleratorProject {
     }
 
     public double getQsrFundsNeededWithDecimals() {
-    	return AmountUtils.addDecimals(this.getQsrFundsNeeded(), Constants.QSR_DECIMALS);
+        return AmountUtils.addDecimals(this.getQsrFundsNeeded(), Constants.QSR_DECIMALS);
     }
 
     protected void toJson(JAcceleratorProject json) {

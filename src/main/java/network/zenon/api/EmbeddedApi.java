@@ -4,15 +4,15 @@ import network.zenon.api.embedded.*;
 import network.zenon.client.IClient;
 
 public class EmbeddedApi {
-	private final IClient client;
-	private final PillarApi pillar;
-	private final PlasmaApi plasma;
-	private final SentinelApi sentinel;
-	private final StakeApi stake;
-	private final SwapApi swap;
-	private final TokenApi token;
-	private final AcceleratorApi accelerator;
-	
+    private final IClient client;
+    private final PillarApi pillar;
+    private final PlasmaApi plasma;
+    private final SentinelApi sentinel;
+    private final StakeApi stake;
+    private final SwapApi swap;
+    private final TokenApi token;
+    private final AcceleratorApi accelerator;
+
     public EmbeddedApi(IClient client) {
         this.client = client;
 
@@ -26,34 +26,34 @@ public class EmbeddedApi {
     }
 
     public IClient getClient() {
-    	return this.client;
+        return this.client;
     }
 
     public PillarApi getPillar() {
-    	return this.pillar;
+        return this.pillar;
     }
-    
+
     public PlasmaApi getPlasma() {
-    	return this.plasma;
+        return this.plasma;
     }
-    
+
     public SentinelApi getSentinel() {
-    	return this.sentinel;
+        return this.sentinel;
     }
-    
+
     public StakeApi getStake() {
-    	return this.stake;
+        return this.stake;
     }
-    
+
     public SwapApi getSwap() {
-    	return this.swap;
+        return this.swap;
     }
-    
+
     public TokenApi getToken() {
-    	return this.token;
+        return this.token;
     }
-    
+
     public AcceleratorApi getAccelerator() {
-    	return this.accelerator;
+        return this.accelerator;
     }
 }

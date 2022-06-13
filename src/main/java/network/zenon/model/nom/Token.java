@@ -8,18 +8,18 @@ import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.TokenStandard;
 
 public class Token implements IJsonConvertible<JToken> {
-	private final String name;
-	private final String symbol;
-	private final String domain;
-	private final long totalSupply;
-	private final long decimals;
-	private final Address owner;
-	private final TokenStandard tokenStandard;
-	private final long maxSupply;
+    private final String name;
+    private final String symbol;
+    private final String domain;
+    private final long totalSupply;
+    private final long decimals;
+    private final Address owner;
+    private final TokenStandard tokenStandard;
+    private final long maxSupply;
     private final boolean isBurnable;
     private final boolean isMintable;
     private final boolean isUtility;
-    
+
     public Token(JToken json) {
         this.name = json.name;
         this.symbol = json.symbol;
@@ -34,18 +34,8 @@ public class Token implements IJsonConvertible<JToken> {
         this.isUtility = json.isUtility;
     }
 
-    public Token(
-        String name,
-        String symbol,
-        String domain,
-        long totalSupply,
-        long decimals,
-        Address owner,
-        TokenStandard tokenStandard,
-        long maxSupply,
-        boolean isBurnable,
-        boolean isMintable,
-        boolean isUtility) {
+    public Token(String name, String symbol, String domain, long totalSupply, long decimals, Address owner,
+            TokenStandard tokenStandard, long maxSupply, boolean isBurnable, boolean isMintable, boolean isUtility) {
         this.name = name;
         this.symbol = symbol;
         this.domain = domain;
@@ -59,70 +49,70 @@ public class Token implements IJsonConvertible<JToken> {
         this.isUtility = isUtility;
     }
 
-    public String getName() { 
-    	return this.name; 
+    public String getName() {
+        return this.name;
     }
-    
-    public String getSymbol() { 
-    	return this.symbol;
+
+    public String getSymbol() {
+        return this.symbol;
     }
-    
-    public String getDomain() { 
-    	return this.domain; 
+
+    public String getDomain() {
+        return this.domain;
     }
-    
-    public long getTotalSupply() { 
-    	return this.totalSupply; 
+
+    public long getTotalSupply() {
+        return this.totalSupply;
     }
-    
-    public long getDecimals() { 
-    	return this.decimals;
+
+    public long getDecimals() {
+        return this.decimals;
     }
-    
-    public Address getOwner() { 
-    	return this.owner; 
+
+    public Address getOwner() {
+        return this.owner;
     }
-    
-    public TokenStandard getTokenStandard() { 
-    	return this.tokenStandard;
+
+    public TokenStandard getTokenStandard() {
+        return this.tokenStandard;
     }
-    
-    public long getMaxSupply() { 
-    	return this.maxSupply; 
+
+    public long getMaxSupply() {
+        return this.maxSupply;
     }
-    
-    public boolean getIsBurnable() { 
-    	return this.isBurnable;
+
+    public boolean getIsBurnable() {
+        return this.isBurnable;
     }
-    
-    public boolean getIsMintable() { 
-    	return this.isMintable;
+
+    public boolean getIsMintable() {
+        return this.isMintable;
     }
-    
-    public boolean getIsUtility() { 
-    	return this.isUtility; 
+
+    public boolean getIsUtility() {
+        return this.isUtility;
     }
 
     @Override
     public JToken toJson() {
-    	JToken json = new JToken();
-    	json.name = this.name;
-    	json.symbol = this.symbol;
-    	json.domain = this.domain;
-    	json.totalSupply = this.totalSupply;
-    	json.decimals = this.decimals;
-    	json.owner = this.owner.toString();
-    	json.tokenStandard = this.tokenStandard.toString();
-    	json.maxSupply = this.maxSupply;
-    	json.isBurnable = this.isBurnable;
-    	json.isMintable = this.isMintable;
-    	json.isUtility = this.isUtility;
+        JToken json = new JToken();
+        json.name = this.name;
+        json.symbol = this.symbol;
+        json.domain = this.domain;
+        json.totalSupply = this.totalSupply;
+        json.decimals = this.decimals;
+        json.owner = this.owner.toString();
+        json.tokenStandard = this.tokenStandard.toString();
+        json.maxSupply = this.maxSupply;
+        json.isBurnable = this.isBurnable;
+        json.isMintable = this.isMintable;
+        json.isUtility = this.isUtility;
         return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 
     @Override
@@ -131,12 +121,12 @@ public class Token implements IJsonConvertible<JToken> {
     }
 
     public int getDecimalsExponent() {
-    	return (int)Math.pow(10.0, this.decimals);
+        return (int) Math.pow(10.0, this.decimals);
     }
 
     @Override
     public boolean equals(Object obj) {
-    	return this.equals((Token)obj);
+        return this.equals((Token) obj);
     }
 
     public boolean Equals(Token other) {

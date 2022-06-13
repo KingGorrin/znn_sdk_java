@@ -23,31 +23,35 @@ import java.util.Arrays;
 import java.util.Locale;
 
 /**
- * <p>Implementation of the Bech32 encoding.</p>
+ * <p>
+ * Implementation of the Bech32 encoding.
+ * </p>
  *
- * <p>See <a href="https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki">BIP350</a> and
- * <a href="https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki">BIP173</a> for details.</p>
+ * <p>
+ * See <a href=
+ * "https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki">BIP350</a>
+ * and <a href=
+ * "https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki">BIP173</a>
+ * for details.
+ * </p>
  */
 public class Bech32 {
     /** The Bech32 character set for encoding. */
     private static final String CHARSET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
 
     /** The Bech32 character set for decoding. */
-    private static final byte[] CHARSET_REV = {
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            15, -1, 10, 17, 21, 20, 26, 30,  7,  5, -1, -1, -1, -1, -1, -1,
-            -1, 29, -1, 24, 13, 25,  9,  8, 23, -1, 18, 22, 31, 27, 19, -1,
-             1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1,
-            -1, 29, -1, 24, 13, 25,  9,  8, 23, -1, 18, 22, 31, 27, 19, -1,
-             1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1
-    };
+    private static final byte[] CHARSET_REV = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, 15, -1, 10, 17, 21, 20, 26, 30, 7, 5, -1, -1, -1, -1, -1, -1, -1, 29, -1, 24, 13, 25, 9, 8, 23,
+            -1, 18, 22, 31, 27, 19, -1, 1, 0, 3, 16, 11, 28, 12, 14, 6, 4, 2, -1, -1, -1, -1, -1, -1, 29, -1, 24, 13,
+            25, 9, 8, 23, -1, 18, 22, 31, 27, 19, -1, 1, 0, 3, 16, 11, 28, 12, 14, 6, 4, 2, -1, -1, -1, -1, -1 };
 
     private static final int BECH32_CONST = 1;
     private static final int BECH32M_CONST = 0x2bc830a3;
 
-    public enum Encoding { BECH32, BECH32M }
+    public enum Encoding {
+        BECH32, BECH32M
+    }
 
     public static class Bech32Data {
         public final Encoding encoding;
@@ -64,14 +68,19 @@ public class Bech32 {
     /** Find the polynomial with value coefficients mod the generator as 30-bit. */
     private static int polymod(final byte[] values) {
         int c = 1;
-        for (byte v_i: values) {
+        for (byte v_i : values) {
             int c0 = (c >>> 25) & 0xff;
             c = ((c & 0x1ffffff) << 5) ^ (v_i & 0xff);
-            if ((c0 &  1) != 0) c ^= 0x3b6a57b2;
-            if ((c0 &  2) != 0) c ^= 0x26508e6d;
-            if ((c0 &  4) != 0) c ^= 0x1ea119fa;
-            if ((c0 &  8) != 0) c ^= 0x3d4233dd;
-            if ((c0 & 16) != 0) c ^= 0x2a1462b3;
+            if ((c0 & 1) != 0)
+                c ^= 0x3b6a57b2;
+            if ((c0 & 2) != 0)
+                c ^= 0x26508e6d;
+            if ((c0 & 4) != 0)
+                c ^= 0x1ea119fa;
+            if ((c0 & 8) != 0)
+                c ^= 0x3d4233dd;
+            if ((c0 & 16) != 0)
+                c ^= 0x2a1462b3;
         }
         return c;
     }
@@ -90,8 +99,7 @@ public class Bech32 {
     }
 
     /** Verify a checksum. */
-    private static
-    Encoding verifyChecksum(final String hrp, final byte[] values) {
+    private static Encoding verifyChecksum(final String hrp, final byte[] values) {
         byte[] hrpExpanded = expandHrp(hrp);
         byte[] combined = new byte[hrpExpanded.length + values.length];
         System.arraycopy(hrpExpanded, 0, combined, 0, hrpExpanded.length);
@@ -106,7 +114,7 @@ public class Bech32 {
     }
 
     /** Create a checksum. */
-    private static byte[] createChecksum(final Encoding encoding, final String hrp, final byte[] values)  {
+    private static byte[] createChecksum(final Encoding encoding, final String hrp, final byte[] values) {
         byte[] hrpExpanded = expandHrp(hrp);
         byte[] enc = new byte[hrpExpanded.length + values.length + 6];
         System.arraycopy(hrpExpanded, 0, enc, 0, hrpExpanded.length);
@@ -127,9 +135,9 @@ public class Bech32 {
     /** Encode a Bech32 string. */
     public static String encode(Encoding encoding, String hrp, final byte[] values) {
         if (hrp.length() < 1)
-        	throw new IllegalArgumentException("Human-readable part is too short");
+            throw new IllegalArgumentException("Human-readable part is too short");
         if (hrp.length() > 83)
-        	throw new IllegalArgumentException("Human-readable part is too long");
+            throw new IllegalArgumentException("Human-readable part is too long");
         hrp = hrp.toLowerCase(Locale.ROOT);
         byte[] checksum = createChecksum(encoding, hrp, values);
         byte[] combined = new byte[values.length + checksum.length];
@@ -153,7 +161,8 @@ public class Bech32 {
             throw new AddressFormatException.InvalidDataLength("Input too long: " + str.length());
         for (int i = 0; i < str.length(); ++i) {
             char c = str.charAt(i);
-            if (c < 33 || c > 126) throw new AddressFormatException.InvalidCharacter(c, i);
+            if (c < 33 || c > 126)
+                throw new AddressFormatException.InvalidCharacter(c, i);
             if (c >= 'a' && c <= 'z') {
                 if (upper)
                     throw new AddressFormatException.InvalidCharacter(c, i);
@@ -166,45 +175,47 @@ public class Bech32 {
             }
         }
         final int pos = str.lastIndexOf('1');
-        if (pos < 1) throw new AddressFormatException.InvalidPrefix("Missing human-readable part");
+        if (pos < 1)
+            throw new AddressFormatException.InvalidPrefix("Missing human-readable part");
         final int dataPartLength = str.length() - 1 - pos;
-        if (dataPartLength < 6) throw new AddressFormatException.InvalidDataLength("Data part too short: " + dataPartLength);
+        if (dataPartLength < 6)
+            throw new AddressFormatException.InvalidDataLength("Data part too short: " + dataPartLength);
         byte[] values = new byte[dataPartLength];
         for (int i = 0; i < dataPartLength; ++i) {
             char c = str.charAt(i + pos + 1);
-            if (CHARSET_REV[c] == -1) throw new AddressFormatException.InvalidCharacter(c, i + pos + 1);
+            if (CHARSET_REV[c] == -1)
+                throw new AddressFormatException.InvalidCharacter(c, i + pos + 1);
             values[i] = CHARSET_REV[c];
         }
         String hrp = str.substring(0, pos).toLowerCase(Locale.ROOT);
         Encoding encoding = verifyChecksum(hrp, values);
-        if (encoding == null) throw new AddressFormatException.InvalidChecksum();
+        if (encoding == null)
+            throw new AddressFormatException.InvalidChecksum();
         return new Bech32Data(encoding, hrp, Arrays.copyOfRange(values, 0, values.length - 6));
     }
-    
+
     public static byte[] convertBits(final byte[] data, int from, int to, boolean pad) {
-    	int acc = 0;
-    	int bits = 0;
-    	ByteArrayOutputStream result = new ByteArrayOutputStream();
-    	int maxv = (1 << to) - 1;
-        
-        for (int i = 0; i < data.length; i++)
-        {
-        	int v = Byte.toUnsignedInt(data[i]);
-        	
-        	if (v < 0 || (v >> from) != 0)
-        		throw new IllegalArgumentException();
-        	acc = acc << from | v;
+        int acc = 0;
+        int bits = 0;
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        int maxv = (1 << to) - 1;
+
+        for (int i = 0; i < data.length; i++) {
+            int v = Byte.toUnsignedInt(data[i]);
+
+            if (v < 0 || (v >> from) != 0)
+                throw new IllegalArgumentException();
+            acc = acc << from | v;
             bits += from;
-            while (bits >= to)
-            {
+            while (bits >= to) {
                 bits -= to;
-                result.write((byte)(acc >> bits & maxv));
+                result.write((byte) (acc >> bits & maxv));
             }
         }
-        
+
         if (pad) {
             if (bits > 0) {
-                result.write((byte)(acc << to - bits & maxv));
+                result.write((byte) (acc << to - bits & maxv));
             }
         } else if (bits >= from) {
             throw new IllegalArgumentException("Illegal zero padding");

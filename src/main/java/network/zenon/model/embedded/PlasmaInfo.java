@@ -6,10 +6,10 @@ import network.zenon.model.IJsonConvertible;
 import network.zenon.model.embedded.json.JPlasmaInfo;
 
 public class PlasmaInfo implements IJsonConvertible<JPlasmaInfo> {
-	private final long currentPlasma;
-	private final long maxPlasma;
-	private final long qsrAmount;
-    
+    private final long currentPlasma;
+    private final long maxPlasma;
+    private final long qsrAmount;
+
     public PlasmaInfo(JPlasmaInfo json) {
         this.currentPlasma = json.currentPlasma;
         this.maxPlasma = json.maxPlasma;
@@ -17,34 +17,34 @@ public class PlasmaInfo implements IJsonConvertible<JPlasmaInfo> {
     }
 
     public PlasmaInfo(long currentPlasma, long maxPlasma, long qsrAmount) {
-    	this.currentPlasma = currentPlasma;
+        this.currentPlasma = currentPlasma;
         this.maxPlasma = maxPlasma;
         this.qsrAmount = qsrAmount;
     }
-    
+
     public long getCurrentPlasma() {
-    	return this.currentPlasma;
+        return this.currentPlasma;
     }
-    
+
     public long getMaxPlasma() {
-    	return this.maxPlasma;
+        return this.maxPlasma;
     }
-    
+
     public long getQsrAmount() {
-    	return this.qsrAmount;
+        return this.qsrAmount;
     }
 
     @Override
     public JPlasmaInfo toJson() {
-    	JPlasmaInfo json = new JPlasmaInfo();
-    	json.currentPlasma = this.currentPlasma;
-    	json.maxPlasma = this.maxPlasma;
-    	json.qsrAmount = this.qsrAmount;
+        JPlasmaInfo json = new JPlasmaInfo();
+        json.currentPlasma = this.currentPlasma;
+        json.maxPlasma = this.maxPlasma;
+        json.qsrAmount = this.qsrAmount;
         return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

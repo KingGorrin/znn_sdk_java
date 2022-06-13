@@ -17,7 +17,7 @@ public class TokenStandard implements Comparable<TokenStandard> {
     public static final int CORE_SIZE = 10;
 
     public static TokenStandard parse(String tokenStandard) {
-    	Bech32.Bech32Data bech32 = Bech32.decode(tokenStandard);
+        Bech32.Bech32Data bech32 = Bech32.decode(tokenStandard);
         String hrp = bech32.hrp;
         byte[] core = Bech32.convertBits(bech32.data, 5, 8, false);
         return new TokenStandard(hrp, core);
@@ -26,9 +26,9 @@ public class TokenStandard implements Comparable<TokenStandard> {
     public static TokenStandard fromBytes(byte[] bytes) {
         return new TokenStandard(PREFIX, bytes);
     }
-    
+
     public static TokenStandard bySymbol(String symbol) {
-    	if (symbol.equalsIgnoreCase("znn")) {
+        if (symbol.equalsIgnoreCase("znn")) {
             return ZNN_ZTS;
         } else if (symbol.equalsIgnoreCase("qsr")) {
             return QST_ZTS;
@@ -39,7 +39,7 @@ public class TokenStandard implements Comparable<TokenStandard> {
 
     private final String hrp;
     private final byte[] core;
-    
+
     private TokenStandard(String hrp, byte[] bytes) {
         if (!hrp.equals(PREFIX))
             throw new IllegalArgumentException("Invalid ZTS prefix. Expected '" + PREFIX + "' but got '" + hrp + "'");
@@ -49,12 +49,12 @@ public class TokenStandard implements Comparable<TokenStandard> {
         this.core = bytes;
     }
 
-    public String getHrp() { 
-    	return this.hrp;
+    public String getHrp() {
+        return this.hrp;
     }
-    
-    public byte[] getBytes() { 
-    	return this.core;
+
+    public byte[] getBytes() {
+        return this.core;
     }
 
     @Override
@@ -67,24 +67,23 @@ public class TokenStandard implements Comparable<TokenStandard> {
         return this.toString().hashCode();
     }
 
-	@Override
-	public int compareTo(TokenStandard other) {
-		return this.toString().compareTo(other.toString());
-	}
-	
-	@Override
-	public boolean equals(Object other) {
-		return this.equals((TokenStandard)other);
-	}
+    @Override
+    public int compareTo(TokenStandard other) {
+        return this.toString().compareTo(other.toString());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return this.equals((TokenStandard) other);
+    }
 
     public boolean equals(TokenStandard other) {
-    	if (other == null)
-    		return false;
-    	
-    	if (this == other)
-    		return true;
-    	
-    	return this.hrp.equals(other.hrp) &&
-    			Arrays.equals(this.core, other.core);
+        if (other == null)
+            return false;
+
+        if (this == other)
+            return true;
+
+        return this.hrp.equals(other.hrp) && Arrays.equals(this.core, other.core);
     }
 }

@@ -1,7 +1,6 @@
 package network.zenon.model.embedded.json;
 
-public class JPillarInfo
-{
+public class JPillarInfo {
     public String name;
     public long rank;
     public int type;

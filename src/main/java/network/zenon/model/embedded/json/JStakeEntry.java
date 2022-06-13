@@ -1,7 +1,6 @@
 package network.zenon.model.embedded.json;
 
-public class JStakeEntry
-{
+public class JStakeEntry {
     public long amount;
     public long weightedAmount;
     public long startTimestamp;

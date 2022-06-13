@@ -28,9 +28,10 @@ public class AddressFormatException extends IllegalArgumentException {
     }
 
     /**
-     * This exception is thrown by {@link Base58}, {@link Bech32} and the {@link PrefixedChecksummedBytes} hierarchy of
-     * classes when you try to decode data and a character isn't valid. You shouldn't allow the user to proceed in this
-     * case.
+     * This exception is thrown by {@link Base58}, {@link Bech32} and the
+     * {@link PrefixedChecksummedBytes} hierarchy of classes when you try to decode
+     * data and a character isn't valid. You shouldn't allow the user to proceed in
+     * this case.
      */
     public static class InvalidCharacter extends AddressFormatException {
         public final char character;
@@ -44,9 +45,10 @@ public class AddressFormatException extends IllegalArgumentException {
     }
 
     /**
-     * This exception is thrown by {@link Base58}, {@link Bech32} and the {@link PrefixedChecksummedBytes} hierarchy of
-     * classes when you try to decode data and the data isn't of the right size. You shouldn't allow the user to proceed
-     * in this case.
+     * This exception is thrown by {@link Base58}, {@link Bech32} and the
+     * {@link PrefixedChecksummedBytes} hierarchy of classes when you try to decode
+     * data and the data isn't of the right size. You shouldn't allow the user to
+     * proceed in this case.
      */
     public static class InvalidDataLength extends AddressFormatException {
         public InvalidDataLength() {
@@ -59,9 +61,10 @@ public class AddressFormatException extends IllegalArgumentException {
     }
 
     /**
-     * This exception is thrown by {@link Base58}, {@link Bech32} and the {@link PrefixedChecksummedBytes} hierarchy of
-     * classes when you try to decode data and the checksum isn't valid. You shouldn't allow the user to proceed in this
-     * case.
+     * This exception is thrown by {@link Base58}, {@link Bech32} and the
+     * {@link PrefixedChecksummedBytes} hierarchy of classes when you try to decode
+     * data and the checksum isn't valid. You shouldn't allow the user to proceed in
+     * this case.
      */
     public static class InvalidChecksum extends AddressFormatException {
         public InvalidChecksum() {
@@ -74,8 +77,9 @@ public class AddressFormatException extends IllegalArgumentException {
     }
 
     /**
-     * This exception is thrown by {@link SegwitAddress} when you try to decode data and the witness version doesn't
-     * match the Bech32 encoding as per BIP350. You shouldn't allow the user to proceed in this case.
+     * This exception is thrown by {@link SegwitAddress} when you try to decode data
+     * and the witness version doesn't match the Bech32 encoding as per BIP350. You
+     * shouldn't allow the user to proceed in this case.
      */
     public static class UnexpectedWitnessVersion extends AddressFormatException {
         public UnexpectedWitnessVersion() {
@@ -88,9 +92,10 @@ public class AddressFormatException extends IllegalArgumentException {
     }
 
     /**
-     * This exception is thrown by the {@link PrefixedChecksummedBytes} hierarchy of classes when you try and decode an
-     * address or private key with an invalid prefix (version header or human-readable part). You shouldn't allow the
-     * user to proceed in this case.
+     * This exception is thrown by the {@link PrefixedChecksummedBytes} hierarchy of
+     * classes when you try and decode an address or private key with an invalid
+     * prefix (version header or human-readable part). You shouldn't allow the user
+     * to proceed in this case.
      */
     public static class InvalidPrefix extends AddressFormatException {
         public InvalidPrefix() {
@@ -103,10 +108,12 @@ public class AddressFormatException extends IllegalArgumentException {
     }
 
     /**
-     * This exception is thrown by the {@link PrefixedChecksummedBytes} hierarchy of classes when you try and decode an
-     * address with a prefix (version header or human-readable part) that used by another network (usually: mainnet vs
-     * testnet). You shouldn't allow the user to proceed in this case as they are trying to send money across different
-     * chains, an operation that is guaranteed to destroy the money.
+     * This exception is thrown by the {@link PrefixedChecksummedBytes} hierarchy of
+     * classes when you try and decode an address with a prefix (version header or
+     * human-readable part) that used by another network (usually: mainnet vs
+     * testnet). You shouldn't allow the user to proceed in this case as they are
+     * trying to send money across different chains, an operation that is guaranteed
+     * to destroy the money.
      */
     public static class WrongNetwork extends InvalidPrefix {
         public WrongNetwork(int versionHeader) {

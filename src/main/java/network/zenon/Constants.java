@@ -3,8 +3,7 @@ package network.zenon;
 import java.time.Duration;
 import java.util.regex.Pattern;
 
-public class Constants
-{
+public class Constants {
     // Global constants
     public static final String ZNN_SDK_VERSION = "0.0.4";
     public static final String ZNN_ROOT_DIRECTORY = "znn";
@@ -60,7 +59,8 @@ public class Constants
 
     public static final Pattern TOKEN_NAME_REG_EXP = Pattern.compile("^([a-zA-Z0-9]+[-._]?)*[a-zA-Z0-9]$");
     public static final Pattern TOKEN_SYMBOL_REG_EXP = Pattern.compile("^[A-Z0-9]+$");
-    public static final Pattern TOKEN_DOMAIN_REG_EXP = Pattern.compile("^([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9].)+[A-Za-z]{2,}$");
+    public static final Pattern TOKEN_DOMAIN_REG_EXP = Pattern
+            .compile("^([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9].)+[A-Za-z]{2,}$");
 
     // Accelerator
     public static final int PROJECT_DESCRIPTION_MAX_LENGTH = 240;
@@ -70,7 +70,8 @@ public class Constants
     public static final int PROJECT_ACTIVE_STATUS = 1;
     public static final int PROJECT_PAID_STATUS = 2;
     public static final int PROJECT_CLOSED_STATUS = 3;
-    public static final Pattern PROJECT_URL_REG_EXP = Pattern.compile("^[a-zA-Z0-9]{2,60}.[a-zA-Z]{1,6}([a-zA-Z0-9()@:%_\\+.~#?&/=-]{0,100})$");
+    public static final Pattern PROJECT_URL_REG_EXP = Pattern
+            .compile("^[a-zA-Z0-9]{2,60}.[a-zA-Z]{1,6}([a-zA-Z0-9()@:%_\\+.~#?&/=-]{0,100})$");
 
     // Swap
     public static final int SWAP_ASSET_DECAY_TIMESTAMP_START = 1645531200;

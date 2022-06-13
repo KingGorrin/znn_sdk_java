@@ -26,7 +26,7 @@ public class PillarInfo implements IJsonConvertible<JPillarInfo> {
     private final long weight;
     private final long producedMomentums;
     private final long expectedMomentums;
-    
+
     public PillarInfo(JPillarInfo json) {
         this.name = json.name;
         this.rank = json.rank;
@@ -44,22 +44,11 @@ public class PillarInfo implements IJsonConvertible<JPillarInfo> {
         this.producedMomentums = json.producedMomentums;
         this.expectedMomentums = json.expectedMomentums;
     }
-    
-    public PillarInfo(String name,
-	    long rank,
-	    int type,
-	    Address ownerAddress,
-	    Address producerAddress,
-	    Address withdrawAddress,
-	    long giveMomentumRewardPercentage,
-	    long giveDelegateRewardPercentage,
-	    boolean isRevocable,
-	    long revokeCooldown,
-	    long revokeTimestamp,
-	    PillarEpochStats currentStats,
-	    long weight,
-	    long producedMomentums,
-	    long expectedMomentums) {
+
+    public PillarInfo(String name, long rank, int type, Address ownerAddress, Address producerAddress,
+            Address withdrawAddress, long giveMomentumRewardPercentage, long giveDelegateRewardPercentage,
+            boolean isRevocable, long revokeCooldown, long revokeTimestamp, PillarEpochStats currentStats, long weight,
+            long producedMomentums, long expectedMomentums) {
         this.name = name;
         this.rank = rank;
         this.type = type; // UnknownType
@@ -78,82 +67,82 @@ public class PillarInfo implements IJsonConvertible<JPillarInfo> {
     }
 
     public String getName() {
-    	return this.name;
+        return this.name;
     }
-    
+
     public long getRank() {
-    	return this.rank;
+        return this.rank;
     }
-    
+
     public int getType() {
-    	return this.type;
+        return this.type;
     }
-    
+
     public Address getOwnerAddress() {
-    	return this.ownerAddress;
+        return this.ownerAddress;
     }
-    
+
     public Address getProducerAddress() {
-    	return this.producerAddress;
+        return this.producerAddress;
     }
-    
+
     public Address getWithdrawAddress() {
-    	return this.withdrawAddress;
+        return this.withdrawAddress;
     }
-    
+
     public long getGiveMomentumRewardPercentage() {
-    	return this.giveMomentumRewardPercentage;
+        return this.giveMomentumRewardPercentage;
     }
-    
+
     public long getGiveDelegateRewardPercentage() {
-    	return this.giveDelegateRewardPercentage;
+        return this.giveDelegateRewardPercentage;
     }
-    
+
     public boolean getIsRevocable() {
-    	return this.isRevocable;
+        return this.isRevocable;
     }
-    
+
     public long getRevokeCooldown() {
-    	return this.revokeCooldown;
+        return this.revokeCooldown;
     }
-    
+
     public long getRevokeTimestamp() {
-    	return this.revokeTimestamp;
+        return this.revokeTimestamp;
     }
-    
+
     public PillarEpochStats getCurrentStats() {
-    	return this.currentStats;
+        return this.currentStats;
     }
-    
+
     public long getWeight() {
-    	return this.weight;
+        return this.weight;
     }
-    
+
     public long getProducedMomentums() {
-    	return this.producedMomentums;
+        return this.producedMomentums;
     }
-    
+
     public long getExpectedMomentums() {
-    	return this.expectedMomentums;
+        return this.expectedMomentums;
     }
 
     @Override
     public JPillarInfo toJson() {
-    	JPillarInfo json = new JPillarInfo();
-    	json.name = this.name;
-		json.rank = this.rank;
-		json.ownerAddress = this.ownerAddress.toString();
-		json.producerAddress = this.producerAddress.toString();
-		json.withdrawAddress = this.withdrawAddress.toString();
-		json.isRevocable = this.isRevocable;
-		json.revokeCooldown = this.revokeCooldown;
-		json.currentStats = this.currentStats.toJson();
-		json.weight = this.weight;
-		return json;
+        JPillarInfo json = new JPillarInfo();
+        json.name = this.name;
+        json.rank = this.rank;
+        json.ownerAddress = this.ownerAddress.toString();
+        json.producerAddress = this.producerAddress.toString();
+        json.withdrawAddress = this.withdrawAddress.toString();
+        json.isRevocable = this.isRevocable;
+        json.revokeCooldown = this.revokeCooldown;
+        json.currentStats = this.currentStats.toJson();
+        json.weight = this.weight;
+        return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

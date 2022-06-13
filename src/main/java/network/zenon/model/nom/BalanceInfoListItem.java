@@ -7,11 +7,11 @@ import network.zenon.model.nom.json.JBalanceInfoListItem;
 import network.zenon.utils.AmountUtils;
 
 public class BalanceInfoListItem implements IJsonConvertible<JBalanceInfoListItem> {
-	private final Token token;
-	private final Long balance;
-	private final Double balanceWithDecimals;
-	private final String balanceFormatted;
-    
+    private final Token token;
+    private final Long balance;
+    private final Double balanceWithDecimals;
+    private final String balanceFormatted;
+
     public BalanceInfoListItem(JBalanceInfoListItem json) {
         this.token = json.token != null ? new Token(json.token) : null;
         this.balance = json.balance;
@@ -27,31 +27,31 @@ public class BalanceInfoListItem implements IJsonConvertible<JBalanceInfoListIte
     }
 
     public Token getToken() {
-    	return this.token;
+        return this.token;
     }
-    
+
     public Long getBalance() {
-    	return this.balance;
+        return this.balance;
     }
-    
+
     public Double getBalanceWithDecimals() {
-    	return this.balanceWithDecimals;
+        return this.balanceWithDecimals;
     }
-    
+
     public String getBalanceFormatted() {
-    	return this.balanceFormatted;
+        return this.balanceFormatted;
     }
 
     @Override
     public JBalanceInfoListItem toJson() {
-    	JBalanceInfoListItem json = new JBalanceInfoListItem();
+        JBalanceInfoListItem json = new JBalanceInfoListItem();
         json.token = this.token != null ? this.token.toJson() : null;
         json.balance = this.balance;
         return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

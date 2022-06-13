@@ -12,8 +12,8 @@ import network.zenon.model.primitives.Hash;
 import network.zenon.utils.BytesUtils;
 
 public class Momentum implements IJsonConvertible<JMomentum> {
-	private final int version;
-	private final int chainIdentifier;
+    private final int version;
+    private final int chainIdentifier;
     private final Hash hash;
     private final Hash previousHash;
     private final long height;
@@ -24,7 +24,7 @@ public class Momentum implements IJsonConvertible<JMomentum> {
     private final String publicKey;
     private final String signature;
     private final Address producer;
-    
+
     public Momentum(JMomentum json) {
         this.version = json.version;
         this.chainIdentifier = json.chainIdentifier;
@@ -41,59 +41,59 @@ public class Momentum implements IJsonConvertible<JMomentum> {
     }
 
     public int getVersion() {
-    	return this.version;
+        return this.version;
     }
-    
+
     public int getChainIdentifier() {
-    	return this.chainIdentifier;
+        return this.chainIdentifier;
     }
-    
+
     public Hash getHash() {
-    	return this.hash;
+        return this.hash;
     }
-    
+
     public Hash getPreviousHash() {
-    	return this.previousHash;
+        return this.previousHash;
     }
-    
+
     public long getHeight() {
-    	return this.height;
+        return this.height;
     }
-    
+
     public long getTimestamp() {
-    	return this.timestamp;
+        return this.timestamp;
     }
-    
+
     public byte[] getData() {
-    	return this.data;
+        return this.data;
     }
-    
+
     public List<AccountHeader> getContent() {
-    	return this.content;
+        return this.content;
     }
-    
+
     public Hash getChangesHash() {
-    	return this.changesHash;
+        return this.changesHash;
     }
-    
+
     public String getPublicKey() {
-    	return this.publicKey;
+        return this.publicKey;
     }
-    
+
     public String getSignature() {
-    	return this.signature;
+        return this.signature;
     }
-    
+
     public Address getProducer() {
-    	return this.producer;
+        return this.producer;
     }
 
     @Override
     public JMomentum toJson() {
-    	JMomentum json = new JMomentum();
-    	json.version = this.version;
-    	json.chainIdentifier = this.chainIdentifier;
-    	json.hash = this.hash.toString();
+        JMomentum json = new JMomentum();
+        json.version = this.version;
+        json.chainIdentifier = this.chainIdentifier;
+        json.hash = this.hash.toString();
         json.previousHash = this.previousHash.toString();
         json.height = this.height;
         json.timestamp = this.timestamp;
@@ -105,9 +105,9 @@ public class Momentum implements IJsonConvertible<JMomentum> {
         json.producer = this.producer.toString();
         return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }

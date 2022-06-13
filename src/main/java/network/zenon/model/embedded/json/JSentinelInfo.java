@@ -1,7 +1,6 @@
 package network.zenon.model.embedded.json;
 
-public class JSentinelInfo
-{
+public class JSentinelInfo {
     public String owner;
     public long registrationTimestamp;
     public boolean isRevocable;

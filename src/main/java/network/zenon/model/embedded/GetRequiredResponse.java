@@ -15,36 +15,36 @@ public class GetRequiredResponse implements IJsonConvertible<JGetRequiredRespons
         this.basePlasma = json.basePlasma;
         this.requiredDifficulty = json.requiredDifficulty;
     }
-    
+
     public GetRequiredResponse(long availablePlasma, long basePlasma, long requiredDifficulty) {
         this.availablePlasma = availablePlasma;
         this.basePlasma = basePlasma;
         this.requiredDifficulty = requiredDifficulty;
     }
-    
+
     public long getAvailablePlasma() {
-    	return this.availablePlasma;
+        return this.availablePlasma;
     }
-    
+
     public long getBasePlasma() {
-    	return this.basePlasma;
+        return this.basePlasma;
     }
-    
+
     public long getRequiredDifficulty() {
-    	return this.requiredDifficulty;
+        return this.requiredDifficulty;
     }
 
     @Override
     public JGetRequiredResponse toJson() {
-    	JGetRequiredResponse json = new JGetRequiredResponse();
+        JGetRequiredResponse json = new JGetRequiredResponse();
         json.availablePlasma = this.availablePlasma;
         json.basePlasma = this.basePlasma;
         json.requiredDifficulty = this.requiredDifficulty;
         return json;
     }
-    
+
     @Override
     public String toString() {
-    	return JsonStream.serialize(this.toJson());
+        return JsonStream.serialize(this.toJson());
     }
 }
