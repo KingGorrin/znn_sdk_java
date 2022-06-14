@@ -200,8 +200,8 @@ public class Bech32 {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         int maxv = (1 << to) - 1;
 
-        for (int i = 0; i < data.length; i++) {
-            int v = Byte.toUnsignedInt(data[i]);
+        for (byte element : data) {
+            int v = Byte.toUnsignedInt(element);
 
             if (v < 0 || (v >> from) != 0)
                 throw new IllegalArgumentException();

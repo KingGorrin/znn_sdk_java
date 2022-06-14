@@ -88,8 +88,8 @@ public class Address implements Comparable<Address> {
     }
 
     public boolean isEmbedded() {
-        for (int i = 0; i < EMBEDDED_CONTRACT_ADDRESSES.length; i++) {
-            if (EMBEDDED_CONTRACT_ADDRESSES[i].equals(this))
+        for (Address element : EMBEDDED_CONTRACT_ADDRESSES) {
+            if (element.equals(this))
                 return true;
         }
         return false;

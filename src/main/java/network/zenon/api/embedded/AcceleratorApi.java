@@ -80,30 +80,30 @@ public class AcceleratorApi {
     }
 
     // Contract methods
-    public AccountBlockTemplate CreateProject(String name, String description, String url, long znnFundsNeeded,
+    public AccountBlockTemplate createProject(String name, String description, String url, long znnFundsNeeded,
             long qsrFundsNeeded) {
         throw new UnsupportedOperationException();
     }
 
-    public AccountBlockTemplate AddPhase(Hash id, String name, String description, String url, long znnFundsNeeded,
+    public AccountBlockTemplate addPhase(Hash id, String name, String description, String url, long znnFundsNeeded,
             long qsrFundsNeeded) {
         throw new UnsupportedOperationException();
     }
 
-    public AccountBlockTemplate UpdatePhase(Hash id, String name, String description, String url, long znnFundsNeeded,
+    public AccountBlockTemplate updatePhase(Hash id, String name, String description, String url, long znnFundsNeeded,
             long qsrFundsNeeded) {
         throw new UnsupportedOperationException();
     }
 
-    public AccountBlockTemplate Donate(long amount, TokenStandard zts) {
+    public AccountBlockTemplate donate(long amount, TokenStandard zts) {
         throw new UnsupportedOperationException();
     }
 
-    public AccountBlockTemplate VoteByName(Hash id, String pillarName, int vote) {
+    public AccountBlockTemplate voteByName(Hash id, String pillarName, int vote) {
         throw new UnsupportedOperationException();
     }
 
-    public AccountBlockTemplate VoteByProdAddress(Hash id, int vote) {
+    public AccountBlockTemplate voteByProdAddress(Hash id, int vote) {
         throw new UnsupportedOperationException();
     }
 }

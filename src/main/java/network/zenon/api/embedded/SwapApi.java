@@ -3,8 +3,10 @@ package network.zenon.api.embedded;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.jsoniter.JsonIterator;
+import com.jsoniter.any.Any;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
@@ -35,11 +37,16 @@ public class SwapApi {
 
     public List<SwapAssetEntry> getAssets() {
         try {
-            List<SwapAssetEntry> result = new ArrayList<SwapAssetEntry>();
+            List<SwapAssetEntry> result = new ArrayList<>();
             Object response = this.client.sendRequest("embedded.swap.getAssets", null);
             JsonIterator iterator = JsonIterator.parse(response.toString());
-            iterator.readAny().forEach(
-                    x -> result.add(new SwapAssetEntry(Hash.parse(x.toString("key")), x.as(JSwapAssetEntry.class))));
+
+            Map<String, Any> map = iterator.readAny().asMap();
+
+            for (Map.Entry<String, Any> entry : map.entrySet()) {
+                result.add(new SwapAssetEntry(Hash.parse(entry.getKey()), entry.getValue().as(JSwapAssetEntry.class)));
+            }
+
             return result;
         } catch (IOException e) {
             return null;

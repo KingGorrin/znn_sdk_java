@@ -126,7 +126,7 @@ public class Token implements IJsonConvertible<JToken> {
 
     @Override
     public boolean equals(Object obj) {
-        return this.equals((Token) obj);
+        return this.equals(obj);
     }
 
     public boolean Equals(Token other) {

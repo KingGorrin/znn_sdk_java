@@ -8,7 +8,7 @@ public class ArrayUtils {
      * of the elements {@code array2}. When an array is returned, it is always a new
      * array.
      * </p>
-     * 
+     *
      * <pre>
      * ArrayUtils.addAll(array1, null)   = cloned copy of array1
      * ArrayUtils.addAll(null, array2)   = cloned copy of array2

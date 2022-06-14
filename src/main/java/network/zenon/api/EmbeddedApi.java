@@ -1,6 +1,12 @@
 package network.zenon.api;
 
-import network.zenon.api.embedded.*;
+import network.zenon.api.embedded.AcceleratorApi;
+import network.zenon.api.embedded.PillarApi;
+import network.zenon.api.embedded.PlasmaApi;
+import network.zenon.api.embedded.SentinelApi;
+import network.zenon.api.embedded.StakeApi;
+import network.zenon.api.embedded.SwapApi;
+import network.zenon.api.embedded.TokenApi;
 import network.zenon.client.IClient;
 
 public class EmbeddedApi {
