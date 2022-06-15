@@ -46,6 +46,6 @@ jobs:
           java-version: 18
 
       - name: Publish SNAPSHOT version to GitHub Packages
-        run: mvn -B --no-transfer-progress deploy -DskipTests --projects network.zenon.sdk:znn-java-sdk
+        run: mvn -B --no-transfer-progress deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
