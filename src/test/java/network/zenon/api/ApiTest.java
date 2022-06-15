@@ -1265,7 +1265,7 @@ public class ApiTest {
 
             @ParameterizedTest
             @DisplayName("List Response")
-            @CsvSource({ "0, 1024, 'api/embedded/token/GetAll.json'" })
+            @CsvSource({ "0, 1024, 'api/embedded/token/getAll.json'" })
             public void listResponse(int pageIndex, int pageSize, String resourceName) {
                 // Setup
                 TokenApi api = new TokenApi(
@@ -1292,7 +1292,7 @@ public class ApiTest {
 
             @ParameterizedTest
             @DisplayName("List Response")
-            @CsvSource({ "'z1qpgdtn89u9365jr7ltdxu29fy52pnzwe4fl7zc', 0, 1024, 'api/embedded/token/GetByOwner.json'" })
+            @CsvSource({ "'z1qpgdtn89u9365jr7ltdxu29fy52pnzwe4fl7zc', 0, 1024, 'api/embedded/token/getByOwner.json'" })
             public void listResponse(String address, int pageIndex, int pageSize, String resourceName) {
                 // Setup
                 Address addr = Address.parse(address);
