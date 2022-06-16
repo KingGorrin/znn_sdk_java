@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarVote;
 import network.zenon.model.primitives.Hash;
 
-public class PillarVote implements IJsonConvertible<JPillarVote> {
+public class PillarVote implements JsonConvertible<JPillarVote> {
     private final Hash id;
     private final String name;
     private final long vote;

@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JRewardHistoryList;
 
-public class RewardHistoryList implements IJsonConvertible<JRewardHistoryList> {
+public class RewardHistoryList implements JsonConvertible<JRewardHistoryList> {
     private final long count;
     private final List<RewardHistoryEntry> list;
 

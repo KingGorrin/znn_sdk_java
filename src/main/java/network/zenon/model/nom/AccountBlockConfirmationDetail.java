@@ -2,11 +2,11 @@ package network.zenon.model.nom;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockConfirmationDetail;
 import network.zenon.model.primitives.Hash;
 
-public class AccountBlockConfirmationDetail implements IJsonConvertible<JAccountBlockConfirmationDetail> {
+public class AccountBlockConfirmationDetail implements JsonConvertible<JAccountBlockConfirmationDetail> {
     private final long numConfirmations;
     private final long momentumHeight;
     private final Hash momentumHash;

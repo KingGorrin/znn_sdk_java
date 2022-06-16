@@ -11,22 +11,27 @@ import org.kurento.jsonrpc.message.Request;
 import com.google.gson.JsonObject;
 import com.jsoniter.JsonIterator;
 
-public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements IClient {
-    private final JsonRpcClient client;
+import network.zenon.ZnnSdkException;
 
-    public WsClient(String url) {
-        this.client = new JsonRpcClientNettyWebSocket(url);
+public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Client {
+    private JsonRpcClient client;
 
-        client.setConnectionTimeout(5000);
-        client.setServerRequestHandler(this);
-    }
+    public WsClient() { }
 
-    public void connect() throws IOException {
+    public void connect(String url) throws IOException {
+        if (this.client == null) {
+            this.client = new JsonRpcClientNettyWebSocket(url);
+            this.client.setConnectionTimeout(5000);
+            this.client.setServerRequestHandler(this);
+        }
+        
         this.client.connect();
     }
 
     public void close() throws IOException {
-        this.client.close();
+        if (this.client != null)
+            this.client.close();
+        this.client = null;
     }
 
     @Override

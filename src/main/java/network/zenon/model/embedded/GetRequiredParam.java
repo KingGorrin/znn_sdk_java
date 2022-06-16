@@ -2,13 +2,13 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JGetRequiredParam;
 import network.zenon.model.nom.BlockTypeEnum;
 import network.zenon.model.primitives.Address;
 import network.zenon.utils.BytesUtils;
 
-public class GetRequiredParam implements IJsonConvertible<JGetRequiredParam> {
+public class GetRequiredParam implements JsonConvertible<JGetRequiredParam> {
     private final Address address;
     private final BlockTypeEnum blockType;
     private final Address toAddress;

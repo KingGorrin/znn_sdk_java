@@ -2,10 +2,10 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JRewardHistoryEntry;
 
-public class RewardHistoryEntry implements IJsonConvertible<JRewardHistoryEntry> {
+public class RewardHistoryEntry implements JsonConvertible<JRewardHistoryEntry> {
     private final long epoch;
     private final long znnAmount;
     private final long qsrAmount;

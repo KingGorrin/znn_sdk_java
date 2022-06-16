@@ -2,12 +2,12 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JStakeEntry;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
-public class StakeEntry implements IJsonConvertible<JStakeEntry> {
+public class StakeEntry implements JsonConvertible<JStakeEntry> {
     private final long amount;
     private final long weightedAmount;
     private final long startTimestamp;

@@ -2,12 +2,12 @@ package network.zenon.model.nom;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountHeader;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
-public class AccountHeader implements IJsonConvertible<JAccountHeader> {
+public class AccountHeader implements JsonConvertible<JAccountHeader> {
     private final Address address;
     private final Hash hash;
     private final Long height;

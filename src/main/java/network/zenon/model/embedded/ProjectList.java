@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JProjectList;
 import network.zenon.model.primitives.Hash;
 
-public class ProjectList implements IJsonConvertible<JProjectList> {
+public class ProjectList implements JsonConvertible<JProjectList> {
     private final long count;
     private final List<Project> list;
 

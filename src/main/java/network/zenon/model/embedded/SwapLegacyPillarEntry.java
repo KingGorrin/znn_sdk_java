@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSwapLegacyPillarEntry;
 import network.zenon.model.primitives.Hash;
 
-public class SwapLegacyPillarEntry implements IJsonConvertible<JSwapLegacyPillarEntry> {
+public class SwapLegacyPillarEntry implements JsonConvertible<JSwapLegacyPillarEntry> {
     private final long numPillars;
     private final Hash keyIdHash;
 

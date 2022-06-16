@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JUncollectedReward;
 import network.zenon.model.primitives.Address;
 
-public class UncollectedReward implements IJsonConvertible<JUncollectedReward> {
+public class UncollectedReward implements JsonConvertible<JUncollectedReward> {
     private final Address address;
     private final long znnAmount;
     private final long qsrAmount;

@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarInfoList;
 
-public class PillarInfoList implements IJsonConvertible<JPillarInfoList> {
+public class PillarInfoList implements JsonConvertible<JPillarInfoList> {
     private final long count;
     private final List<PillarInfo> list;
 

@@ -10,7 +10,7 @@ import com.jsoniter.any.Any;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.SwapAssetEntry;
 import network.zenon.model.embedded.SwapLegacyPillarEntry;
 import network.zenon.model.embedded.json.JSwapAssetEntry;
@@ -19,13 +19,13 @@ import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Hash;
 
 public class SwapApi {
-    private final IClient client;
+    private final Client client;
 
-    public SwapApi(IClient client) {
+    public SwapApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

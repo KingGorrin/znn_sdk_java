@@ -2,12 +2,12 @@ package network.zenon.model.nom;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JToken;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.TokenStandard;
 
-public class Token implements IJsonConvertible<JToken> {
+public class Token implements JsonConvertible<JToken> {
     private final String name;
     private final String symbol;
     private final String domain;

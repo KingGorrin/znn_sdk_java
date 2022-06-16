@@ -8,7 +8,7 @@ public class Constants {
     public static final String ZNN_SDK_VERSION = "0.0.4";
     public static final String ZNN_ROOT_DIRECTORY = "znn";
 
-    public static final int NET_ID = 1; // Alphanet
+    public static int NET_ID = 1; // Alphanet
 
     public static String ZNN_DEFAULT_DIRECTORY = ZnnPaths.DEFAULT.getMain();
     public static String ZNN_DEFAILT_WALLET_DIRECTORY = ZnnPaths.DEFAULT.getWallet();

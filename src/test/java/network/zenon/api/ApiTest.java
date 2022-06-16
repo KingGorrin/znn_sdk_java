@@ -27,7 +27,7 @@ import network.zenon.api.embedded.SentinelApi;
 import network.zenon.api.embedded.StakeApi;
 import network.zenon.api.embedded.SwapApi;
 import network.zenon.api.embedded.TokenApi;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.DelegationInfo;
 import network.zenon.model.embedded.FusionEntryList;
 import network.zenon.model.embedded.GetRequiredParam;
@@ -59,7 +59,6 @@ import network.zenon.model.primitives.Hash;
 import network.zenon.model.primitives.TokenStandard;
 import network.zenon.utils.JsonConverter;
 
-@DisplayName("API Tests")
 public class ApiTest {
     public class DefaultClientRequest implements ClientRequest {
         private final String methodName;
@@ -85,7 +84,7 @@ public class ApiTest {
         String invoke() throws IOException;
     }
 
-    public class TestClient implements IClient {
+    public class TestClient implements Client {
         private ClientRequest request;
         private ClientResponse response;
 

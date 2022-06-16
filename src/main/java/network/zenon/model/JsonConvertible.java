@@ -1,5 +1,5 @@
 package network.zenon.model;
 
-public interface IJsonConvertible<T> {
+public interface JsonConvertible<T> {
     T toJson();
 }

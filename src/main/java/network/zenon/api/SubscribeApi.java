@@ -1,16 +1,16 @@
 package network.zenon.api;
 
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.primitives.Address;
 
 public class SubscribeApi {
-    private final IClient client;
+    private final Client client;
 
-    public SubscribeApi(IClient client) {
+    public SubscribeApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

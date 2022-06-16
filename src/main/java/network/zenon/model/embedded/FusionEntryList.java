@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JFusionEntryList;
 
-public class FusionEntryList implements IJsonConvertible<JFusionEntryList> {
+public class FusionEntryList implements JsonConvertible<JFusionEntryList> {
     private final long qsrAmount;
     private final long count;
     private final List<FusionEntry> list;

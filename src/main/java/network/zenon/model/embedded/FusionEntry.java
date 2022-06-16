@@ -2,12 +2,12 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JFusionEntry;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
-public class FusionEntry implements IJsonConvertible<JFusionEntry> {
+public class FusionEntry implements JsonConvertible<JFusionEntry> {
     private final long qsrAmount;
     private final Address beneficiary;
     private final long expirationHeight;

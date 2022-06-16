@@ -5,11 +5,12 @@ import java.nio.file.Path;
 public class ZnnPaths {
     public static ZnnPaths DEFAULT = getDefault();
 
-    private static ZnnPaths getDefault() {
-        String osName = System.getProperty("os.name").toLowerCase();
-
+    public static ZnnPaths getDefault() {
+        String osName = System.getProperty("os.name");
+        osName = osName != null ? osName.toLowerCase() : "";
+        
         Path main;
-
+        
         if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
             main = Path.of(System.getenv("HOME"), "." + Constants.ZNN_ROOT_DIRECTORY);
         } else if (osName.contains("mac")) {
@@ -20,8 +21,10 @@ public class ZnnPaths {
             main = Path.of(System.getenv("HOME"), Constants.ZNN_ROOT_DIRECTORY);
         }
 
-        return new ZnnPaths(main.toString(), Path.of(main.toString(), "wallet").toString(),
-                Path.of(main.toString(), "syrius").toString());
+        return new ZnnPaths(
+            main.toString().toLowerCase(), 
+            main.resolve("wallet").toString().toLowerCase(),
+            main.resolve("syrius").toString().toLowerCase());
     }
 
     private final String main;

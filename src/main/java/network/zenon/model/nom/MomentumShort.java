@@ -2,11 +2,11 @@ package network.zenon.model.nom;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JMomentumShort;
 import network.zenon.model.primitives.Hash;
 
-public class MomentumShort implements IJsonConvertible<JMomentumShort> {
+public class MomentumShort implements JsonConvertible<JMomentumShort> {
     private final Hash hash;
     private final Long height;
     private final Long timestamp;

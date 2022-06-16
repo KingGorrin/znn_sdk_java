@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JStakeList;
 
-public class StakeList implements IJsonConvertible<JStakeList> {
+public class StakeList implements JsonConvertible<JStakeList> {
     private final long totalAmount;
     private final long totalWeightedAmount;
     private final long count;

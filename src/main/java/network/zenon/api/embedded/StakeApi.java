@@ -1,7 +1,7 @@
 package network.zenon.api.embedded;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.RewardHistoryList;
 import network.zenon.model.embedded.StakeList;
 import network.zenon.model.embedded.UncollectedReward;
@@ -13,13 +13,13 @@ import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
 public class StakeApi {
-    private final IClient client;
+    private final Client client;
 
-    public StakeApi(IClient client) {
+    public StakeApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JDetailedMomentumList;
 
-public class DetailedMomentumList implements IJsonConvertible<JDetailedMomentumList> {
+public class DetailedMomentumList implements JsonConvertible<JDetailedMomentumList> {
     private final long count;
     private final List<DetailedMomentum> list;
 

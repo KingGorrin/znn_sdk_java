@@ -3,7 +3,7 @@ package network.zenon.model.nom;
 import com.jsoniter.output.JsonStream;
 
 import network.zenon.Constants;
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
@@ -11,7 +11,7 @@ import network.zenon.model.primitives.HashHeight;
 import network.zenon.model.primitives.TokenStandard;
 import network.zenon.utils.BytesUtils;
 
-public class AccountBlockTemplate implements IJsonConvertible<JAccountBlockTemplate> {
+public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTemplate> {
     public static AccountBlockTemplate Receive(Hash fromBlockHash) {
         return new AccountBlockTemplate(BlockTypeEnum.USER_RECEIVE, null, null, null, fromBlockHash, null);
     }

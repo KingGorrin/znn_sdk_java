@@ -1,4 +1,4 @@
-# Zenon Sdk for Java
+# Zenon SDK for Java
 
 [![build](https://img.shields.io/github/workflow/status/KingGorrin/znn_sdk_java/build)](https://github.com/KingGorrin/znn_sdk_java/actions/workflows/build.yml) [![codecov](https://img.shields.io/codecov/c/github/KingGorrin/znn_sdk_java?token=8WB4pa15fM)](https://codecov.io/gh/KingGorrin/znn_sdk_java)
 
@@ -12,23 +12,27 @@ It provides a simple integration with any Java based projects.
 ### API
 
 ```java
-import network.zenon.api.LedgerApi;
-import network.zenon.client.WsClient;
-import network.zenon.model.nom.AccountInfo;
+import network.zenon.Zenon;
 import network.zenon.model.primitives.Address;
+import network.zenon.model.nom.AccountInfo;
 
-String url = "ws://nodes.zenon.place:35998";
-Address address = Address.parse("z1qq0hffeyj0htmnr4gc6grd8zmqfvwzgrydt402");
+// Connect to node
+Zenon.getClient()
+	.connect("ws://nodes.zenon.place:35998");
 
-WsClient client = new WsClient(url);
-client.connect();
-			
-LedgerApi ledger = new LedgerApi(client);
-AccountInfo info = ledger.getAccountInfoByAddress(address);
-			
+// Create an address
+Address address = Address
+	.parse("z1qq0hffeyj0htmnr4gc6grd8zmqfvwzgrydt402");
+
+// Get account info by address
+AccountInfo info = Zenon.getLedger()
+	.getAccountInfoByAddress(address);
+
+// Close node connection
+Zenon.getClient().close();
+
+// Print account info
 System.out.println("AccountInfo: " + info.toString());
-			
-client.close();
 ```
 
 ## Contributing

@@ -1,7 +1,7 @@
 package network.zenon.api.embedded;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.RewardHistoryList;
 import network.zenon.model.embedded.SentinelInfo;
 import network.zenon.model.embedded.SentinelInfoList;
@@ -14,13 +14,13 @@ import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 
 public class SentinelApi {
-    private final IClient client;
+    private final Client client;
 
-    public SentinelApi(IClient client) {
+    public SentinelApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

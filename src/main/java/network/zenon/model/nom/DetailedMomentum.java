@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JDetailedMomentum;
 
-public class DetailedMomentum implements IJsonConvertible<JDetailedMomentum> {
+public class DetailedMomentum implements JsonConvertible<JDetailedMomentum> {
     private final List<AccountBlock> blocks;
     private final Momentum momentum;
 

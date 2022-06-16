@@ -1,7 +1,7 @@
 package network.zenon.api.embedded;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.nom.Token;
 import network.zenon.model.nom.TokenList;
@@ -11,13 +11,13 @@ import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.TokenStandard;
 
 public class TokenApi {
-    private final IClient client;
+    private final Client client;
 
-    public TokenApi(IClient client) {
+    public TokenApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

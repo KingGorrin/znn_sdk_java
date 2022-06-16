@@ -1,19 +1,19 @@
 package network.zenon.api;
 
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.json.JNetworkInfo;
 import network.zenon.model.json.JOsInfo;
 import network.zenon.model.json.JProcessInfo;
 import network.zenon.model.json.JSyncInfo;
 
 public class StatsApi {
-    private final IClient client;
+    private final Client client;
 
-    public StatsApi(IClient client) {
+    public StatsApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

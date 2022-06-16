@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSentinelInfoList;
 
-public class SentinelInfoList implements IJsonConvertible<JSentinelInfoList> {
+public class SentinelInfoList implements JsonConvertible<JSentinelInfoList> {
     private final long count;
     private final List<SentinelInfo> list;
 

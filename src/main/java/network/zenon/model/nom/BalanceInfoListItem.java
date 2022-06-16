@@ -2,11 +2,11 @@ package network.zenon.model.nom;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JBalanceInfoListItem;
 import network.zenon.utils.AmountUtils;
 
-public class BalanceInfoListItem implements IJsonConvertible<JBalanceInfoListItem> {
+public class BalanceInfoListItem implements JsonConvertible<JBalanceInfoListItem> {
     private final Token token;
     private final Long balance;
     private final Double balanceWithDecimals;

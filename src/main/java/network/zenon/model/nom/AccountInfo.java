@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountInfo;
 import network.zenon.model.primitives.TokenStandard;
 
-public class AccountInfo implements IJsonConvertible<JAccountInfo> {
+public class AccountInfo implements JsonConvertible<JAccountInfo> {
     private final String address;
     private final Long blockCount;
     private final List<BalanceInfoListItem> balanceInfoList;

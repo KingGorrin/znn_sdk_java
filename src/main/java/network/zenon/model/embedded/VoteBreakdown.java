@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JVoteBreakdown;
 import network.zenon.model.primitives.Hash;
 
-public class VoteBreakdown implements IJsonConvertible<JVoteBreakdown> {
+public class VoteBreakdown implements JsonConvertible<JVoteBreakdown> {
     private final Hash id;
     private final long yes;
     private final long no;

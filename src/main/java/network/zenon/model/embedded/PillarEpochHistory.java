@@ -2,10 +2,10 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarEpochHistory;
 
-public class PillarEpochHistory implements IJsonConvertible<JPillarEpochHistory> {
+public class PillarEpochHistory implements JsonConvertible<JPillarEpochHistory> {
     private final String name;
     private final long epoch;
     private final long giveBlockRewardPercentage;

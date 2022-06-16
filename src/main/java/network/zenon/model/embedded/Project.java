@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPhase;
 import network.zenon.model.embedded.json.JProject;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
-public class Project extends AcceleratorProject implements IJsonConvertible<JProject> {
+public class Project extends AcceleratorProject implements JsonConvertible<JProject> {
     private final Address owner;
     private final List<Hash> phaseIds;
     private final List<Phase> phases;

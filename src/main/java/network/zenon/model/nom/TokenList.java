@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JTokenList;
 
-public class TokenList implements IJsonConvertible<JTokenList> {
+public class TokenList implements JsonConvertible<JTokenList> {
     private final long count;
     private final List<Token> list;
 

@@ -7,7 +7,7 @@ import com.jsoniter.JsonIterator;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.DelegationInfo;
 import network.zenon.model.embedded.PillarEpochHistoryList;
 import network.zenon.model.embedded.PillarInfo;
@@ -24,13 +24,13 @@ import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 
 public class PillarApi {
-    private final IClient client;
+    private final Client client;
 
-    public PillarApi(IClient client) {
+    public PillarApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

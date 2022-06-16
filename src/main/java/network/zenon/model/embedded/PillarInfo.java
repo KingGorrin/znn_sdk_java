@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarInfo;
 import network.zenon.model.primitives.Address;
 
-public class PillarInfo implements IJsonConvertible<JPillarInfo> {
+public class PillarInfo implements JsonConvertible<JPillarInfo> {
     public static final int UNKNOWN_TYPE = 0;
     public static final int LEACY_PILLAR_TYPE = 1;
     public static final int REGULAR_PILLAR_TYPE = 2;

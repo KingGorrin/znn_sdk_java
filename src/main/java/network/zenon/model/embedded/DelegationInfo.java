@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JDelegationInfo;
 import network.zenon.utils.AmountUtils;
 
-public class DelegationInfo implements IJsonConvertible<JDelegationInfo> {
+public class DelegationInfo implements JsonConvertible<JDelegationInfo> {
     private final String name;
     private final long status;
     private final long weight;

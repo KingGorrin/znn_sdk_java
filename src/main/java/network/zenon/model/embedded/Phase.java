@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPhase;
 import network.zenon.model.primitives.Hash;
 
-public class Phase extends AcceleratorProject implements IJsonConvertible<JPhase> {
+public class Phase extends AcceleratorProject implements JsonConvertible<JPhase> {
     private final Hash projectId;
     private final long acceptedTimestamp;
 

@@ -5,13 +5,13 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JMomentum;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 import network.zenon.utils.BytesUtils;
 
-public class Momentum implements IJsonConvertible<JMomentum> {
+public class Momentum implements JsonConvertible<JMomentum> {
     private final int version;
     private final int chainIdentifier;
     private final Hash hash;

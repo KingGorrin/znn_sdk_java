@@ -2,10 +2,10 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPlasmaInfo;
 
-public class PlasmaInfo implements IJsonConvertible<JPlasmaInfo> {
+public class PlasmaInfo implements JsonConvertible<JPlasmaInfo> {
     private final long currentPlasma;
     private final long maxPlasma;
     private final long qsrAmount;

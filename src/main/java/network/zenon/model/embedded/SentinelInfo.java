@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSentinelInfo;
 import network.zenon.model.primitives.Address;
 
-public class SentinelInfo implements IJsonConvertible<JSentinelInfo> {
+public class SentinelInfo implements JsonConvertible<JSentinelInfo> {
     private final Address owner;
     private final long registrationTimestamp;
     private final boolean isRevocable;

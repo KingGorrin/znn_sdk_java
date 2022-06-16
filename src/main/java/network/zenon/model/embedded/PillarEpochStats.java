@@ -2,10 +2,10 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarEpochStats;
 
-public class PillarEpochStats implements IJsonConvertible<JPillarEpochStats> {
+public class PillarEpochStats implements JsonConvertible<JPillarEpochStats> {
     private final long producedMomentums;
     private final long expectedMomentums;
 

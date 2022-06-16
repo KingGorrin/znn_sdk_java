@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockList;
 
-public class AccountBlockList implements IJsonConvertible<JAccountBlockList> {
+public class AccountBlockList implements JsonConvertible<JAccountBlockList> {
     private final long count;
     private final List<AccountBlock> list;
     private boolean more;

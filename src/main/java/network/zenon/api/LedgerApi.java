@@ -1,7 +1,7 @@
 package network.zenon.api;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.nom.AccountBlock;
 import network.zenon.model.nom.AccountBlockList;
 import network.zenon.model.nom.AccountBlockTemplate;
@@ -19,13 +19,13 @@ import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
 public class LedgerApi {
-    private final IClient client;
+    private final Client client;
 
-    public LedgerApi(IClient client) {
+    public LedgerApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

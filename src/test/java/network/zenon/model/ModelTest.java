@@ -37,7 +37,6 @@ import network.zenon.model.nom.json.JMomentum;
 import network.zenon.model.nom.json.JMomentumList;
 import network.zenon.model.nom.json.JTokenList;
 
-@DisplayName("Model Tests")
 public class ModelTest {
     private static <D, M> List<Arguments> getArguments(String resourceName, Class<D> dataType, Class<M> modelType)
             throws IOException {

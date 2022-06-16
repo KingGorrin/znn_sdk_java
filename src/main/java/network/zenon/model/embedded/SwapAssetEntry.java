@@ -2,11 +2,11 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSwapAssetEntry;
 import network.zenon.model.primitives.Hash;
 
-public class SwapAssetEntry implements IJsonConvertible<JSwapAssetEntry> {
+public class SwapAssetEntry implements JsonConvertible<JSwapAssetEntry> {
     private final Hash keyIdHash;
     private final long qsr;
     private final long znn;

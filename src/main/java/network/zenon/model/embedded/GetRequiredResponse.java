@@ -2,10 +2,10 @@ package network.zenon.model.embedded;
 
 import com.jsoniter.output.JsonStream;
 
-import network.zenon.model.IJsonConvertible;
+import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JGetRequiredResponse;
 
-public class GetRequiredResponse implements IJsonConvertible<JGetRequiredResponse> {
+public class GetRequiredResponse implements JsonConvertible<JGetRequiredResponse> {
     private final long availablePlasma;
     private final long basePlasma;
     private final long requiredDifficulty;

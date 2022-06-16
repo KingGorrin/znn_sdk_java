@@ -1,7 +1,7 @@
 package network.zenon.api.embedded;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.FusionEntryList;
 import network.zenon.model.embedded.GetRequiredParam;
 import network.zenon.model.embedded.GetRequiredResponse;
@@ -14,13 +14,13 @@ import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 
 public class PlasmaApi {
-    private final IClient client;
+    private final Client client;
 
-    public PlasmaApi(IClient client) {
+    public PlasmaApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 

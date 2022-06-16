@@ -7,7 +7,7 @@ import com.jsoniter.JsonIterator;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
-import network.zenon.client.IClient;
+import network.zenon.client.Client;
 import network.zenon.model.embedded.Phase;
 import network.zenon.model.embedded.PillarVote;
 import network.zenon.model.embedded.Project;
@@ -23,13 +23,13 @@ import network.zenon.model.primitives.Hash;
 import network.zenon.model.primitives.TokenStandard;
 
 public class AcceleratorApi {
-    private final IClient client;
+    private final Client client;
 
-    public AcceleratorApi(IClient client) {
+    public AcceleratorApi(Client client) {
         this.client = client;
     }
 
-    public IClient getClient() {
+    public Client getClient() {
         return this.client;
     }
 
