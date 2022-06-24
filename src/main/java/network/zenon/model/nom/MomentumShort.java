@@ -1,10 +1,9 @@
 package network.zenon.model.nom;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JMomentumShort;
 import network.zenon.model.primitives.Hash;
+import network.zenon.utils.JsonUtils;
 
 public class MomentumShort implements JsonConvertible<JMomentumShort> {
     private final Hash hash;
@@ -46,6 +45,6 @@ public class MomentumShort implements JsonConvertible<JMomentumShort> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

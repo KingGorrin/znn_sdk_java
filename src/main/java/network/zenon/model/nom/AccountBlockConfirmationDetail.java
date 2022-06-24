@@ -1,10 +1,9 @@
 package network.zenon.model.nom;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockConfirmationDetail;
 import network.zenon.model.primitives.Hash;
+import network.zenon.utils.JsonUtils;
 
 public class AccountBlockConfirmationDetail implements JsonConvertible<JAccountBlockConfirmationDetail> {
     private final long numConfirmations;
@@ -47,6 +46,6 @@ public class AccountBlockConfirmationDetail implements JsonConvertible<JAccountB
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

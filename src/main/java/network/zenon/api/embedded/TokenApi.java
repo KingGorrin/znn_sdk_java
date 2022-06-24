@@ -2,6 +2,7 @@ package network.zenon.api.embedded;
 
 import network.zenon.Constants;
 import network.zenon.client.Client;
+import network.zenon.embedded.Definitions;
 import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.nom.Token;
 import network.zenon.model.nom.TokenList;
@@ -50,19 +51,24 @@ public class TokenApi {
     // Contract methods
     public AccountBlockTemplate issueToken(String tokenName, String tokenSymbol, String tokenDomain, long totalSupply,
             long maxSupply, int decimals, boolean mintable, boolean burnable, boolean utility) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.TOKEN_ADDRESS, TokenStandard.ZNN_ZTS,
+                Constants.TOKEN_ZTS_ISSUE_FEE_IN_ZNN, Definitions.TOKEN.encodeFunction("IssueToken", tokenName,
+                        tokenSymbol, tokenDomain, totalSupply, maxSupply, decimals, mintable, burnable, utility));
     }
 
     public AccountBlockTemplate mintToken(TokenStandard tokenStandard, long amount, Address receiveAddress) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.TOKEN_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.TOKEN.encodeFunction("Mint", tokenStandard, amount, receiveAddress));
     }
 
     public AccountBlockTemplate burnToken(TokenStandard tokenStandard, long amount) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.TOKEN_ADDRESS, tokenStandard, amount,
+                Definitions.TOKEN.encodeFunction("Burn"));
     }
 
     public AccountBlockTemplate updateToken(TokenStandard tokenStandard, Address owner, boolean isMintable,
             boolean isBurnable) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.TOKEN_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.TOKEN.encodeFunction("UpdateToken", tokenStandard, owner, isMintable, isBurnable));
     }
 }

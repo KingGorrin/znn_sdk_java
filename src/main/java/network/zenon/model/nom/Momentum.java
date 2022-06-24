@@ -3,13 +3,12 @@ package network.zenon.model.nom;
 import java.util.Collections;
 import java.util.List;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JMomentum;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 import network.zenon.utils.BytesUtils;
+import network.zenon.utils.JsonUtils;
 
 public class Momentum implements JsonConvertible<JMomentum> {
     private final int version;
@@ -108,6 +107,6 @@ public class Momentum implements JsonConvertible<JMomentum> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

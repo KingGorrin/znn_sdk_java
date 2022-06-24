@@ -1,11 +1,10 @@
 package network.zenon.model.nom;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountHeader;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
+import network.zenon.utils.JsonUtils;
 
 public class AccountHeader implements JsonConvertible<JAccountHeader> {
     private final Address address;
@@ -48,6 +47,6 @@ public class AccountHeader implements JsonConvertible<JAccountHeader> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

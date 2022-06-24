@@ -26,7 +26,15 @@ public class Crypto {
         // return Ed25519HdKey.DerivePath(path, seed).Key!;
     }
 
-    public static byte[] digest(byte[] data, int digestSize) throws NoSuchAlgorithmException {
-        return MessageDigest.getInstance("SHA3-256").digest(data);
+    public static byte[] digest(byte[] data) {
+        return digest(data, 32);
+    }
+
+    public static byte[] digest(byte[] data, int digestSize) {
+        try {
+            return MessageDigest.getInstance("SHA3-256").digest(data);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

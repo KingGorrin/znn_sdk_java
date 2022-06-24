@@ -1,12 +1,11 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JGetRequiredParam;
 import network.zenon.model.nom.BlockTypeEnum;
 import network.zenon.model.primitives.Address;
 import network.zenon.utils.BytesUtils;
+import network.zenon.utils.JsonUtils;
 
 public class GetRequiredParam implements JsonConvertible<JGetRequiredParam> {
     private final Address address;
@@ -56,6 +55,6 @@ public class GetRequiredParam implements JsonConvertible<JGetRequiredParam> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

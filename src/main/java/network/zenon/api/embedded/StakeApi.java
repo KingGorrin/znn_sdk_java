@@ -2,6 +2,7 @@ package network.zenon.api.embedded;
 
 import network.zenon.Constants;
 import network.zenon.client.Client;
+import network.zenon.embedded.Definitions;
 import network.zenon.model.embedded.RewardHistoryList;
 import network.zenon.model.embedded.StakeList;
 import network.zenon.model.embedded.UncollectedReward;
@@ -11,6 +12,7 @@ import network.zenon.model.embedded.json.JUncollectedReward;
 import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
+import network.zenon.model.primitives.TokenStandard;
 
 public class StakeApi {
     private final Client client;
@@ -51,15 +53,18 @@ public class StakeApi {
 
     // Contract methods
     public AccountBlockTemplate stake(long durationInSec, long amount) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.STAKE_ADDRESS, TokenStandard.ZNN_ZTS, amount,
+                Definitions.STAKE.encodeFunction("Stake", durationInSec));
     }
 
     public AccountBlockTemplate cancel(Hash id) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.STAKE_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.STAKE.encodeFunction("Cancel", id.getBytes()));
     }
 
     // Common contract methods
     public AccountBlockTemplate collectReward() {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.STAKE_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.COMMON.encodeFunction("CollectReward"));
     }
 }

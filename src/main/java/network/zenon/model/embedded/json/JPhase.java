@@ -3,7 +3,7 @@ package network.zenon.model.embedded.json;
 import com.jsoniter.any.Any;
 
 public class JPhase extends JAcceleratorProject {
-    public static JPhase fromJObject(Any json) {
+    public static JPhase fromAny(Any json) {
         JPhase phase = new JPhase();
         phase.projectId = json.get("phase").toString("projectID");
         phase.acceptedTimestamp = json.get("phase").toLong("acceptedTimestamp");

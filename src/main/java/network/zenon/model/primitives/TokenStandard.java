@@ -10,7 +10,7 @@ public class TokenStandard implements Comparable<TokenStandard> {
     public static final String EMPTY_TOKEN_STANDARD = "zts1qqqqqqqqqqqqqqqqtq587y";
 
     public static final TokenStandard ZNN_ZTS = parse(ZNN_TOKEN_STANDARD);
-    public static final TokenStandard QST_ZTS = parse(QSR_TOKEN_STANDARD);
+    public static final TokenStandard QSR_ZTS = parse(QSR_TOKEN_STANDARD);
     public static final TokenStandard EMPTY_ZTS = parse(EMPTY_TOKEN_STANDARD);
 
     public static final String PREFIX = "zts";
@@ -31,7 +31,7 @@ public class TokenStandard implements Comparable<TokenStandard> {
         if (symbol.equalsIgnoreCase("znn")) {
             return ZNN_ZTS;
         } else if (symbol.equalsIgnoreCase("qsr")) {
-            return QST_ZTS;
+            return QSR_ZTS;
         } else {
             throw new IllegalArgumentException("TokenStandard.bySymbol supports only znn/qsr");
         }

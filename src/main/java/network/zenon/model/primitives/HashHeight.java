@@ -1,10 +1,9 @@
 package network.zenon.model.primitives;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.primitives.json.JHashHeight;
 import network.zenon.utils.ArrayUtils;
 import network.zenon.utils.BytesUtils;
+import network.zenon.utils.JsonUtils;
 
 public class HashHeight {
     public static final HashHeight EMPTY = new HashHeight(Hash.EMPTY, Long.valueOf(0));
@@ -31,7 +30,7 @@ public class HashHeight {
     }
 
     public byte[] getBytes() {
-        return ArrayUtils.addAll(this.hash.getBytes(), BytesUtils.getBytes(this.height));
+        return ArrayUtils.concat(this.hash.getBytes(), BytesUtils.getBytes(this.height));
     }
 
     public JHashHeight toJson() {
@@ -43,6 +42,6 @@ public class HashHeight {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

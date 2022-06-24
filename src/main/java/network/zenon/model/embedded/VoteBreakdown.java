@@ -1,10 +1,9 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JVoteBreakdown;
 import network.zenon.model.primitives.Hash;
+import network.zenon.utils.JsonUtils;
 
 public class VoteBreakdown implements JsonConvertible<JVoteBreakdown> {
     private final Hash id;
@@ -54,6 +53,6 @@ public class VoteBreakdown implements JsonConvertible<JVoteBreakdown> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

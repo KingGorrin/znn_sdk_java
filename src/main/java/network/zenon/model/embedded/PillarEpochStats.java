@@ -1,9 +1,8 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarEpochStats;
+import network.zenon.utils.JsonUtils;
 
 public class PillarEpochStats implements JsonConvertible<JPillarEpochStats> {
     private final long producedMomentums;
@@ -37,6 +36,6 @@ public class PillarEpochStats implements JsonConvertible<JPillarEpochStats> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

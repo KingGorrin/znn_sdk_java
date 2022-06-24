@@ -1,13 +1,12 @@
 package network.zenon.api.embedded;
 
-import java.io.IOException;
 import java.util.List;
 
-import com.jsoniter.JsonIterator;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
 import network.zenon.client.Client;
+import network.zenon.embedded.Definitions;
 import network.zenon.model.embedded.Phase;
 import network.zenon.model.embedded.PillarVote;
 import network.zenon.model.embedded.Project;
@@ -19,8 +18,11 @@ import network.zenon.model.embedded.json.JProject;
 import network.zenon.model.embedded.json.JProjectList;
 import network.zenon.model.embedded.json.JVoteBreakdown;
 import network.zenon.model.nom.AccountBlockTemplate;
+import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 import network.zenon.model.primitives.TokenStandard;
+import network.zenon.utils.AmountUtils;
+import network.zenon.utils.JsonUtils;
 
 public class AcceleratorApi {
     private final Client client;
@@ -50,27 +52,16 @@ public class AcceleratorApi {
     }
 
     public Phase getPhaseById(Hash id) {
-        try {
-            Object response = this.client.sendRequest("embedded.accelerator.getPhaseById",
-                    new Object[] { id.toString() });
-            JsonIterator iterator = JsonIterator.parse(response.toString());
-            return new Phase(JPhase.fromJObject(iterator.readAny()));
-        } catch (IOException e) {
-            return null;
-        }
+        Object response = this.client.sendRequest("embedded.accelerator.getPhaseById", new Object[] { id.toString() });
+        JPhase result = JPhase.fromAny(JsonUtils.deserializeAny(response.toString()));
+        return new Phase(result);
     }
 
     public List<PillarVote> getPillarVotes(String name, String[] hashes) {
-        try {
-            Object response = this.client.sendRequest("embedded.accelerator.getPillarVotes",
-                    new Object[] { name, hashes });
-            JsonIterator iterator = JsonIterator.parse(response.toString());
-            List<JPillarVote> result = iterator.read(new TypeLiteral<List<JPillarVote>>() {
-            });
-            return result.stream().map(x -> new PillarVote(x)).toList();
-        } catch (IOException e) {
-            return null;
-        }
+        Object response = this.client.sendRequest("embedded.accelerator.getPillarVotes", new Object[] { name, hashes });
+        List<JPillarVote> result = JsonUtils.deserialize(response.toString(), new TypeLiteral<List<JPillarVote>>() {
+        });
+        return result.stream().map(x -> new PillarVote(x)).toList();
     }
 
     public VoteBreakdown getVoteBreakdown(Hash id) {
@@ -82,28 +73,38 @@ public class AcceleratorApi {
     // Contract methods
     public AccountBlockTemplate createProject(String name, String description, String url, long znnFundsNeeded,
             long qsrFundsNeeded) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.ACCELERATOR_ADDRESS, TokenStandard.ZNN_ZTS,
+                AmountUtils.extractDecimals(Constants.PROJECT_CREATION_FEE_IN_ZNN, Constants.ZNN_DECIMALS),
+                Definitions.ACCELERATOR.encodeFunction("CreateProject", name, description, url, znnFundsNeeded,
+                        qsrFundsNeeded));
     }
 
     public AccountBlockTemplate addPhase(Hash id, String name, String description, String url, long znnFundsNeeded,
             long qsrFundsNeeded) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.ACCELERATOR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.ACCELERATOR.encodeFunction("AddPhase", id.getBytes(), name, description, url,
+                        znnFundsNeeded, qsrFundsNeeded));
     }
 
     public AccountBlockTemplate updatePhase(Hash id, String name, String description, String url, long znnFundsNeeded,
             long qsrFundsNeeded) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.ACCELERATOR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.ACCELERATOR.encodeFunction("UpdatePhase", id.getBytes(), name, description, url,
+                        znnFundsNeeded, qsrFundsNeeded));
     }
 
     public AccountBlockTemplate donate(long amount, TokenStandard zts) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.ACCELERATOR_ADDRESS, zts, amount,
+                Definitions.ACCELERATOR.encodeFunction("Donate"));
     }
 
     public AccountBlockTemplate voteByName(Hash id, String pillarName, int vote) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.ACCELERATOR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.ACCELERATOR.encodeFunction("VoteByName", id.getBytes(), pillarName, vote));
     }
 
     public AccountBlockTemplate voteByProdAddress(Hash id, int vote) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.ACCELERATOR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.ACCELERATOR.encodeFunction("VoteByProdAddress", id.getBytes(), vote));
     }
 }

@@ -1,36 +1,43 @@
 package network.zenon.utils;
 
+import java.util.Arrays;
+
 public class ArrayUtils {
     /**
-     * Adds all the elements of the given arrays into a new array.
+     * Concatenate all the elements of the given arrays into a new array.
      * <p>
-     * The new array contains all of the element of {@code array1} followed by all
-     * of the elements {@code array2}. When an array is returned, it is always a new
+     * The new array contains all of the element of {@code arrays}. When an array is returned, it is always a new
      * array.
      * </p>
-     *
-     * <pre>
-     * ArrayUtils.addAll(array1, null)   = cloned copy of array1
-     * ArrayUtils.addAll(null, array2)   = cloned copy of array2
-     * ArrayUtils.addAll([], [])         = []
-     * </pre>
-     *
-     * @param array1 the first array whose elements are added to the new array.
-     * @param array2 the second array whose elements are added to the new array.
+     * @param arrays the arrays whose elements are added to the new array.
      * @return The new byte[] array.
-     * @since 2.1
      */
-    public static byte[] addAll(final byte[] array1, final byte... array2) {
-        if (array1 == null) {
-            return clone(array2);
+    public static byte[] concat(byte[]... arrays) {
+        if (arrays == null || arrays.length == 0)
+            return new byte[0];
+        
+        int finalLength = 0;
+        for (byte[] array : arrays) {
+            finalLength += array.length;
         }
-        if (array2 == null) {
-            return clone(array1);
+
+        byte[] dest = null;
+        int destPos = 0;
+
+        for (byte[] array : arrays) {
+            if (dest == null) {
+                dest = Arrays.copyOf(array, finalLength);
+                destPos = array.length;
+            } else {
+                System.arraycopy(array, 0, dest, destPos, array.length);
+                destPos += array.length;
+            }
         }
-        final byte[] joinedArray = new byte[array1.length + array2.length];
-        System.arraycopy(array1, 0, joinedArray, 0, array1.length);
-        System.arraycopy(array2, 0, joinedArray, array1.length, array2.length);
-        return joinedArray;
+        return dest;
+    }
+    
+    public static byte[] sublist(byte[] array, int startIndex, int endIndex) {
+        return Arrays.copyOfRange(array, startIndex, endIndex);
     }
 
     /**

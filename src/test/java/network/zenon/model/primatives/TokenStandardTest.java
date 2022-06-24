@@ -102,6 +102,6 @@ public class TokenStandardTest {
 
     @Test
     public void notEqualsOther() {
-        assertNotEquals(TokenStandard.ZNN_ZTS, TokenStandard.QST_ZTS);
+        assertNotEquals(TokenStandard.ZNN_ZTS, TokenStandard.QSR_ZTS);
     }
 }

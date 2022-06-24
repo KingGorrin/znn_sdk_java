@@ -127,12 +127,12 @@ public class Bech32 {
         return ret;
     }
 
-    /** Encode a Bech32 string. */
+    /** Encode a Bech32 String. */
     public static String encode(final Bech32Data bech32) {
         return encode(bech32.encoding, bech32.hrp, bech32.data);
     }
 
-    /** Encode a Bech32 string. */
+    /** Encode a Bech32 String. */
     public static String encode(Encoding encoding, String hrp, final byte[] values) {
         if (hrp.length() < 1)
             throw new IllegalArgumentException("Human-readable part is too short");
@@ -152,7 +152,7 @@ public class Bech32 {
         return sb.toString();
     }
 
-    /** Decode a Bech32 string. */
+    /** Decode a Bech32 String. */
     public static Bech32Data decode(final String str) throws AddressFormatException {
         boolean lower = false, upper = false;
         if (str.length() < 8)

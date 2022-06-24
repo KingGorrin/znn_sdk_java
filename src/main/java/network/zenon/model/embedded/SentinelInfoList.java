@@ -3,10 +3,9 @@ package network.zenon.model.embedded;
 import java.util.Collections;
 import java.util.List;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSentinelInfoList;
+import network.zenon.utils.JsonUtils;
 
 public class SentinelInfoList implements JsonConvertible<JSentinelInfoList> {
     private final long count;
@@ -42,6 +41,6 @@ public class SentinelInfoList implements JsonConvertible<JSentinelInfoList> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

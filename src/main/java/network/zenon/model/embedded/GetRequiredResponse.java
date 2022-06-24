@@ -1,9 +1,8 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JGetRequiredResponse;
+import network.zenon.utils.JsonUtils;
 
 public class GetRequiredResponse implements JsonConvertible<JGetRequiredResponse> {
     private final long availablePlasma;
@@ -45,6 +44,6 @@ public class GetRequiredResponse implements JsonConvertible<JGetRequiredResponse
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

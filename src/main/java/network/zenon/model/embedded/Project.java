@@ -4,13 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPhase;
 import network.zenon.model.embedded.json.JProject;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
+import network.zenon.utils.JsonUtils;
 
 public class Project extends AcceleratorProject implements JsonConvertible<JProject> {
     private final Address owner;
@@ -24,7 +23,7 @@ public class Project extends AcceleratorProject implements JsonConvertible<JProj
         this.owner = Address.parse(json.owner);
         this.phaseIds = Collections.unmodifiableList(json.phaseIds.stream().map(x -> Hash.parse(x)).toList());
         this.phases = Collections
-                .unmodifiableList(json.phases.stream().map(x -> new Phase(JPhase.fromJObject(x))).toList());
+                .unmodifiableList(json.phases.stream().map(x -> new Phase(JPhase.fromAny(x))).toList());
         this.lastUpdateTimestamp = json.lastUpdateTimestamp;
     }
 
@@ -68,7 +67,7 @@ public class Project extends AcceleratorProject implements JsonConvertible<JProj
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 
     public long getPaidZnnFunds() {

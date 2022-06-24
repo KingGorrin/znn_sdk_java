@@ -1,6 +1,6 @@
 package network.zenon;
 
-public class ZnnSdkException extends Exception {
+public class ZnnSdkException extends RuntimeException {
     private static final String DEFAULT_MESSAGE = "Zenon SDK Exception";
 
     public ZnnSdkException() {

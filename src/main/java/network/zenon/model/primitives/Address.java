@@ -54,7 +54,7 @@ public class Address implements Comparable<Address> {
     private final String hrp;
     private final byte[] core;
 
-    private Address(String hrp, byte[] core) {
+    public Address(String hrp, byte[] core) {
         this.hrp = hrp;
         this.core = core;
     }

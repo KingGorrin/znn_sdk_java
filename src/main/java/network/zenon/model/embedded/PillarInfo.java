@@ -1,10 +1,9 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarInfo;
 import network.zenon.model.primitives.Address;
+import network.zenon.utils.JsonUtils;
 
 public class PillarInfo implements JsonConvertible<JPillarInfo> {
     public static final int UNKNOWN_TYPE = 0;
@@ -98,7 +97,7 @@ public class PillarInfo implements JsonConvertible<JPillarInfo> {
         return this.giveDelegateRewardPercentage;
     }
 
-    public boolean getIsRevocable() {
+    public boolean isRevocable() {
         return this.isRevocable;
     }
 
@@ -143,6 +142,6 @@ public class PillarInfo implements JsonConvertible<JPillarInfo> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

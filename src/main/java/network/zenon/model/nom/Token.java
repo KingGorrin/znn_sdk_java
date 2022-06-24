@@ -1,11 +1,10 @@
 package network.zenon.model.nom;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JToken;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.TokenStandard;
+import network.zenon.utils.JsonUtils;
 
 public class Token implements JsonConvertible<JToken> {
     private final String name;
@@ -81,15 +80,15 @@ public class Token implements JsonConvertible<JToken> {
         return this.maxSupply;
     }
 
-    public boolean getIsBurnable() {
+    public boolean isBurnable() {
         return this.isBurnable;
     }
 
-    public boolean getIsMintable() {
+    public boolean isMintable() {
         return this.isMintable;
     }
 
-    public boolean getIsUtility() {
+    public boolean isUtility() {
         return this.isUtility;
     }
 
@@ -112,7 +111,7 @@ public class Token implements JsonConvertible<JToken> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 
     @Override

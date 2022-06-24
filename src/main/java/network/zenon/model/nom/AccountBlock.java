@@ -60,7 +60,7 @@ public class AccountBlock extends AccountBlockTemplate {
         return this.pairedAccountBlock;
     }
 
-    public boolean getIsCompleted() {
+    public boolean isCompleted() {
         return this.confirmationDetail != null;
     }
 

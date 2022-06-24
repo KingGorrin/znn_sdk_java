@@ -9,9 +9,8 @@ import org.kurento.jsonrpc.client.JsonRpcClientNettyWebSocket;
 import org.kurento.jsonrpc.message.Request;
 
 import com.google.gson.JsonObject;
-import com.jsoniter.JsonIterator;
 
-import network.zenon.ZnnSdkException;
+import network.zenon.utils.JsonUtils;
 
 public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Client {
     private JsonRpcClient client;
@@ -38,7 +37,7 @@ public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Clien
     public <R> R sendRequest(String method, Object params, Class<R> classType) {
         try {
             Object element = this.client.sendRequest(method, params);
-            return JsonIterator.parse(element.toString()).read(classType);
+            return JsonUtils.deserialize(element.toString(), classType);
         } catch (IOException e) {
             return null;
         }
@@ -48,7 +47,7 @@ public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Clien
     public Object sendRequest(String method, Object params) {
         try {
             Object element = this.client.sendRequest(method, params);
-            return JsonIterator.parse(element.toString()).readAny();
+            return JsonUtils.deserializeAny(element.toString());
         } catch (IOException e) {
             return null;
         }

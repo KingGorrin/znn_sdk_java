@@ -4,11 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountInfo;
 import network.zenon.model.primitives.TokenStandard;
+import network.zenon.utils.JsonUtils;
 
 public class AccountInfo implements JsonConvertible<JAccountInfo> {
     private final String address;
@@ -47,7 +46,7 @@ public class AccountInfo implements JsonConvertible<JAccountInfo> {
     }
 
     public long getQsr() {
-        return this.getBalance(TokenStandard.QST_ZTS);
+        return this.getBalance(TokenStandard.QSR_ZTS);
     }
 
     public long getBalance(TokenStandard tokenStandard) {
@@ -83,6 +82,6 @@ public class AccountInfo implements JsonConvertible<JAccountInfo> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

@@ -1,10 +1,9 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSwapLegacyPillarEntry;
 import network.zenon.model.primitives.Hash;
+import network.zenon.utils.JsonUtils;
 
 public class SwapLegacyPillarEntry implements JsonConvertible<JSwapLegacyPillarEntry> {
     private final long numPillars;
@@ -38,6 +37,6 @@ public class SwapLegacyPillarEntry implements JsonConvertible<JSwapLegacyPillarE
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

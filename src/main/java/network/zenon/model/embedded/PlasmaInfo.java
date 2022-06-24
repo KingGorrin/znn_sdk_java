@@ -1,9 +1,8 @@
 package network.zenon.model.embedded;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPlasmaInfo;
+import network.zenon.utils.JsonUtils;
 
 public class PlasmaInfo implements JsonConvertible<JPlasmaInfo> {
     private final long currentPlasma;
@@ -45,6 +44,6 @@ public class PlasmaInfo implements JsonConvertible<JPlasmaInfo> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

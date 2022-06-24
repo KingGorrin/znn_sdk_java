@@ -1,13 +1,12 @@
 package network.zenon.api.embedded;
 
-import java.io.IOException;
 import java.util.List;
 
-import com.jsoniter.JsonIterator;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
 import network.zenon.client.Client;
+import network.zenon.embedded.Definitions;
 import network.zenon.model.embedded.DelegationInfo;
 import network.zenon.model.embedded.PillarEpochHistoryList;
 import network.zenon.model.embedded.PillarInfo;
@@ -22,6 +21,8 @@ import network.zenon.model.embedded.json.JRewardHistoryList;
 import network.zenon.model.embedded.json.JUncollectedReward;
 import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
+import network.zenon.model.primitives.TokenStandard;
+import network.zenon.utils.JsonUtils;
 
 public class PillarApi {
     private final Client client;
@@ -70,16 +71,10 @@ public class PillarApi {
     }
 
     public List<PillarInfo> getByOwner(Address address) {
-        try {
-            Object response = this.client.sendRequest("embedded.pillar.getByOwner",
-                    new Object[] { address.toString() });
-            JsonIterator iterator = JsonIterator.parse(response.toString());
-            List<JPillarInfo> result = iterator.read(new TypeLiteral<List<JPillarInfo>>() {
-            });
-            return result.stream().map(x -> new PillarInfo(x)).toList();
-        } catch (IOException e) {
-            return null;
-        }
+        Object response = this.client.sendRequest("embedded.pillar.getByOwner", new Object[] { address.toString() });
+        List<JPillarInfo> result = JsonUtils.deserialize(response.toString(), new TypeLiteral<List<JPillarInfo>>() {
+        });
+        return result.stream().map(x -> new PillarInfo(x)).toList();
     }
 
     public PillarInfo getByName(String name) {
@@ -125,7 +120,9 @@ public class PillarApi {
 
     public AccountBlockTemplate register(String name, Address producerAddress, Address rewardAddress,
             int giveBlockRewardPercentage, int giveDelegateRewardPercentage) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS,
+                Constants.PILLAR_REGISTER_ZNN_AMOUNT, Definitions.PILLAR.encodeFunction("Register", name,
+                        producerAddress, rewardAddress, giveBlockRewardPercentage, giveDelegateRewardPercentage));
     }
 
     public AccountBlockTemplate registerLegacy(String name, Address producerAddress, Address rewardAddress,
@@ -135,36 +132,47 @@ public class PillarApi {
 
     public AccountBlockTemplate registerLegacy(String name, Address producerAddress, Address rewardAddress,
             String publicKey, String signature, int giveBlockRewardPercentage, int giveDelegateRewardPercentage) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS,
+                Constants.PILLAR_REGISTER_ZNN_AMOUNT,
+                Definitions.PILLAR.encodeFunction("RegisterLegacy", name, producerAddress, rewardAddress,
+                        giveBlockRewardPercentage, giveDelegateRewardPercentage, publicKey, signature));
     }
 
     public AccountBlockTemplate updatePillar(String name, Address producerAddress, Address rewardAddress,
             int giveBlockRewardPercentage, int giveDelegateRewardPercentage) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.PILLAR.encodeFunction("UpdatePillar", name, producerAddress, rewardAddress,
+                        giveBlockRewardPercentage, giveDelegateRewardPercentage));
     }
 
     public AccountBlockTemplate revoke(String name) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.PILLAR.encodeFunction("Revoke", name));
     }
 
     public AccountBlockTemplate delegate(String name) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.PILLAR.encodeFunction("Delegate", name));
     }
 
     public AccountBlockTemplate undelegate() {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.PILLAR.encodeFunction("Undelegate"));
     }
 
     // Common contract methods
     public AccountBlockTemplate collectReward() {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.COMMON.encodeFunction("CollectReward"));
     }
 
     public AccountBlockTemplate depositQsr(long amount) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.QSR_ZTS, amount,
+                Definitions.COMMON.encodeFunction("DepositQsr"));
     }
 
     public AccountBlockTemplate withdrawQsr() {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PILLAR_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.COMMON.encodeFunction("WithdrawQsr"));
     }
 }

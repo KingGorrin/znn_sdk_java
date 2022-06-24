@@ -1,7 +1,9 @@
 package network.zenon.model.json;
 
+import java.util.List;
+
 public class JNetworkInfo {
     public long numPeers;
-    public JPeer[] peers;
+    public List<JPeer> peers;
     public JPeer self;
 }

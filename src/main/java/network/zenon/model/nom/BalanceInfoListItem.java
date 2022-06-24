@@ -1,10 +1,9 @@
 package network.zenon.model.nom;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JBalanceInfoListItem;
 import network.zenon.utils.AmountUtils;
+import network.zenon.utils.JsonUtils;
 
 public class BalanceInfoListItem implements JsonConvertible<JBalanceInfoListItem> {
     private final Token token;
@@ -52,6 +51,6 @@ public class BalanceInfoListItem implements JsonConvertible<JBalanceInfoListItem
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

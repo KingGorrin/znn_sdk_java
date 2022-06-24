@@ -1,22 +1,24 @@
 package network.zenon.api.embedded;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.jsoniter.JsonIterator;
 import com.jsoniter.any.Any;
 import com.jsoniter.spi.TypeLiteral;
 
 import network.zenon.Constants;
 import network.zenon.client.Client;
+import network.zenon.embedded.Definitions;
 import network.zenon.model.embedded.SwapAssetEntry;
 import network.zenon.model.embedded.SwapLegacyPillarEntry;
 import network.zenon.model.embedded.json.JSwapAssetEntry;
 import network.zenon.model.embedded.json.JSwapLegacyPillarEntry;
 import network.zenon.model.nom.AccountBlockTemplate;
+import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
+import network.zenon.model.primitives.TokenStandard;
+import network.zenon.utils.JsonUtils;
 
 public class SwapApi {
     private final Client client;
@@ -36,40 +38,30 @@ public class SwapApi {
     }
 
     public List<SwapAssetEntry> getAssets() {
-        try {
-            List<SwapAssetEntry> result = new ArrayList<>();
-            Object response = this.client.sendRequest("embedded.swap.getAssets", null);
-            JsonIterator iterator = JsonIterator.parse(response.toString());
+        Object response = this.client.sendRequest("embedded.swap.getAssets", null);
 
-            Map<String, Any> map = iterator.readAny().asMap();
-
-            for (Map.Entry<String, Any> entry : map.entrySet()) {
-                result.add(new SwapAssetEntry(Hash.parse(entry.getKey()), entry.getValue().as(JSwapAssetEntry.class)));
-            }
-
-            return result;
-        } catch (IOException e) {
-            return null;
+        List<SwapAssetEntry> result = new ArrayList<>();
+        Map<String, Any> map = JsonUtils.deserializeAny(response.toString()).asMap();
+        for (Map.Entry<String, Any> entry : map.entrySet()) {
+            result.add(new SwapAssetEntry(Hash.parse(entry.getKey()), entry.getValue().as(JSwapAssetEntry.class)));
         }
+        return result;
     }
 
     public List<SwapLegacyPillarEntry> getLegacyPillars() {
-        try {
-            Object response = this.client.sendRequest("embedded.swap.getLegacyPillars", null);
-            if (response == null)
-                return null;
-            JsonIterator iterator = JsonIterator.parse(response.toString());
-            List<JSwapLegacyPillarEntry> result = iterator.read(new TypeLiteral<List<JSwapLegacyPillarEntry>>() {
-            });
-            return result.stream().map(x -> new SwapLegacyPillarEntry(x)).toList();
-        } catch (IOException e) {
+        Object response = this.client.sendRequest("embedded.swap.getLegacyPillars", null);
+        if (response == null)
             return null;
-        }
+        List<JSwapLegacyPillarEntry> result = JsonUtils.deserialize(response.toString(),
+                new TypeLiteral<List<JSwapLegacyPillarEntry>>() {
+                });
+        return result.stream().map(x -> new SwapLegacyPillarEntry(x)).toList();
     }
 
     // Contract methods
     public AccountBlockTemplate retrieveAssets(String pubKey, String signature) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.SWAP_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.SWAP.encodeFunction("RetrieveAssets", pubKey, signature));
     }
 
     public long getSwapDecayPercentage(int currentTimestamp) {

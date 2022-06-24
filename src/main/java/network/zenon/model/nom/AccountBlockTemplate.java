@@ -1,7 +1,5 @@
 package network.zenon.model.nom;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.Constants;
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockTemplate;
@@ -10,23 +8,24 @@ import network.zenon.model.primitives.Hash;
 import network.zenon.model.primitives.HashHeight;
 import network.zenon.model.primitives.TokenStandard;
 import network.zenon.utils.BytesUtils;
+import network.zenon.utils.JsonUtils;
 
 public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTemplate> {
-    public static AccountBlockTemplate Receive(Hash fromBlockHash) {
+    public static AccountBlockTemplate receive(Hash fromBlockHash) {
         return new AccountBlockTemplate(BlockTypeEnum.USER_RECEIVE, null, null, null, fromBlockHash, null);
     }
 
-    public static AccountBlockTemplate Send(Address toAddress, TokenStandard tokenStandard, long amount) {
+    public static AccountBlockTemplate send(Address toAddress, TokenStandard tokenStandard, long amount) {
         return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, toAddress, Long.valueOf(amount), tokenStandard, null,
                 null);
     }
 
-    public static AccountBlockTemplate Send(Address toAddress, TokenStandard tokenStandard, long amount, byte[] data) {
+    public static AccountBlockTemplate send(Address toAddress, TokenStandard tokenStandard, long amount, byte[] data) {
         return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, toAddress, Long.valueOf(amount), tokenStandard, null,
                 data);
     }
 
-    public static AccountBlockTemplate CallContract(Address toAddress, TokenStandard tokenStandard, long amount,
+    public static AccountBlockTemplate callContract(Address toAddress, TokenStandard tokenStandard, long amount,
             byte[] data) {
         return new AccountBlockTemplate(BlockTypeEnum.USER_SEND, toAddress, Long.valueOf(amount), tokenStandard, null,
                 data);
@@ -98,7 +97,7 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
         this.height = 0;
         this.momentumAcknowledged = HashHeight.EMPTY;
         this.address = Address.EMPTY_ADDRESS;
-        this.toAddress = toAddress != null ? address : Address.EMPTY_ADDRESS;
+        this.toAddress = toAddress != null ? toAddress : Address.EMPTY_ADDRESS;
         this.amount = amount != null ? amount : 0;
         this.tokenStandard = tokenStandard != null ? tokenStandard : TokenStandard.EMPTY_ZTS;
         this.fromBlockHash = fromBlockHash != null ? fromBlockHash : Hash.EMPTY;
@@ -257,6 +256,6 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

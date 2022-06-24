@@ -3,10 +3,9 @@ package network.zenon.model.embedded;
 import java.util.Collections;
 import java.util.List;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JFusionEntryList;
+import network.zenon.utils.JsonUtils;
 
 public class FusionEntryList implements JsonConvertible<JFusionEntryList> {
     private final long qsrAmount;
@@ -50,6 +49,6 @@ public class FusionEntryList implements JsonConvertible<JFusionEntryList> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }

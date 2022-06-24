@@ -2,6 +2,7 @@ package network.zenon.api.embedded;
 
 import network.zenon.Constants;
 import network.zenon.client.Client;
+import network.zenon.embedded.Definitions;
 import network.zenon.model.embedded.FusionEntryList;
 import network.zenon.model.embedded.GetRequiredParam;
 import network.zenon.model.embedded.GetRequiredResponse;
@@ -12,6 +13,7 @@ import network.zenon.model.embedded.json.JPlasmaInfo;
 import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
+import network.zenon.model.primitives.TokenStandard;
 
 public class PlasmaApi {
     private final Client client;
@@ -52,10 +54,12 @@ public class PlasmaApi {
 
     // Contract methods
     public AccountBlockTemplate fuse(Address beneficiary, long amount) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PLASMA_ADDRESS, TokenStandard.QSR_ZTS, amount,
+                Definitions.PLASMA.encodeFunction("Fuse", beneficiary));
     }
 
     public AccountBlockTemplate cancel(Hash id) {
-        throw new UnsupportedOperationException();
+        return AccountBlockTemplate.callContract(Address.PLASMA_ADDRESS, TokenStandard.ZNN_ZTS, 0,
+                Definitions.PLASMA.encodeFunction("CancelFuse", id.getBytes()));
     }
 }

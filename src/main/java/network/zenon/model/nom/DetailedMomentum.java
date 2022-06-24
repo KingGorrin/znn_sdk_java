@@ -3,10 +3,9 @@ package network.zenon.model.nom;
 import java.util.Collections;
 import java.util.List;
 
-import com.jsoniter.output.JsonStream;
-
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JDetailedMomentum;
+import network.zenon.utils.JsonUtils;
 
 public class DetailedMomentum implements JsonConvertible<JDetailedMomentum> {
     private final List<AccountBlock> blocks;
@@ -37,6 +36,6 @@ public class DetailedMomentum implements JsonConvertible<JDetailedMomentum> {
 
     @Override
     public String toString() {
-        return JsonStream.serialize(this.toJson());
+        return JsonUtils.serialize(this.toJson());
     }
 }
