@@ -1,4 +1,4 @@
-﻿package network.zenon.abi.json;
+package network.zenon.abi.json;
 
 import java.util.List;
 

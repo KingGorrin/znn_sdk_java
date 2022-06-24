@@ -1,4 +1,4 @@
-﻿package network.zenon.abi;
+package network.zenon.abi;
 
 public enum TypeEnum 
 { 

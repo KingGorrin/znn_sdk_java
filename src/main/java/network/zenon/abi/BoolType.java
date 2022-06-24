@@ -1,4 +1,4 @@
-﻿package network.zenon.abi;
+package network.zenon.abi;
 
 public class BoolType extends IntType {
     public static final String DEFAULT_NAME = "bool";

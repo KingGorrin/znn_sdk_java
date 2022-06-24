@@ -1,4 +1,4 @@
-﻿package network.zenon.abi;
+package network.zenon.abi;
 
 import network.zenon.model.primitives.Address;
 import network.zenon.utils.BytesUtils;

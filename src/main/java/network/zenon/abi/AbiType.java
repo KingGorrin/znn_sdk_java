@@ -1,4 +1,4 @@
-﻿package network.zenon.abi;
+package network.zenon.abi;
 
 public abstract class AbiType {
     public static final int INT32_SIZE = 32;

@@ -1,4 +1,4 @@
-﻿package network.zenon.abi;
+package network.zenon.abi;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
