@@ -13,7 +13,7 @@ public class DynamicArrayType extends ArrayType {
     public String getCanonicalName() {
         return String.format("%s[]", this.getElementType().getCanonicalName());
     }
-    
+
     @Override
     public byte[] encodeList(List<?> l) {
         return ArrayUtils.concat(IntType.encodeInt(l.size()), encodeTuple(l));

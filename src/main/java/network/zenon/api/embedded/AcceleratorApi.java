@@ -1,5 +1,6 @@
 package network.zenon.api.embedded;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.jsoniter.spi.TypeLiteral;
@@ -61,7 +62,11 @@ public class AcceleratorApi {
         Object response = this.client.sendRequest("embedded.accelerator.getPillarVotes", new Object[] { name, hashes });
         List<JPillarVote> result = JsonUtils.deserialize(response.toString(), new TypeLiteral<List<JPillarVote>>() {
         });
-        return result.stream().map(x -> new PillarVote(x)).toList();
+        List<PillarVote> list = new ArrayList<>();
+        for (JPillarVote item : result) {
+            list.add(new PillarVote(item));
+        }
+        return list;
     }
 
     public VoteBreakdown getVoteBreakdown(Hash id) {

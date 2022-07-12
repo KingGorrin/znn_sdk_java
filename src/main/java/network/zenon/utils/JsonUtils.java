@@ -9,15 +9,15 @@ public class JsonUtils {
     public static String serialize(Object value) {
         return JsonStream.serialize(value);
     }
-    
+
     public static Any deserializeAny(String value) {
         return JsonIterator.deserialize(value);
     }
-    
+
     public static <T> T deserialize(String value, TypeLiteral<T> typeLiteral) {
         return JsonIterator.deserialize(value).as(typeLiteral);
     }
-    
+
     public static <T> T deserialize(String value, Class<T> clazz) {
         return JsonIterator.deserialize(value).as(clazz);
     }

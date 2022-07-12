@@ -41,7 +41,7 @@ public class Entry {
         return builder.append(")").toString();
     }
 
-    public byte[] fingerprintSignature()  {
+    public byte[] fingerprintSignature() {
         return Crypto.digest(this.formatSignature().getBytes(StandardCharsets.UTF_8));
     }
 

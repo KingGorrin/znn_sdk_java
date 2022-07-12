@@ -12,8 +12,8 @@ public abstract class NumericType extends AbiType {
 
             if (str.startsWith("0x")) {
                 return new BigInteger(str.substring(2), 16);
-            } else if (str.indexOf('a') != -1 || str.indexOf('b') != -1 || str.indexOf('c') != -1 || str.indexOf('d') != -1
-                    || str.indexOf('e') != -1 || str.indexOf('f') != -1) {
+            } else if (str.indexOf('a') != -1 || str.indexOf('b') != -1 || str.indexOf('c') != -1
+                    || str.indexOf('d') != -1 || str.indexOf('e') != -1 || str.indexOf('f') != -1) {
                 return new BigInteger(str, 16);
             }
             return new BigInteger(str);

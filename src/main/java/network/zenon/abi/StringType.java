@@ -21,7 +21,7 @@ public class StringType extends BytesType {
 
     @Override
     public String decode(byte[] encoded, int offset) {
-        byte[] decoded = (byte[])super.decode(encoded, offset);
+        byte[] decoded = (byte[]) super.decode(encoded, offset);
         return new String(decoded, StandardCharsets.UTF_8);
     }
 }

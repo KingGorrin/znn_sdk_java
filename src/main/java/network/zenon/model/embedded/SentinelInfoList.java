@@ -2,6 +2,7 @@ package network.zenon.model.embedded;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JSentinelInfoList;
@@ -14,7 +15,8 @@ public class SentinelInfoList implements JsonConvertible<JSentinelInfoList> {
     public SentinelInfoList(JSentinelInfoList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new SentinelInfo(x)).toList())
+                ? Collections
+                        .unmodifiableList(json.list.stream().map(x -> new SentinelInfo(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -35,7 +37,7 @@ public class SentinelInfoList implements JsonConvertible<JSentinelInfoList> {
     public JSentinelInfoList toJson() {
         JSentinelInfoList json = new JSentinelInfoList();
         json.count = this.count;
-        json.list = this.list.stream().map(SentinelInfo::toJson).toList();
+        json.list = this.list.stream().map(SentinelInfo::toJson).collect(Collectors.toList());
         return json;
     }
 

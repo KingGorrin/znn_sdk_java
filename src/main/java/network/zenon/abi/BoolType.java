@@ -12,7 +12,7 @@ public class BoolType extends IntType {
         if (value instanceof String) {
             return super.encode(Boolean.parseBoolean((String) value) ? 1 : 0);
         } else if (value instanceof Boolean) {
-            return super.encode((Boolean) value == true ? 1 : 0);
+            return super.encode(((Boolean) value) ? 1 : 0);
         }
 
         throw new UnsupportedOperationException(

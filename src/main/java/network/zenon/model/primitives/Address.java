@@ -42,13 +42,17 @@ public class Address implements Comparable<Address> {
         }
     }
 
-    public static Address fromPublicKey(final byte[] publicKey) throws NoSuchAlgorithmException {
-        final MessageDigest digest = MessageDigest.getInstance("SHA3-256");
-        final byte[] encodedhash = digest.digest(publicKey);
-        byte[] core = new byte[CORE_SIZE];
-        core[0] = USER_BYTE;
-        System.arraycopy(encodedhash, 0, core, 1, 19);
-        return new Address(PREFIX, core);
+    public static Address fromPublicKey(final byte[] publicKey) {
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("SHA3-256");
+            final byte[] encodedhash = digest.digest(publicKey);
+            byte[] core = new byte[CORE_SIZE];
+            core[0] = USER_BYTE;
+            System.arraycopy(encodedhash, 0, core, 1, 19);
+            return new Address(PREFIX, core);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private final String hrp;

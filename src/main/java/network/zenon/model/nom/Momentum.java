@@ -2,6 +2,7 @@ package network.zenon.model.nom;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JMomentum;
@@ -32,7 +33,8 @@ public class Momentum implements JsonConvertible<JMomentum> {
         this.height = json.height;
         this.timestamp = json.timestamp;
         this.data = json.data == null || json.data.isEmpty() ? new byte[0] : BytesUtils.fromBase64String(json.data);
-        this.content = Collections.unmodifiableList(json.content.stream().map(x -> new AccountHeader(x)).toList());
+        this.content = Collections
+                .unmodifiableList(json.content.stream().map(x -> new AccountHeader(x)).collect(Collectors.toList()));
         this.changesHash = Hash.parse(json.changesHash);
         this.publicKey = json.publicKey == null || json.publicKey.isEmpty() ? "" : json.publicKey;
         this.signature = json.signature == null || json.signature.isEmpty() ? "" : json.signature;
@@ -97,7 +99,7 @@ public class Momentum implements JsonConvertible<JMomentum> {
         json.height = this.height;
         json.timestamp = this.timestamp;
         json.data = this.data != null && this.data.length != 0 ? BytesUtils.toBase64String(this.data) : "";
-        json.content = this.content.stream().map(x -> x.toJson()).toList();
+        json.content = this.content.stream().map(x -> x.toJson()).collect(Collectors.toList());
         json.changesHash = this.changesHash.toString();
         json.publicKey = this.publicKey;
         json.signature = this.signature;

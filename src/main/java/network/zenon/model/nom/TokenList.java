@@ -2,6 +2,7 @@ package network.zenon.model.nom;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JTokenList;
@@ -13,7 +14,8 @@ public class TokenList implements JsonConvertible<JTokenList> {
 
     public TokenList(JTokenList json) {
         this.count = json.count;
-        this.list = json.list != null ? Collections.unmodifiableList(json.list.stream().map(x -> new Token(x)).toList())
+        this.list = json.list != null
+                ? Collections.unmodifiableList(json.list.stream().map(x -> new Token(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -34,7 +36,7 @@ public class TokenList implements JsonConvertible<JTokenList> {
     public JTokenList toJson() {
         JTokenList json = new JTokenList();
         json.count = this.count;
-        json.list = this.list.stream().map(Token::toJson).toList();
+        json.list = this.list.stream().map(Token::toJson).collect(Collectors.toList());
         return json;
     }
 

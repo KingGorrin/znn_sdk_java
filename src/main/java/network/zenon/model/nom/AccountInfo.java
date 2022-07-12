@@ -18,8 +18,8 @@ public class AccountInfo implements JsonConvertible<JAccountInfo> {
         this.address = json.address;
         this.blockCount = json.accountHeight;
         this.balanceInfoList = this.blockCount > 0
-                ? Collections.unmodifiableList(
-                        json.balanceInfoMap.values().stream().map(x -> new BalanceInfoListItem(x)).toList())
+                ? Collections.unmodifiableList(json.balanceInfoMap.values().stream()
+                        .map(x -> new BalanceInfoListItem(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 

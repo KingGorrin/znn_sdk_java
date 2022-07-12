@@ -2,6 +2,7 @@ package network.zenon.model.embedded;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarInfoList;
@@ -14,7 +15,8 @@ public class PillarInfoList implements JsonConvertible<JPillarInfoList> {
     public PillarInfoList(JPillarInfoList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new PillarInfo(x)).toList())
+                ? Collections
+                        .unmodifiableList(json.list.stream().map(x -> new PillarInfo(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -35,7 +37,7 @@ public class PillarInfoList implements JsonConvertible<JPillarInfoList> {
     public JPillarInfoList toJson() {
         JPillarInfoList json = new JPillarInfoList();
         json.count = this.count;
-        json.list = this.list.stream().map(PillarInfo::toJson).toList();
+        json.list = this.list.stream().map(PillarInfo::toJson).collect(Collectors.toList());
         return json;
     }
 

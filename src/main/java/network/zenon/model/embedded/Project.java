@@ -21,9 +21,10 @@ public class Project extends AcceleratorProject implements JsonConvertible<JProj
         super(json);
 
         this.owner = Address.parse(json.owner);
-        this.phaseIds = Collections.unmodifiableList(json.phaseIds.stream().map(x -> Hash.parse(x)).toList());
-        this.phases = Collections
-                .unmodifiableList(json.phases.stream().map(x -> new Phase(JPhase.fromAny(x))).toList());
+        this.phaseIds = Collections
+                .unmodifiableList(json.phaseIds.stream().map(x -> Hash.parse(x)).collect(Collectors.toList()));
+        this.phases = Collections.unmodifiableList(
+                json.phases.stream().map(x -> new Phase(JPhase.fromAny(x))).collect(Collectors.toList()));
         this.lastUpdateTimestamp = json.lastUpdateTimestamp;
     }
 
@@ -60,8 +61,8 @@ public class Project extends AcceleratorProject implements JsonConvertible<JProj
         super.toJson(json);
         json.owner = this.owner.toString();
         json.lastUpdateTimestamp = this.lastUpdateTimestamp;
-        json.phases = this.phases.stream().map(x -> JPhase.toAny(x.toJson())).toList();
-        json.phaseIds = this.phaseIds.stream().map(Hash::toString).toList();
+        json.phases = this.phases.stream().map(x -> JPhase.toAny(x.toJson())).collect(Collectors.toList());
+        json.phaseIds = this.phaseIds.stream().map(Hash::toString).collect(Collectors.toList());
         return json;
     }
 

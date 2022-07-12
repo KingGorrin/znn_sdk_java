@@ -153,6 +153,6 @@ public class DefinitionsTest {
         List<Object> actualArgs = definition.decodeFunction(decoded);
 
         // Validate
-        assertEquals(argumentsToString(List.of(expectedArgs)), argumentsToString(actualArgs));
+        assertEquals(argumentsToString(Arrays.asList(expectedArgs)), argumentsToString(actualArgs));
     }
 }

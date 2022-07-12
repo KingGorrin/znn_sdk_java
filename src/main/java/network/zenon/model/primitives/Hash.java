@@ -1,8 +1,6 @@
 package network.zenon.model.primitives;
 
-import java.security.NoSuchAlgorithmException;
-
-import org.bouncycastle.util.Arrays;
+import org.spongycastle.util.Arrays;
 
 import network.zenon.crypto.Crypto;
 import network.zenon.utils.BytesUtils;
@@ -26,7 +24,7 @@ public class Hash implements Comparable<Hash> {
         return new Hash(BytesUtils.fromHexString(hashString));
     }
 
-    public static Hash digest(byte[] byteArray) throws NoSuchAlgorithmException {
+    public static Hash digest(byte[] byteArray) {
         return new Hash(Crypto.digest(byteArray, LENGTH));
     }
 

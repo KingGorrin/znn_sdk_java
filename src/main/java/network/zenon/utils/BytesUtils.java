@@ -2,9 +2,9 @@ package network.zenon.utils;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Base64;
 
-import org.bouncycastle.util.encoders.Base64;
-import org.bouncycastle.util.encoders.Hex;
+import org.spongycastle.util.encoders.Hex;
 
 public class BytesUtils {
 
@@ -68,11 +68,11 @@ public class BytesUtils {
     }
 
     public static String toBase64String(byte[] data) {
-        return Base64.toBase64String(data);
+        return Base64.getEncoder().encodeToString(data);
     }
 
     public static byte[] fromBase64String(String data) {
-        return Base64.decode(data);
+        return Base64.getDecoder().decode(data);
     }
 
     public static String toHexString(byte[] data) {

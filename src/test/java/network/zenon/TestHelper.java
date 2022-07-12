@@ -13,7 +13,10 @@ public class TestHelper {
     public static String getRosourceText(String resourceName) throws IOException {
         ClassLoader classLoader = TestHelper.class.getClassLoader();
         InputStream in = classLoader.getResourceAsStream(resourceName);
-        return StandardCharsets.UTF_8.decode(ByteBuffer.wrap(in.readAllBytes())).toString();
+        int size = in.available();
+        byte[] bytes = new byte[size];
+        in.read(bytes);
+        return StandardCharsets.UTF_8.decode(ByteBuffer.wrap(bytes)).toString();
     }
     
     public static AccountBlockTemplate createAccountBlockTemplate(long amount, String data)

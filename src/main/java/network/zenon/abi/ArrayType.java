@@ -3,7 +3,6 @@ package network.zenon.abi;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.jsoniter.any.Any;
 
@@ -40,54 +39,54 @@ public abstract class ArrayType extends AbiType {
     @Override
     public byte[] encode(Object value) {
         if (value instanceof byte[]) {
-            byte[] items = (byte[])value;
-            List<Byte> list = new ArrayList<Byte>();
+            byte[] items = (byte[]) value;
+            List<Byte> list = new ArrayList<>();
             for (byte item : items) {
                 list.add(item);
             }
             return encodeList(list);
         } else if (value instanceof short[]) {
-            short[] items = (short[])value;
-            List<Short> list = new ArrayList<Short>();
+            short[] items = (short[]) value;
+            List<Short> list = new ArrayList<>();
             for (short item : items) {
                 list.add(item);
             }
             return encodeList(list);
         } else if (value instanceof int[]) {
-            int[] items = (int[])value;
-            List<Integer> list = new ArrayList<Integer>();
+            int[] items = (int[]) value;
+            List<Integer> list = new ArrayList<>();
             for (int item : items) {
                 list.add(item);
             }
             return encodeList(list);
         } else if (value instanceof long[]) {
-            long[] items = (long[])value;
-            List<Long> list = new ArrayList<Long>();
+            long[] items = (long[]) value;
+            List<Long> list = new ArrayList<>();
             for (long item : items) {
                 list.add(item);
             }
             return encodeList(list);
         } else if (value instanceof float[]) {
-            float[] items = (float[])value;
-            List<Float> list = new ArrayList<Float>();
+            float[] items = (float[]) value;
+            List<Float> list = new ArrayList<>();
             for (float item : items) {
                 list.add(item);
             }
             return encodeList(list);
         } else if (value instanceof double[]) {
-            double[] items = (double[])value;
-            List<Double> list = new ArrayList<Double>();
+            double[] items = (double[]) value;
+            List<Double> list = new ArrayList<>();
             for (double item : items) {
                 list.add(item);
             }
             return encodeList(list);
         } else if (value.getClass().isArray()) {
-            return encodeList(Arrays.asList((Object[])value));
+            return encodeList(Arrays.asList((Object[]) value));
         } else if (value instanceof String) {
-            Any array = JsonUtils.deserializeAny((String)value);
+            Any array = JsonUtils.deserializeAny((String) value);
             return encodeList(array.asList());
         }
-        
+
         throw new UnsupportedOperationException(
                 String.format("Value type '%s' is not supported.", value.getClass().getName()));
 
@@ -105,7 +104,7 @@ public abstract class ArrayType extends AbiType {
                 elems[i] = IntType.encodeInt(offset);
                 byte[] encoded = this.getElementType().encode(l.get(i));
                 elems[l.size() + i] = encoded;
-                offset += (int) (this.getFixedSize() * ((encoded.length - 1) / this.getFixedSize() + 1));
+                offset += this.getFixedSize() * ((encoded.length - 1) / this.getFixedSize() + 1);
             }
         } else {
             elems = new byte[l.size()][];

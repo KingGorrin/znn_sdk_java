@@ -2,6 +2,7 @@ package network.zenon.model.nom;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.nom.json.JAccountBlock;
 import network.zenon.model.primitives.Hash;
@@ -19,8 +20,8 @@ public class AccountBlock extends AccountBlockTemplate {
     public AccountBlock(JAccountBlock json) {
         super(json);
 
-        this.descendantBlocks = Collections
-                .unmodifiableList(json.descendantBlocks.stream().map(x -> new AccountBlock(x)).toList());
+        this.descendantBlocks = Collections.unmodifiableList(
+                json.descendantBlocks.stream().map(x -> new AccountBlock(x)).collect(Collectors.toList()));
         this.basePlasma = json.basePlasma;
         this.usedPlasma = json.usedPlasma;
         this.changesHash = Hash.parse(json.changesHash);
@@ -74,7 +75,7 @@ public class AccountBlock extends AccountBlockTemplate {
     protected void toJson(JAccountBlock json) {
         super.toJson(json);
 
-        json.descendantBlocks = this.descendantBlocks.stream().map(AccountBlock::toJson).toList();
+        json.descendantBlocks = this.descendantBlocks.stream().map(AccountBlock::toJson).collect(Collectors.toList());
         json.usedPlasma = this.usedPlasma;
         json.basePlasma = this.basePlasma;
         json.changesHash = this.changesHash.toString();

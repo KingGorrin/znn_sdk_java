@@ -201,7 +201,6 @@ public class AbiTest {
         final StringType STRING = new StringType();
         final Bytes32Type BYTES32 = new Bytes32Type("bytes32");
         final BytesType BYTES = new BytesType("bytes");
-        final FunctionType FUNCTION = new FunctionType();
         final TokenStandardType TOKEN_STANDARD = new TokenStandardType();
         final HashType HASH = new HashType("hash");
         final AddressType ADDRESS = new AddressType();

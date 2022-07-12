@@ -1,6 +1,5 @@
 package network.zenon.abi;
 
-public enum TypeEnum 
-{ 
+public enum TypeEnum {
     FUNCTION
 }

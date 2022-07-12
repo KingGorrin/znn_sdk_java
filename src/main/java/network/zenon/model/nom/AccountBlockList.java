@@ -2,6 +2,7 @@ package network.zenon.model.nom;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockList;
@@ -15,7 +16,8 @@ public class AccountBlockList implements JsonConvertible<JAccountBlockList> {
     public AccountBlockList(JAccountBlockList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new AccountBlock(x)).toList())
+                ? Collections
+                        .unmodifiableList(json.list.stream().map(x -> new AccountBlock(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
         this.more = json.more;
     }
@@ -44,7 +46,7 @@ public class AccountBlockList implements JsonConvertible<JAccountBlockList> {
     public JAccountBlockList toJson() {
         JAccountBlockList json = new JAccountBlockList();
         json.count = this.count;
-        json.list = this.list.stream().map(AccountBlock::toJson).toList();
+        json.list = this.list.stream().map(AccountBlock::toJson).collect(Collectors.toList());
         json.more = this.more;
         return json;
     }

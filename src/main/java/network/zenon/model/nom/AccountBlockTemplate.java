@@ -40,7 +40,7 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
     private long height;
     private HashHeight momentumAcknowledged;
 
-    public Address address;
+    private Address address;
 
     // Send information
     private final Address toAddress;
@@ -214,7 +214,7 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
         return this.publicKey;
     }
 
-    public void getPublicKey(byte[] value) {
+    public void setPublicKey(byte[] value) {
         this.publicKey = value;
     }
 
@@ -222,7 +222,7 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
         return this.signature;
     }
 
-    public void getSignature(byte[] value) {
+    public void setSignature(byte[] value) {
         this.signature = value;
     }
 

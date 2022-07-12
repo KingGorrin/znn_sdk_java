@@ -6,16 +6,17 @@ public class ArrayUtils {
     /**
      * Concatenate all the elements of the given arrays into a new array.
      * <p>
-     * The new array contains all of the element of {@code arrays}. When an array is returned, it is always a new
-     * array.
+     * The new array contains all of the element of {@code arrays}. When an array is
+     * returned, it is always a new array.
      * </p>
+     *
      * @param arrays the arrays whose elements are added to the new array.
      * @return The new byte[] array.
      */
     public static byte[] concat(byte[]... arrays) {
         if (arrays == null || arrays.length == 0)
             return new byte[0];
-        
+
         int finalLength = 0;
         for (byte[] array : arrays) {
             finalLength += array.length;
@@ -35,7 +36,7 @@ public class ArrayUtils {
         }
         return dest;
     }
-    
+
     public static byte[] sublist(byte[] array, int startIndex, int endIndex) {
         return Arrays.copyOfRange(array, startIndex, endIndex);
     }

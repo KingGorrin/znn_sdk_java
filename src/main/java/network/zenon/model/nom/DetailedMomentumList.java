@@ -2,6 +2,7 @@ package network.zenon.model.nom;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JDetailedMomentumList;
@@ -14,7 +15,8 @@ public class DetailedMomentumList implements JsonConvertible<JDetailedMomentumLi
     public DetailedMomentumList(JDetailedMomentumList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new DetailedMomentum(x)).toList())
+                ? Collections.unmodifiableList(
+                        json.list.stream().map(x -> new DetailedMomentum(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -35,7 +37,7 @@ public class DetailedMomentumList implements JsonConvertible<JDetailedMomentumLi
     public JDetailedMomentumList toJson() {
         JDetailedMomentumList json = new JDetailedMomentumList();
         json.count = this.count;
-        json.list = this.list.stream().map(DetailedMomentum::toJson).toList();
+        json.list = this.list.stream().map(DetailedMomentum::toJson).collect(Collectors.toList());
         return json;
     }
 

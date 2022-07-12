@@ -1,6 +1,8 @@
 package network.zenon.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.kurento.jsonrpc.DefaultJsonRpcHandler;
 import org.kurento.jsonrpc.Transaction;
@@ -15,7 +17,8 @@ import network.zenon.utils.JsonUtils;
 public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Client {
     private JsonRpcClient client;
 
-    public WsClient() { }
+    public WsClient() {
+    }
 
     public void connect(String url) throws IOException {
         if (this.client == null) {
@@ -23,7 +26,7 @@ public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Clien
             this.client.setConnectionTimeout(5000);
             this.client.setServerRequestHandler(this);
         }
-        
+
         this.client.connect();
     }
 
@@ -62,11 +65,22 @@ public class WsClient extends DefaultJsonRpcHandler<JsonObject> implements Clien
     }
 
     @Override
-    public void handleRequest(Transaction transaction, Request<JsonObject> request) throws Exception {
+    public void handleRequest(Transaction transaction, Request<JsonObject> request) {
         String method = request.getMethod();
+        String params = request.getParams().toString();
 
-        if (method.equals("ledger.subscription")) {
-            // TODO: add handlers
+        for (RequestListener rl : listeners) {
+            rl.handleRequest(method, JsonUtils.deserializeAny(params));
         }
+    }
+
+    private List<RequestListener> listeners = new ArrayList<>();
+
+    public void addListener(RequestListener toAdd) {
+        listeners.add(toAdd);
+    }
+
+    public void removeListener(RequestListener toRemove) {
+        listeners.remove(toRemove);
     }
 }

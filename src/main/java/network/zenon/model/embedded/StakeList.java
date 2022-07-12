@@ -2,6 +2,7 @@ package network.zenon.model.embedded;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JStakeList;
@@ -18,7 +19,8 @@ public class StakeList implements JsonConvertible<JStakeList> {
         this.totalWeightedAmount = json.totalWeightedAmount;
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new StakeEntry(x)).toList())
+                ? Collections
+                        .unmodifiableList(json.list.stream().map(x -> new StakeEntry(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -51,7 +53,7 @@ public class StakeList implements JsonConvertible<JStakeList> {
         json.totalAmount = this.totalAmount;
         json.totalWeightedAmount = this.totalWeightedAmount;
         json.count = this.count;
-        json.list = this.list.stream().map(StakeEntry::toJson).toList();
+        json.list = this.list.stream().map(StakeEntry::toJson).collect(Collectors.toList());
         return json;
     }
 

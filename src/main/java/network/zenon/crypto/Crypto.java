@@ -1,29 +1,27 @@
 package network.zenon.crypto;
 
+import java.security.KeyPair;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Crypto {
     public static byte[] getPublicKey(byte[] privateKey) {
-        throw new UnsupportedOperationException();
-        // return Ed25519.PublicKeyFromSeed(privateKey);
+        return Ed25519.publicKeyFromSeed(privateKey);
     }
 
     public static byte[] sign(byte[] message, byte[] privateKey, byte[] publicKey) {
-        throw new UnsupportedOperationException();
-        // var expKey = Ed25519.ExpandedPrivateKeyFromSeed(privateKey == null ?
-        // publicKey : privateKey);
-        // return Ed25519.Sign(message, expKey);
+
+        KeyPair keyPair = Ed25519.keyPairFromSeed(privateKey == null ? publicKey : privateKey);
+
+        return Ed25519.sign(message, keyPair.getPrivate());
     }
 
     public static boolean verify(byte[] signature, byte[] message, byte[] publicKey) {
-        throw new UnsupportedOperationException();
-        // return Ed25519.Verify(signature, message, signature);
+        return Ed25519.verify(signature, message, publicKey);
     }
 
     public static byte[] deriveKey(String path, byte[] seed) {
-        throw new UnsupportedOperationException();
-        // return Ed25519HdKey.DerivePath(path, seed).Key!;
+        return Ed25519HdKey.derivePath(path, seed).key;
     }
 
     public static byte[] digest(byte[] data) {
@@ -32,9 +30,11 @@ public class Crypto {
 
     public static byte[] digest(byte[] data, int digestSize) {
         try {
-            return MessageDigest.getInstance("SHA3-256").digest(data);
+            if (digestSize == 32)
+                return MessageDigest.getInstance("SHA3-256").digest(data);
+            throw new NoSuchAlgorithmException();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Couldn't find a SHA3-256 provider", e);
         }
     }
 }

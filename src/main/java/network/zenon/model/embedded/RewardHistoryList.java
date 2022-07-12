@@ -2,6 +2,7 @@ package network.zenon.model.embedded;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JRewardHistoryList;
@@ -14,7 +15,8 @@ public class RewardHistoryList implements JsonConvertible<JRewardHistoryList> {
     public RewardHistoryList(JRewardHistoryList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new RewardHistoryEntry(x)).toList())
+                ? Collections.unmodifiableList(
+                        json.list.stream().map(x -> new RewardHistoryEntry(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -35,7 +37,7 @@ public class RewardHistoryList implements JsonConvertible<JRewardHistoryList> {
     public JRewardHistoryList toJson() {
         JRewardHistoryList json = new JRewardHistoryList();
         json.count = this.count;
-        json.list = this.list.stream().map(RewardHistoryEntry::toJson).toList();
+        json.list = this.list.stream().map(RewardHistoryEntry::toJson).collect(Collectors.toList());
         return json;
     }
 

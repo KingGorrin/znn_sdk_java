@@ -2,6 +2,7 @@ package network.zenon.model.embedded;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JProjectList;
@@ -15,7 +16,7 @@ public class ProjectList implements JsonConvertible<JProjectList> {
     public ProjectList(JProjectList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new Project(x)).toList())
+                ? Collections.unmodifiableList(json.list.stream().map(x -> new Project(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -36,7 +37,7 @@ public class ProjectList implements JsonConvertible<JProjectList> {
     public JProjectList toJson() {
         JProjectList json = new JProjectList();
         json.count = this.count;
-        json.list = this.list.stream().map(Project::toJson).toList();
+        json.list = this.list.stream().map(Project::toJson).collect(Collectors.toList());
         return json;
     }
 

@@ -2,6 +2,7 @@ package network.zenon.model.nom;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JDetailedMomentum;
@@ -13,7 +14,8 @@ public class DetailedMomentum implements JsonConvertible<JDetailedMomentum> {
 
     public DetailedMomentum(JDetailedMomentum json) {
         this.blocks = json.blocks != null
-                ? Collections.unmodifiableList(json.blocks.stream().map(x -> new AccountBlock(x)).toList())
+                ? Collections.unmodifiableList(
+                        json.blocks.stream().map(x -> new AccountBlock(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
         this.momentum = new Momentum(json.momentum);
     }
@@ -29,7 +31,7 @@ public class DetailedMomentum implements JsonConvertible<JDetailedMomentum> {
     @Override
     public JDetailedMomentum toJson() {
         JDetailedMomentum json = new JDetailedMomentum();
-        json.blocks = this.blocks.stream().map(x -> x.toJson()).toList();
+        json.blocks = this.blocks.stream().map(x -> x.toJson()).collect(Collectors.toList());
         json.momentum = this.momentum.toJson();
         return json;
     }

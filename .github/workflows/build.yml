@@ -11,7 +11,7 @@ jobs:
     - uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
-        java-version: 18
+        java-version: 11
     - run: mvn -B install --no-transfer-progress
 
   coverage:
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 18
+          java-version: 11
 
       - run: mvn -B verify -P coverage --no-transfer-progress
 
@@ -43,7 +43,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 18
+          java-version: 11
 
       - name: Publish SNAPSHOT version to GitHub Packages
         run: mvn -B --no-transfer-progress deploy -DskipTests

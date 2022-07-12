@@ -3,6 +3,7 @@ package network.zenon.api.embedded;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.jsoniter.any.Any;
 import com.jsoniter.spi.TypeLiteral;
@@ -55,7 +56,7 @@ public class SwapApi {
         List<JSwapLegacyPillarEntry> result = JsonUtils.deserialize(response.toString(),
                 new TypeLiteral<List<JSwapLegacyPillarEntry>>() {
                 });
-        return result.stream().map(x -> new SwapLegacyPillarEntry(x)).toList();
+        return result.stream().map(x -> new SwapLegacyPillarEntry(x)).collect(Collectors.toList());
     }
 
     // Contract methods

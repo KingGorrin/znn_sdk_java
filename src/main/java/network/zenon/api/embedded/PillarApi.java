@@ -1,6 +1,7 @@
 package network.zenon.api.embedded;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.jsoniter.spi.TypeLiteral;
 
@@ -74,7 +75,7 @@ public class PillarApi {
         Object response = this.client.sendRequest("embedded.pillar.getByOwner", new Object[] { address.toString() });
         List<JPillarInfo> result = JsonUtils.deserialize(response.toString(), new TypeLiteral<List<JPillarInfo>>() {
         });
-        return result.stream().map(x -> new PillarInfo(x)).toList();
+        return result.stream().map(x -> new PillarInfo(x)).collect(Collectors.toList());
     }
 
     public PillarInfo getByName(String name) {

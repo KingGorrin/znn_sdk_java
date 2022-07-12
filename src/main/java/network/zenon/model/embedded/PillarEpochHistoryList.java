@@ -2,6 +2,7 @@ package network.zenon.model.embedded;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.embedded.json.JPillarEpochHistoryList;
@@ -14,7 +15,8 @@ public class PillarEpochHistoryList implements JsonConvertible<JPillarEpochHisto
     public PillarEpochHistoryList(JPillarEpochHistoryList json) {
         this.count = json.count;
         this.list = json.list != null
-                ? Collections.unmodifiableList(json.list.stream().map(x -> new PillarEpochHistory(x)).toList())
+                ? Collections.unmodifiableList(
+                        json.list.stream().map(x -> new PillarEpochHistory(x)).collect(Collectors.toList()))
                 : Collections.emptyList();
     }
 
@@ -35,7 +37,7 @@ public class PillarEpochHistoryList implements JsonConvertible<JPillarEpochHisto
     public JPillarEpochHistoryList toJson() {
         JPillarEpochHistoryList json = new JPillarEpochHistoryList();
         json.count = this.count;
-        json.list = this.list.stream().map(PillarEpochHistory::toJson).toList();
+        json.list = this.list.stream().map(PillarEpochHistory::toJson).collect(Collectors.toList());
         return json;
     }
 

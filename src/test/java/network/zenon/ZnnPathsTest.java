@@ -3,6 +3,7 @@ package network.zenon;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class ZnnPathsTest {
         @Test
         void assertDefaults() {
             // Setup
-            Path root = Path.of("c:", "users", "professorz", "appdata", "roaming");
+            Path root = Paths.get("c:", "users", "professorz", "appdata", "roaming");
             Path main = root.resolve("znn");
             Path wallet = main.resolve("wallet");
             Path cache = main.resolve("syrius");
@@ -52,7 +53,7 @@ public class ZnnPathsTest {
         @CsvSource({ "'LINUX'", "'SINIX'", "'UNIX'", "'XENIX'", "'AIX-PS/2'" })
         void assertDefaults(String osName) {
             // Setup
-            Path root = Path.of("home", "professorz");
+            Path root = Paths.get("home", "professorz");
             Path main = root.resolve(".znn");
             Path wallet = main.resolve("wallet");
             Path cache = main.resolve("syrius");
@@ -75,8 +76,8 @@ public class ZnnPathsTest {
         @Test
         void assertDefaults() {
             // Setup
-            Path root = Path.of("users", "professorz");
-            Path main = root.resolve(Path.of("library", "znn"));
+            Path root = Paths.get("users", "professorz");
+            Path main = root.resolve(Paths.get("library", "znn"));
             Path wallet = main.resolve("wallet");
             Path cache = main.resolve("syrius");
             
@@ -98,7 +99,7 @@ public class ZnnPathsTest {
         @Test
         void assertDefaults() {
             // Setup
-            Path root = Path.of("");
+            Path root = Paths.get("");
             Path main = root.resolve("znn");
             Path wallet = main.resolve("wallet");
             Path cache = main.resolve("syrius");

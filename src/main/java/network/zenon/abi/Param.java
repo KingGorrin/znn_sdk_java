@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Param {
     public static List<Object> decodeList(List<Param> parameters, byte[] encoded) {
-        List<Object> result = new ArrayList<Object>();
+        List<Object> result = new ArrayList<>();
         int offset = 0;
         for (Param param : parameters) {
             Object decoded = param.getType().isDynamicType()
