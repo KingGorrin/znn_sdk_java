@@ -7,8 +7,9 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import de.mkammerer.argon2.Argon2Advanced;
-import de.mkammerer.argon2.Argon2Factory;
+import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
+import org.bouncycastle.crypto.params.Argon2Parameters;
+
 import network.zenon.model.primitives.Address;
 import network.zenon.utils.BytesUtils;
 import network.zenon.utils.JsonUtils;
@@ -69,13 +70,20 @@ public class KeyFile {
 
     private static class Argon2Utils {
         public static byte[] hash(byte[] password, byte[] salt) {
-            // Create password hash using Argon2id hashing algorithm.
-            Argon2Advanced argon2 = Argon2Factory.createAdvanced(Argon2Factory.Argon2Types.ARGON2id, salt.length, 32);
+            byte[] hash = new byte[32];
 
-            return argon2.rawHash(1, // Number of iterations to perform
-                    64 * 1024, // Amount of memory (in kilobytes) to use
-                    4, // Degree of parallelism (i.e. number of threads)
-                    password, salt);
+            Argon2Parameters params = new Argon2Parameters
+                            .Builder(Argon2Parameters.ARGON2_id)
+                            .withSalt(salt)
+                            .withParallelism(4)
+                            .withMemoryAsKB(64 * 1024)
+                            .withIterations(1)
+                            .build();
+
+            Argon2BytesGenerator generator = new Argon2BytesGenerator();
+            generator.init(params);
+            generator.generateBytes(password, hash);
+            return hash;
         }
     }
 

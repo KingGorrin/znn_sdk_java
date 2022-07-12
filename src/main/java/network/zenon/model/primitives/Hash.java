@@ -1,6 +1,6 @@
 package network.zenon.model.primitives;
 
-import org.spongycastle.util.Arrays;
+import java.util.Arrays;
 
 import network.zenon.crypto.Crypto;
 import network.zenon.utils.BytesUtils;
@@ -60,7 +60,7 @@ public class Hash implements Comparable<Hash> {
         if (this == other)
             return true;
 
-        return Arrays.areEqual(this.hash, other.hash);
+        return Arrays.equals(this.hash, other.hash);
     }
 
     @Override
