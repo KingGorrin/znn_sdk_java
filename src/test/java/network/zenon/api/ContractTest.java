@@ -13,6 +13,7 @@ import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 import network.zenon.model.primitives.TokenStandard;
+import network.zenon.utils.BytesUtils;
 
 public class ContractTest {
     public class TestClient implements Client {
@@ -48,6 +49,67 @@ public class ContractTest {
         }
     }
 
+    @Nested
+    public class Htlc {
+        private HtlcApi api;
+
+        @BeforeEach
+        public void initFixture() {
+            this.api = new EmbeddedApiFixture().getApi().getHtlc();
+        }
+
+        @Test
+        public void whenCreateHtlcExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7", "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 10000000000L,
+                    "GIDoZgAAAAAAAAAAAAAAAABhJkXCFzgm8ajy065dg9QtXqD7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGNs2EoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5UOmyrjbW9wIbRcguXsPCXRYhBzQJk14k1DjsHWH9b");
+
+            // Execute
+            AccountBlockTemplate block = this.api.createHtlc(
+                    Address.parse("z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7"),
+                    Address.parse("z1qpsjv3wzzuuzdudg7tf6uhvr6sk4ag8me42ua4"),
+                    TokenStandard.ZNN_ZTS, 10000000000L, 1668077642L, 
+                    0, 32, BytesUtils.fromHexString("de543a6cab8db5bdc086d1720b97b0f097458841cd0264d789350e3b07587f5b"));
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+        
+        @Test
+        public void whenReclaimHtlcExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7", "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 0,
+                    "2KuUoVnkOgCVs2M3kRjJ4oOEQtwrHqWWJLGK6txc1mFWB5Qe");
+
+            // Execute
+            AccountBlockTemplate block = this.api.reclaimHtlc(
+                    Address.parse("z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7"),
+                    Hash.parse("59e43a0095b363379118c9e2838442dc2b1ea59624b18aeadc5cd6615607941e"));
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+        
+        @Test
+        public void whenUnlockHtlcExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qpsjv3wzzuuzdudg7tf6uhvr6sk4ag8me42ua4", "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 0,
+                    "CyR9cZ9uMIjiaH5kL0wPPyn7IZEfpcoaumbcBUP7xu7gFmTtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGWFsbCB5b3VyIHpubiBiZWxvbmcgdG8gdXMAAAAAAAAA");
+
+            // Execute
+            AccountBlockTemplate block = this.api.unlockHtlc(
+                    Address.parse("z1qpsjv3wzzuuzdudg7tf6uhvr6sk4ag8me42ua4"),
+                    Hash.parse("9f6e3088e2687e642f4c0f3f29fb21911fa5ca1aba66dc0543fbc6eee01664ed"),
+                    "all your znn belong to us".getBytes());
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+    }
+    
     @Nested
     public class Accelerator {
         private AcceleratorApi api;

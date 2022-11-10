@@ -29,7 +29,20 @@ public class DefinitionsTest {
                 Arguments.of(Definitions.COMMON, "CollectReward", new Object[0], BytesUtils.fromHexString("AF43D3F0")),
                 Arguments.of(Definitions.COMMON, "DepositQsr", new Object[0], BytesUtils.fromHexString("D49577F4")),
                 Arguments.of(Definitions.COMMON, "WithdrawQsr", new Object[0], BytesUtils.fromHexString("B3D658FD")),
-                // ACCELERATOR functions
+                // Htlc functions
+                Arguments.of(Definitions.HTLC, "CreateHtlc",
+                        new Object[] { ADDRESS, 1668077642L, 0, 32, BytesUtils.fromHexString("de543a6cab8db5bdc086d1720b97b0f097458841cd0264d789350e3b07587f5b") },
+                        BytesUtils.fromHexString(
+                                "1880e866000000000000000000000000001f74a72493eebdcc75463481b4e2d812c7090300000000000000000000000000000000000000000000000000000000636cd84a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020de543a6cab8db5bdc086d1720b97b0f097458841cd0264d789350e3b07587f5b")),
+                Arguments.of(Definitions.HTLC, "ReclaimHtlc",
+                        new Object[] { HASH.getBytes() },
+                        BytesUtils.fromHexString(
+                                "d8ab94a105a0fef85008e63f0680b68d11743ba5caf199994d642590febe570b2a84b612")),
+                Arguments.of(Definitions.HTLC, "UnlockHtlc",
+                        new Object[] { HASH.getBytes(), "all your znn belong to us".getBytes() },
+                        BytesUtils.fromHexString(
+                                "0b247d7105a0fef85008e63f0680b68d11743ba5caf199994d642590febe570b2a84b61200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000019616c6c20796f7572207a6e6e2062656c6f6e6720746f20757300000000000000")),
+                // Accelerator functions
                 Arguments.of(Definitions.ACCELERATOR, "CreateProject",
                         new Object[] { "TestProject", "Test Project", "", 500, 0 },
                         BytesUtils.fromHexString(

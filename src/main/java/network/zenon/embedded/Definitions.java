@@ -77,6 +77,13 @@ public class Definitions {
                     createParam("vote", "uint8")),
             createEntry("VoteByProdAddress", createParam("id", "hash"), createParam("vote", "uint8")) };
 
+    private static final JEntry[] HTLC_DEFINITION = new JEntry[] {
+            createEntry("CreateHtlc", createParam("hashLocked", "address"), createParam("expirationTime", "int64"),
+                    createParam("hashType", "uint8"), createParam("keyMaxSize", "uint8"),
+                    createParam("hashLock", "bytes")),
+            createEntry("ReclaimHtlc", createParam("id", "hash")),
+            createEntry("UnlockHtlc", createParam("id", "hash"), createParam("preimage", "bytes")) };
+
     // Common _DEFINITIONs of embedded methods
     private static final JEntry[] COMMON_DEFINITION = new JEntry[] { createEntry("DepositQsr"),
             createEntry("WithdrawQsr"), createEntry("CollectReward") };
@@ -89,5 +96,6 @@ public class Definitions {
     public static final Abi SWAP = Abi.parse(SWAP_DEFINITION);
     public static final Abi STAKE = Abi.parse(STAKE_DEFINITION);
     public static final Abi ACCELERATOR = Abi.parse(ACCELERATOR_DEFINITION);
+    public static final Abi HTLC = Abi.parse(HTLC_DEFINITION);
     public static final Abi COMMON = Abi.parse(COMMON_DEFINITION);
 }
