@@ -1,6 +1,6 @@
 package network.zenon.model.nom;
 
-import network.zenon.Constants;
+import network.zenon.Zenon;
 import network.zenon.model.JsonConvertible;
 import network.zenon.model.nom.json.JAccountBlockTemplate;
 import network.zenon.model.primitives.Address;
@@ -90,7 +90,7 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
     public AccountBlockTemplate(BlockTypeEnum blockType, Address toAddress, Long amount, TokenStandard tokenStandard,
             Hash fromBlockHash, byte[] data) {
         this.version = 1;
-        this.chainIdentifier = Constants.NET_ID;
+        this.chainIdentifier = Zenon.getInstance().netId;
         this.blockType = blockType;
         this.hash = Hash.EMPTY;
         this.previousHash = Hash.EMPTY;

@@ -28,10 +28,12 @@ public class Zenon {
         return instance;
     }
 
+    public int netId;
+    
     public KeyPair defaultKeyPair;
     public KeyStore defaultKeyStore;
     public Path defaultKeyStorePath;
-
+    
     private final KeyStoreManager keyStoreManager;
     private final WsClient client;
     private final LedgerApi ledger;
@@ -40,6 +42,7 @@ public class Zenon {
     private final SubscribeApi subscribe;
 
     private Zenon() {
+        this.netId = Constants.NET_ID;
         this.keyStoreManager = new KeyStoreManager(Constants.ZNN_DEFAILT_WALLET_DIRECTORY);
         this.client = new WsClient();
         this.ledger = new LedgerApi(this.client);
