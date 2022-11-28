@@ -34,6 +34,7 @@ import network.zenon.model.embedded.FusionEntryList;
 import network.zenon.model.embedded.GetRequiredParam;
 import network.zenon.model.embedded.GetRequiredResponse;
 import network.zenon.model.embedded.HtlcInfo;
+import network.zenon.model.embedded.HtlcInfoList;
 import network.zenon.model.embedded.Phase;
 import network.zenon.model.embedded.PillarEpochHistoryList;
 import network.zenon.model.embedded.PillarInfo;
@@ -227,14 +228,15 @@ public class ApiTest {
                 Address addr = Address.parse(address);
                 HtlcApi api = new HtlcApi(new TestClient()
                         .withRequest(this.methodName, new Object[] { addr.toString(), pageIndex, pageSize })
-                        .withResponse("[]"));
+                        .withEmptyResponse());
 
                 // Execute
-                List<HtlcInfo> result = api.getHtlcInfosByTimeLockedAddress(addr, pageIndex, pageSize);
+                HtlcInfoList result = api.getHtlcInfosByTimeLockedAddress(addr, pageIndex, pageSize);
 
                 // Validate
                 assertNotNull(result);
-                assertTrue(result.isEmpty());
+                assertEquals(0, result.getCount());
+                assertTrue(result.getList().isEmpty());
             }
 
             @ParameterizedTest
@@ -249,11 +251,12 @@ public class ApiTest {
                         .withResourceTextResponse(resourceName));
 
                 // Execute
-                List<HtlcInfo> result = api.getHtlcInfosByTimeLockedAddress(addr, pageIndex, pageSize);
+                HtlcInfoList result = api.getHtlcInfosByTimeLockedAddress(addr, pageIndex, pageSize);
 
                 // Validate
                 assertNotNull(result);
-                assertFalse(result.isEmpty());
+                assertTrue(result.getCount() > 0);
+                assertFalse(result.getList().isEmpty());
             }
         }
 
@@ -273,14 +276,15 @@ public class ApiTest {
                 Address addr = Address.parse(address);
                 HtlcApi api = new HtlcApi(new TestClient()
                         .withRequest(this.methodName, new Object[] { addr.toString(), pageIndex, pageSize })
-                        .withResponse("[]"));
+                        .withEmptyResponse());
 
                 // Execute
-                List<HtlcInfo> result = api.getHtlcInfosByHashLockedAddress(addr, pageIndex, pageSize);
+                HtlcInfoList result = api.getHtlcInfosByHashLockedAddress(addr, pageIndex, pageSize);
 
                 // Validate
                 assertNotNull(result);
-                assertTrue(result.isEmpty());
+                assertEquals(0, result.getCount());
+                assertTrue(result.getList().isEmpty());
             }
 
             @ParameterizedTest
@@ -295,11 +299,12 @@ public class ApiTest {
                         .withResourceTextResponse(resourceName));
 
                 // Execute
-                List<HtlcInfo> result = api.getHtlcInfosByHashLockedAddress(addr, pageIndex, pageSize);
+                HtlcInfoList result = api.getHtlcInfosByHashLockedAddress(addr, pageIndex, pageSize);
 
                 // Validate
                 assertNotNull(result);
-                assertFalse(result.isEmpty());
+                assertTrue(result.getCount() > 0);
+                assertFalse(result.getList().isEmpty());
             }
         }
     }

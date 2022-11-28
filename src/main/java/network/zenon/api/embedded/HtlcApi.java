@@ -1,21 +1,15 @@
 package network.zenon.api.embedded;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.jsoniter.spi.TypeLiteral;
-
 import network.zenon.client.Client;
 import network.zenon.embedded.Definitions;
 import network.zenon.model.embedded.HtlcInfo;
-import network.zenon.model.embedded.PillarInfo;
+import network.zenon.model.embedded.HtlcInfoList;
 import network.zenon.model.embedded.json.JHtlcInfo;
+import network.zenon.model.embedded.json.JHtlcInfoList;
 import network.zenon.model.nom.AccountBlockTemplate;
 import network.zenon.model.primitives.Address;
 import network.zenon.model.primitives.Hash;
 import network.zenon.model.primitives.TokenStandard;
-import network.zenon.utils.JsonUtils;
 
 public class HtlcApi {
     private final Client client;
@@ -34,18 +28,16 @@ public class HtlcApi {
         return new HtlcInfo(response);
     }
 
-    public List<HtlcInfo> getHtlcInfosByTimeLockedAddress(Address address, int pageIndex, int pageSize) {
-        Object response = this.client.sendRequest("embedded.htlc.getHtlcInfosByTimeLockedAddress",
-                new Object[] { address.toString(), pageIndex, pageSize });
-        List<JHtlcInfo> result = JsonUtils.deserialize(response.toString(), new TypeLiteral<List<JHtlcInfo>>() {});
-        return result.stream().map(x -> new HtlcInfo(x)).collect(Collectors.toList());
+    public HtlcInfoList getHtlcInfosByTimeLockedAddress(Address address, int pageIndex, int pageSize) {
+        JHtlcInfoList response = this.client.sendRequest("embedded.htlc.getHtlcInfosByTimeLockedAddress",
+                new Object[] { address.toString(), pageIndex, pageSize }, JHtlcInfoList.class);
+        return new HtlcInfoList(response);
     }
 
-    public List<HtlcInfo> getHtlcInfosByHashLockedAddress(Address address, int pageIndex, int pageSize) {
-        Object response = this.client.sendRequest("embedded.htlc.getHtlcInfosByHashLockedAddress",
-                new Object[] { address.toString(), pageIndex, pageSize });
-        List<JHtlcInfo> result = JsonUtils.deserialize(response.toString(), new TypeLiteral<List<JHtlcInfo>>() {});
-        return result.stream().map(x -> new HtlcInfo(x)).collect(Collectors.toList());
+    public HtlcInfoList getHtlcInfosByHashLockedAddress(Address address, int pageIndex, int pageSize) {
+        JHtlcInfoList response = this.client.sendRequest("embedded.htlc.getHtlcInfosByHashLockedAddress",
+                new Object[] { address.toString(), pageIndex, pageSize }, JHtlcInfoList.class);
+        return new HtlcInfoList(response);
     }
 
     // Contract methods
