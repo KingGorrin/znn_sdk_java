@@ -41,25 +41,19 @@ public class HtlcApi {
     }
 
     // Contract methods
-    public AccountBlockTemplate createHtlc(Address timeLocked, Address hashLocked, TokenStandard tokenStandard,
-            long amount, long expirationTime, int hashType, int keyMaxSize, byte[] hashLock) {
-        AccountBlockTemplate template = AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, tokenStandard, amount, Definitions.HTLC
+    public AccountBlockTemplate createHtlc(TokenStandard tokenStandard,
+            long amount, Address hashLocked, long expirationTime, int hashType, int keyMaxSize, byte[] hashLock) {
+        return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, tokenStandard, amount, Definitions.HTLC
                 .encodeFunction("CreateHtlc", hashLocked, expirationTime, hashType, keyMaxSize, hashLock));
-        template.setAddress(timeLocked);
-        return template;
     }
 
-    public AccountBlockTemplate reclaimHtlc(Address timeLocked, Hash id) {
-        AccountBlockTemplate template = AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
+    public AccountBlockTemplate reclaimHtlc(Hash id) {
+        return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
                 0, Definitions.HTLC.encodeFunction("ReclaimHtlc", id.getBytes()));
-        template.setAddress(timeLocked);
-        return template;
     }
 
-    public AccountBlockTemplate unlockHtlc(Address hashLocked, Hash id, byte[] preimage) {
-        AccountBlockTemplate template = AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
+    public AccountBlockTemplate unlockHtlc(Hash id, byte[] preimage) {
+        return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
                 0, Definitions.HTLC.encodeFunction("UnlockHtlc", id.getBytes(), preimage));
-        template.setAddress(hashLocked);
-        return template;
     }
 }
