@@ -28,7 +28,8 @@ public class Zenon {
         return instance;
     }
 
-    public int netId;
+    private int networkIdentifier;
+    private int chainIdentifier;
     
     public KeyPair defaultKeyPair;
     public KeyStore defaultKeyStore;
@@ -42,13 +43,27 @@ public class Zenon {
     private final SubscribeApi subscribe;
 
     private Zenon() {
-        this.netId = Constants.NET_ID;
+        this.networkIdentifier = Constants.NET_ID;
+        this.chainIdentifier = Constants.CHAIN_ID;
+        
         this.keyStoreManager = new KeyStoreManager(Constants.ZNN_DEFAILT_WALLET_DIRECTORY);
         this.client = new WsClient();
         this.ledger = new LedgerApi(this.client);
         this.stats = new StatsApi(this.client);
         this.embedded = new EmbeddedApi(this.client);
         this.subscribe = new SubscribeApi(this.client);
+    }
+
+    public int getNetworkIdentifier() {
+        return this.networkIdentifier;
+    }
+
+    public int getChainIdentifier() {
+        return this.chainIdentifier;
+    }
+    
+    public void setChainIdentifier(int value) {
+         this.chainIdentifier = value;
     }
 
     public KeyStoreManager getKeyStoreManager() {

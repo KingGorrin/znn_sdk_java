@@ -8,7 +8,9 @@ public class Constants {
     public static final String ZNN_SDK_VERSION = "0.0.4";
     public static final String ZNN_ROOT_DIRECTORY = "znn";
 
-    public static int NET_ID = 1; // Alphanet
+    // https://github.com/zenon-network/go-zenon/blob/b2e6a98fa154d763571bb7af6b1c685d0d82497d/zenon/zenon.go#L41
+    public static final int NET_ID = 1; // Alphanet network identifier
+    public static final int CHAIN_ID = 1; // Alphanet chain identifier
 
     public static String ZNN_DEFAULT_DIRECTORY = ZnnPaths.DEFAULT.getMain();
     public static String ZNN_DEFAILT_WALLET_DIRECTORY = ZnnPaths.DEFAULT.getWallet();

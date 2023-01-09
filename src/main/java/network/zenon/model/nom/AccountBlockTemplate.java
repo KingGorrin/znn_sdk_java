@@ -90,7 +90,7 @@ public class AccountBlockTemplate implements JsonConvertible<JAccountBlockTempla
     public AccountBlockTemplate(BlockTypeEnum blockType, Address toAddress, Long amount, TokenStandard tokenStandard,
             Hash fromBlockHash, byte[] data) {
         this.version = 1;
-        this.chainIdentifier = Zenon.getInstance().netId;
+        this.chainIdentifier = Zenon.getInstance().getChainIdentifier();
         this.blockType = blockType;
         this.hash = Hash.EMPTY;
         this.previousHash = Hash.EMPTY;
