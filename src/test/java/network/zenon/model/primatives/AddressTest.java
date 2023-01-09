@@ -37,7 +37,7 @@ public class AddressTest {
                 Arguments.of("z1qxemdeddedxstakexxxxxxxxxxxxxxxxjv8v62", "z1qxemd...jv8v62", "z",
                         BytesUtils.fromHexString("01b3b6e5adcb4d05f6d9318c6318c6318c6318c6"), true),
                 Arguments.of("z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48", "z1qxemd...956u48", "z",
-                        BytesUtils.fromHexString("01b3b6e5adcb4d00bc76318c6318c6318c6318c6"), false),
+                        BytesUtils.fromHexString("01b3b6e5adcb4d00bc76318c6318c6318c6318c6"), true),
                 Arguments.of("z1qxemdeddedxaccelerat0rxxxxxxxxxxp4tk22", "z1qxemd...p4tk22", "z",
                         BytesUtils.fromHexString("01b3b6e5adcb4ddc633fc8fab78cc6318c6318c6"), true),
                 Arguments.of("z1qzlytaqdahg5t02nz5096frflfv7dm3y7yxmg7", "z1qzlyt...7yxmg7", "z",

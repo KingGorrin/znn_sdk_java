@@ -29,6 +29,15 @@ public class DefinitionsTest {
                 Arguments.of(Definitions.COMMON, "CollectReward", new Object[0], BytesUtils.fromHexString("AF43D3F0")),
                 Arguments.of(Definitions.COMMON, "DepositQsr", new Object[0], BytesUtils.fromHexString("D49577F4")),
                 Arguments.of(Definitions.COMMON, "WithdrawQsr", new Object[0], BytesUtils.fromHexString("B3D658FD")),
+                // Spork functions
+                Arguments.of(Definitions.SPORK, "CreateSpork",
+                        new Object[] { "TestSpork", "This is a test spork" },
+                        BytesUtils.fromHexString(
+                                "b602e3110000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000095465737453706f726b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001454686973206973206120746573742073706f726b000000000000000000000000")),
+                Arguments.of(Definitions.SPORK, "ActivateSpork",
+                        new Object[] { HASH.getBytes() },
+                        BytesUtils.fromHexString(
+                                "25c54e9605a0fef85008e63f0680b68d11743ba5caf199994d642590febe570b2a84b612")),
                 // Htlc functions
                 Arguments.of(Definitions.HTLC, "CreateHtlc",
                         new Object[] { ADDRESS, 1668077642L, 0, 32, BytesUtils.fromHexString("de543a6cab8db5bdc086d1720b97b0f097458841cd0264d789350e3b07587f5b") },

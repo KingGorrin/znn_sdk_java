@@ -50,6 +50,46 @@ public class ContractTest {
     }
 
     @Nested
+    public class Spork {
+        private SporkApi api;
+
+        @BeforeEach
+        public void initFixture() {
+            this.api = new EmbeddedApiFixture().getApi().getSpork();
+        }
+
+        @Test
+        public void whenCreateSporkExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48", "zts1znnxxxxxxxxxxxxx9z4ulx", 0,
+                    "tgLjEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACVRlc3RTcG9yawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABRUaGlzIGlzIGEgdGVzdCBzcG9yawAAAAAAAAAAAAAAAA==");
+
+            // Execute
+            AccountBlockTemplate block = this.api.createSpork(
+                    "TestSpork", "This is a test spork");
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+        
+        @Test
+        public void whenActivateSporkExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48", "zts1znnxxxxxxxxxxxxx9z4ulx", 0,
+                    "JcVOllnkOgCVs2M3kRjJ4oOEQtwrHqWWJLGK6txc1mFWB5Qe");
+
+            // Execute
+            AccountBlockTemplate block = this.api.activateSpork(
+                    Hash.parse("59e43a0095b363379118c9e2838442dc2b1ea59624b18aeadc5cd6615607941e"));
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+    }
+    
+    @Nested
     public class Htlc {
         private HtlcApi api;
 

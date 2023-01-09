@@ -2,6 +2,7 @@ package network.zenon.api;
 
 import network.zenon.api.embedded.AcceleratorApi;
 import network.zenon.api.embedded.HtlcApi;
+import network.zenon.api.embedded.SporkApi;
 import network.zenon.api.embedded.PillarApi;
 import network.zenon.api.embedded.PlasmaApi;
 import network.zenon.api.embedded.SentinelApi;
@@ -19,6 +20,7 @@ public class EmbeddedApi {
     private final SwapApi swap;
     private final TokenApi token;
     private final AcceleratorApi accelerator;
+    private final SporkApi spork;
     private final HtlcApi htlc;
 
     public EmbeddedApi(Client client) {
@@ -31,6 +33,7 @@ public class EmbeddedApi {
         this.swap = new SwapApi(client);
         this.token = new TokenApi(client);
         this.accelerator = new AcceleratorApi(client);
+        this.spork = new SporkApi(client);
         this.htlc = new HtlcApi(client);
     }
 
@@ -66,6 +69,10 @@ public class EmbeddedApi {
         return this.accelerator;
     }
 
+    public SporkApi getSpork() {
+        return this.spork;
+    }
+    
     public HtlcApi getHtlc() {
         return this.htlc;
     }

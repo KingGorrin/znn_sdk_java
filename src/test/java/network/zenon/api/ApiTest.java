@@ -25,6 +25,7 @@ import network.zenon.api.embedded.HtlcApi;
 import network.zenon.api.embedded.PillarApi;
 import network.zenon.api.embedded.PlasmaApi;
 import network.zenon.api.embedded.SentinelApi;
+import network.zenon.api.embedded.SporkApi;
 import network.zenon.api.embedded.StakeApi;
 import network.zenon.api.embedded.SwapApi;
 import network.zenon.api.embedded.TokenApi;
@@ -46,6 +47,7 @@ import network.zenon.model.embedded.ProjectList;
 import network.zenon.model.embedded.RewardHistoryList;
 import network.zenon.model.embedded.SentinelInfo;
 import network.zenon.model.embedded.SentinelInfoList;
+import network.zenon.model.embedded.SporkList;
 import network.zenon.model.embedded.StakeList;
 import network.zenon.model.embedded.SwapAssetEntry;
 import network.zenon.model.embedded.SwapLegacyPillarEntry;
@@ -182,6 +184,55 @@ public class ApiTest {
         }
     }
 
+    @Nested
+    public class Spork {
+        @Nested
+        public class GetAll {
+            private final String methodName;
+
+            public GetAll() {
+                this.methodName = "embedded.spork.getAll";
+            }
+
+            @ParameterizedTest
+            @DisplayName("Empty Response")
+            @CsvSource({ "0, 1024" })
+            public void emptyResponse(int pageIndex, int pageSize) {
+                // Setup
+                SporkApi api = new SporkApi(new TestClient()
+                        .withRequest(this.methodName, new Object[] { pageIndex, pageSize })
+                        .withEmptyResponse());
+
+                // Execute
+                SporkList result = api.getAll(pageIndex, pageSize);
+
+                // Validate
+                assertNotNull(result);
+                assertEquals(0, result.getCount());
+                assertTrue(result.getList().isEmpty());
+            }
+
+            @ParameterizedTest
+            @DisplayName("List Response")
+            @CsvSource({
+                    "0, 1024, 'api/embedded/spork/getAll.json'" })
+            public void listResponse(int pageIndex, int pageSize, String resourceName) {
+                // Setup
+                SporkApi api = new SporkApi(new TestClient()
+                        .withRequest(this.methodName, new Object[] { pageIndex, pageSize })
+                        .withResourceTextResponse(resourceName));
+
+                // Execute
+                SporkList result = api.getAll(pageIndex, pageSize);
+
+                // Validate
+                assertNotNull(result);
+                assertTrue(result.getCount() > 0);
+                assertFalse(result.getList().isEmpty());
+            }
+        }
+    }
+    
     @Nested
     public class Htlc {
         @Nested

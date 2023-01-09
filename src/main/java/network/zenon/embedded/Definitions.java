@@ -77,6 +77,10 @@ public class Definitions {
                     createParam("vote", "uint8")),
             createEntry("VoteByProdAddress", createParam("id", "hash"), createParam("vote", "uint8")) };
 
+    private static final JEntry[] SPORK_DEFINITION = new JEntry[] {
+            createEntry("CreateSpork", createParam("name", "string"), createParam("description", "string")),
+            createEntry("ActivateSpork", createParam("id", "hash")) };
+    
     private static final JEntry[] HTLC_DEFINITION = new JEntry[] {
             createEntry("CreateHtlc", createParam("hashLocked", "address"), createParam("expirationTime", "int64"),
                     createParam("hashType", "uint8"), createParam("keyMaxSize", "uint8"),
@@ -96,6 +100,7 @@ public class Definitions {
     public static final Abi SWAP = Abi.parse(SWAP_DEFINITION);
     public static final Abi STAKE = Abi.parse(STAKE_DEFINITION);
     public static final Abi ACCELERATOR = Abi.parse(ACCELERATOR_DEFINITION);
+    public static final Abi SPORK = Abi.parse(SPORK_DEFINITION);
     public static final Abi HTLC = Abi.parse(HTLC_DEFINITION);
     public static final Abi COMMON = Abi.parse(COMMON_DEFINITION);
 }
