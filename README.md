@@ -2,7 +2,7 @@
 
 [![build](https://img.shields.io/github/actions/workflow/status/KingGorrin/znn_sdk_java/build.yml?branch=main)](https://github.com/KingGorrin/znn_sdk_java/actions/workflows/build.yml) [![codecov](https://img.shields.io/codecov/c/github/KingGorrin/znn_sdk_java?token=8WB4pa15fM)](https://codecov.io/gh/KingGorrin/znn_sdk_java) ![GitHub](https://img.shields.io/github/license/KingGorrin/znn_sdk_java)
 
-Reference implementation for the Zenon SDK for Java. Compatible with the Zenon Alphanet - Network of Momentum Phase 0. 
+Reference implementation for the Zenon SDK for Java. Compatible with the Zenon Alphanet - Network of Momentum Phase 1. 
 It provides a simple integration with any Java based projects.
 
 ## Requirements
