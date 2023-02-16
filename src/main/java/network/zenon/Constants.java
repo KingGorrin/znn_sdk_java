@@ -82,12 +82,15 @@ public class Constants {
     public static final int SWAP_ASSET_DECAY_TICK_VALUE_PERCENTAGE = 10;
     
     // Spork
-    public static final  int SPORK_NAME_MIN_LENGTH = 5;
-    public static final  int SPORK_NAME_MAX_LENGTH = 40;
-    public static final  int SPORK_DESCRIPTION_MAX_LENGTH = 400;
+    public static final int SPORK_NAME_MIN_LENGTH = 5;
+    public static final int SPORK_NAME_MAX_LENGTH = 40;
+    public static final int SPORK_DESCRIPTION_MAX_LENGTH = 400;
 
     // Htlc
-    public static final  int HTLC_TIMELOCK_UNIT_SEC = 60 * 60; // 1 hour
-    public static final  int HTLC_TIMELOCK_MIN_SEC = HTLC_TIMELOCK_UNIT_SEC * 1; // 1 hour
-    public static final  int HTLC_TIMELOCK_MAX_SEC = HTLC_TIMELOCK_UNIT_SEC * 24 * 30 * 12; // ~1 year
+    public static final int HTLC_PREIMAGE_MIN_LENGTH = 1;
+    public static final int HTLC_PREIMAGE_MAX_LENGTH = 255;
+    public static final int HTLC_PREIMAGE_DEFAULT_LENGTH = 32;
+    public static final int HTLC_TIMELOCK_UNIT_SEC = 60 * 60; // 1 hour
+    public static final int HTLC_TIMELOCK_MIN_SEC = HTLC_TIMELOCK_UNIT_SEC * 1; // 1 hour
+    public static final int HTLC_TIMELOCK_MAX_SEC = HTLC_TIMELOCK_UNIT_SEC * 24 * 30 * 12; // ~1 year
 }
