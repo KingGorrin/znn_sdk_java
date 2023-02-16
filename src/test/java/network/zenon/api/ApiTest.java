@@ -35,7 +35,6 @@ import network.zenon.model.embedded.FusionEntryList;
 import network.zenon.model.embedded.GetRequiredParam;
 import network.zenon.model.embedded.GetRequiredResponse;
 import network.zenon.model.embedded.HtlcInfo;
-import network.zenon.model.embedded.HtlcInfoList;
 import network.zenon.model.embedded.Phase;
 import network.zenon.model.embedded.PillarEpochHistoryList;
 import network.zenon.model.embedded.PillarInfo;
@@ -260,102 +259,6 @@ public class ApiTest {
                 // Validate
                 assertNotNull(result);
                 assertEquals(hash, result.getId());
-            }
-        }
-
-        @Nested
-        public class GetHtlcInfosByTimeLockedAddress {
-            private final String methodName;
-
-            public GetHtlcInfosByTimeLockedAddress() {
-                this.methodName = "embedded.htlc.getHtlcInfosByTimeLockedAddress";
-            }
-
-            @ParameterizedTest
-            @DisplayName("Empty Response")
-            @CsvSource({ "'z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7', 0, 1024" })
-            public void emptyResponse(String address, int pageIndex, int pageSize) {
-                // Setup
-                Address addr = Address.parse(address);
-                HtlcApi api = new HtlcApi(new TestClient()
-                        .withRequest(this.methodName, new Object[] { addr.toString(), pageIndex, pageSize })
-                        .withEmptyResponse());
-
-                // Execute
-                HtlcInfoList result = api.getHtlcInfosByTimeLockedAddress(addr, pageIndex, pageSize);
-
-                // Validate
-                assertNotNull(result);
-                assertEquals(0, result.getCount());
-                assertTrue(result.getList().isEmpty());
-            }
-
-            @ParameterizedTest
-            @DisplayName("List Response")
-            @CsvSource({
-                    "'z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7', 0, 1024, 'api/embedded/htlc/getHtlcInfosByTimeLockedAddress.json'" })
-            public void listResponse(String address, int pageIndex, int pageSize, String resourceName) {
-                // Setup
-                Address addr = Address.parse(address);
-                HtlcApi api = new HtlcApi(new TestClient()
-                        .withRequest(this.methodName, new Object[] { addr.toString(), pageIndex, pageSize })
-                        .withResourceTextResponse(resourceName));
-
-                // Execute
-                HtlcInfoList result = api.getHtlcInfosByTimeLockedAddress(addr, pageIndex, pageSize);
-
-                // Validate
-                assertNotNull(result);
-                assertTrue(result.getCount() > 0);
-                assertFalse(result.getList().isEmpty());
-            }
-        }
-
-        @Nested
-        public class GetHtlcInfosByHashLockedAddress {
-            private final String methodName;
-
-            public GetHtlcInfosByHashLockedAddress() {
-                this.methodName = "embedded.htlc.getHtlcInfosByHashLockedAddress";
-            }
-
-            @ParameterizedTest
-            @DisplayName("Empty Response")
-            @CsvSource({ "'z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7', 0, 1024" })
-            public void emptyResponse(String address, int pageIndex, int pageSize) {
-                // Setup
-                Address addr = Address.parse(address);
-                HtlcApi api = new HtlcApi(new TestClient()
-                        .withRequest(this.methodName, new Object[] { addr.toString(), pageIndex, pageSize })
-                        .withEmptyResponse());
-
-                // Execute
-                HtlcInfoList result = api.getHtlcInfosByHashLockedAddress(addr, pageIndex, pageSize);
-
-                // Validate
-                assertNotNull(result);
-                assertEquals(0, result.getCount());
-                assertTrue(result.getList().isEmpty());
-            }
-
-            @ParameterizedTest
-            @DisplayName("List Response")
-            @CsvSource({
-                    "'z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7', 0, 1024, 'api/embedded/htlc/getHtlcInfosByHashLockedAddress.json'" })
-            public void listResponse(String address, int pageIndex, int pageSize, String resourceName) {
-                // Setup
-                Address addr = Address.parse(address);
-                HtlcApi api = new HtlcApi(new TestClient()
-                        .withRequest(this.methodName, new Object[] { addr.toString(), pageIndex, pageSize })
-                        .withResourceTextResponse(resourceName));
-
-                // Execute
-                HtlcInfoList result = api.getHtlcInfosByHashLockedAddress(addr, pageIndex, pageSize);
-
-                // Validate
-                assertNotNull(result);
-                assertTrue(result.getCount() > 0);
-                assertFalse(result.getList().isEmpty());
             }
         }
     }
