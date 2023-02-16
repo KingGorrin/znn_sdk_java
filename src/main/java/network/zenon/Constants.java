@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Constants {
     // Global constants
-    public static final String ZNN_SDK_VERSION = "0.0.4";
+    public static final String ZNN_SDK_VERSION = "0.0.5";
     public static final String ZNN_ROOT_DIRECTORY = "znn";
 
     // https://github.com/zenon-network/go-zenon/blob/b2e6a98fa154d763571bb7af6b1c685d0d82497d/zenon/zenon.go#L41
