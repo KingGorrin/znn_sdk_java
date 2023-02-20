@@ -99,14 +99,14 @@ public class ContractTest {
         }
 
         @Test
-        public void whenCreateHtlcExpectResultToEqual() {
+        public void whenCreateExpectResultToEqual() {
             // Setup
             AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
                     "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 10000000000L,
-                    "GIDoZgAAAAAAAAAAAAAAAABhJkXCFzgm8ajy065dg9QtXqD7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGNs2EoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5UOmyrjbW9wIbRcguXsPCXRYhBzQJk14k1DjsHWH9b");
+                    "XH5xEAAAAAAAAAAAAAAAAABhJkXCFzgm8ajy065dg9QtXqD7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGNs2EoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5UOmyrjbW9wIbRcguXsPCXRYhBzQJk14k1DjsHWH9b");
 
             // Execute
-            AccountBlockTemplate block = this.api.createHtlc(
+            AccountBlockTemplate block = this.api.create(
                     TokenStandard.ZNN_ZTS, 10000000000L,
                     Address.parse("z1qpsjv3wzzuuzdudg7tf6uhvr6sk4ag8me42ua4"), 1668077642L, 
                     0, 32, BytesUtils.fromHexString("de543a6cab8db5bdc086d1720b97b0f097458841cd0264d789350e3b07587f5b"));
@@ -116,14 +116,14 @@ public class ContractTest {
         }
         
         @Test
-        public void whenReclaimHtlcExpectResultToEqual() {
+        public void whenReclaimExpectResultToEqual() {
             // Setup
             AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
                     "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 0,
-                    "2KuUoVnkOgCVs2M3kRjJ4oOEQtwrHqWWJLGK6txc1mFWB5Qe");
+                    "fgA8jVnkOgCVs2M3kRjJ4oOEQtwrHqWWJLGK6txc1mFWB5Qe");
 
             // Execute
-            AccountBlockTemplate block = this.api.reclaimHtlc(
+            AccountBlockTemplate block = this.api.reclaim(
                     Hash.parse("59e43a0095b363379118c9e2838442dc2b1ea59624b18aeadc5cd6615607941e"));
 
             // Validate
@@ -131,16 +131,42 @@ public class ContractTest {
         }
         
         @Test
-        public void whenUnlockHtlcExpectResultToEqual() {
+        public void whenUnlockExpectResultToEqual() {
             // Setup
             AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
                     "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 0,
-                    "CyR9cZ9uMIjiaH5kL0wPPyn7IZEfpcoaumbcBUP7xu7gFmTtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGWFsbCB5b3VyIHpubiBiZWxvbmcgdG8gdXMAAAAAAAAA");
+                    "0zeR059uMIjiaH5kL0wPPyn7IZEfpcoaumbcBUP7xu7gFmTtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGWFsbCB5b3VyIHpubiBiZWxvbmcgdG8gdXMAAAAAAAAA");
 
             // Execute
-            AccountBlockTemplate block = this.api.unlockHtlc(
+            AccountBlockTemplate block = this.api.unlock(
                     Hash.parse("9f6e3088e2687e642f4c0f3f29fb21911fa5ca1aba66dc0543fbc6eee01664ed"),
                     "all your znn belong to us".getBytes());
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+        
+        @Test
+        public void whenDenyProxyUnlockExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 0, "4Xw57Q==");
+
+            // Execute
+            AccountBlockTemplate block = this.api.denyProxyUnlock();
+
+            // Validate
+            assertEquals(block.toString(), expectedResult.toString());
+        }
+        
+        @Test
+        public void whenAllowProxyUnlockExpectResultToEqual() {
+            // Setup
+            AccountBlockTemplate expectedResult = TestHelper.createAccountBlockTemplate(
+                    "z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw", "zts1znnxxxxxxxxxxxxx9z4ulx", 0, "V3WPEA==");
+
+            // Execute
+            AccountBlockTemplate block = this.api.allowProxyUnlock();
 
             // Validate
             assertEquals(block.toString(), expectedResult.toString());

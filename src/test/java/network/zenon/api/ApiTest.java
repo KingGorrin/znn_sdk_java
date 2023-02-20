@@ -261,6 +261,34 @@ public class ApiTest {
                 assertEquals(hash, result.getId());
             }
         }
+        
+        @Nested
+        public class GetHtlcProxyUnlockStatus {
+            private final String methodName;
+
+            public GetHtlcProxyUnlockStatus() {
+                this.methodName = "embedded.htlc.getHtlcProxyUnlockStatus";
+            }
+
+            @ParameterizedTest
+            @DisplayName("Single Response")
+            @CsvSource({
+                    "'z1qqjnwjjpnue8xmmpanz6csze6tcmtzzdtfsww7', 'true', true",
+                    "'z1qpsjv3wzzuuzdudg7tf6uhvr6sk4ag8me42ua4', 'false', false"})
+            public void singleResponse(String address, String response, boolean expectedResult) {
+                // Setup
+                Address addr = Address.parse(address);
+                HtlcApi api = new HtlcApi(
+                        new TestClient().withRequest(this.methodName, new Object[] { addr.toString() })
+                                .withResponse(response));
+
+                // Execute
+                boolean result = api.getHtlcProxyUnlockStatus(addr);
+
+                // Validate
+                assertEquals(result, expectedResult);
+            }
+        }
     }
     
     @Nested

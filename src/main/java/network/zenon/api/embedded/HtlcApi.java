@@ -26,20 +26,34 @@ public class HtlcApi {
         return new HtlcInfo(response);
     }
     
+    public boolean getHtlcProxyUnlockStatus(Address address) {
+        return this.client.sendRequest("embedded.htlc.getHtlcProxyUnlockStatus", new Object[] { address.toString() }, boolean.class);
+    }
+    
     // Contract methods
-    public AccountBlockTemplate createHtlc(TokenStandard tokenStandard,
+    public AccountBlockTemplate create(TokenStandard tokenStandard,
             long amount, Address hashLocked, long expirationTime, int hashType, int keyMaxSize, byte[] hashLock) {
         return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, tokenStandard, amount, Definitions.HTLC
-                .encodeFunction("CreateHtlc", hashLocked, expirationTime, hashType, keyMaxSize, hashLock));
+                .encodeFunction("Create", hashLocked, expirationTime, hashType, keyMaxSize, hashLock));
     }
 
-    public AccountBlockTemplate reclaimHtlc(Hash id) {
+    public AccountBlockTemplate reclaim(Hash id) {
         return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
-                0, Definitions.HTLC.encodeFunction("ReclaimHtlc", id.getBytes()));
+                0, Definitions.HTLC.encodeFunction("Reclaim", id.getBytes()));
     }
 
-    public AccountBlockTemplate unlockHtlc(Hash id, byte[] preimage) {
+    public AccountBlockTemplate unlock(Hash id, byte[] preimage) {
         return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
-                0, Definitions.HTLC.encodeFunction("UnlockHtlc", id.getBytes(), preimage));
+                0, Definitions.HTLC.encodeFunction("Unlock", id.getBytes(), preimage));
+    }
+    
+    public AccountBlockTemplate denyProxyUnlock() {
+        return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
+                0, Definitions.HTLC.encodeFunction("DenyProxyUnlock"));
+    }
+    
+    public AccountBlockTemplate allowProxyUnlock() {
+        return AccountBlockTemplate.callContract(Address.HTLC_ADDRESS, TokenStandard.ZNN_ZTS,
+                0, Definitions.HTLC.encodeFunction("AllowProxyUnlock"));
     }
 }

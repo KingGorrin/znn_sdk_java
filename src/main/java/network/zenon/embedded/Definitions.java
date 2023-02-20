@@ -82,11 +82,13 @@ public class Definitions {
             createEntry("ActivateSpork", createParam("id", "hash")) };
     
     private static final JEntry[] HTLC_DEFINITION = new JEntry[] {
-            createEntry("CreateHtlc", createParam("hashLocked", "address"), createParam("expirationTime", "int64"),
+            createEntry("Create", createParam("hashLocked", "address"), createParam("expirationTime", "int64"),
                     createParam("hashType", "uint8"), createParam("keyMaxSize", "uint8"),
                     createParam("hashLock", "bytes")),
-            createEntry("ReclaimHtlc", createParam("id", "hash")),
-            createEntry("UnlockHtlc", createParam("id", "hash"), createParam("preimage", "bytes")) };
+            createEntry("Reclaim", createParam("id", "hash")),
+            createEntry("Unlock", createParam("id", "hash"), createParam("preimage", "bytes")),
+            createEntry("DenyProxyUnlock"),
+            createEntry("AllowProxyUnlock") };
 
     // Common _DEFINITIONs of embedded methods
     private static final JEntry[] COMMON_DEFINITION = new JEntry[] { createEntry("DepositQsr"),
