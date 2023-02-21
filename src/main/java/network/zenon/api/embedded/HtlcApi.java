@@ -20,14 +20,14 @@ public class HtlcApi {
         return this.client;
     }
 
-    public HtlcInfo getHtlcInfoById(Hash id) {
-        JHtlcInfo response = this.client.sendRequest("embedded.htlc.getHtlcInfoById", new Object[] { id.toString() },
+    public HtlcInfo getById(Hash id) {
+        JHtlcInfo response = this.client.sendRequest("embedded.htlc.getById", new Object[] { id.toString() },
                 JHtlcInfo.class);
         return new HtlcInfo(response);
     }
     
-    public boolean getHtlcProxyUnlockStatus(Address address) {
-        return this.client.sendRequest("embedded.htlc.getHtlcProxyUnlockStatus", new Object[] { address.toString() }, boolean.class);
+    public boolean getProxyUnlockStatus(Address address) {
+        return this.client.sendRequest("embedded.htlc.getProxyUnlockStatus", new Object[] { address.toString() }, boolean.class);
     }
     
     // Contract methods

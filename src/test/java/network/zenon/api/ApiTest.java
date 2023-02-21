@@ -239,13 +239,13 @@ public class ApiTest {
             private final String methodName;
 
             public GetHtlcInfoById() {
-                this.methodName = "embedded.htlc.getHtlcInfoById";
+                this.methodName = "embedded.htlc.getById";
             }
 
             @ParameterizedTest
             @DisplayName("Single Response")
             @CsvSource({
-                    "'11ac76e40cc23674300f68ca87f5ebeb7210fc327fd43f35081b75a839c9c632', 'api/embedded/htlc/getHtlcInfoById.json'" })
+                    "'11ac76e40cc23674300f68ca87f5ebeb7210fc327fd43f35081b75a839c9c632', 'api/embedded/htlc/getById.json'" })
             public void singleResponse(String id, String resourceName) {
                 // Setup
                 Hash hash = Hash.parse(id);
@@ -254,7 +254,7 @@ public class ApiTest {
                                 .withResourceTextResponse(resourceName));
 
                 // Execute
-                HtlcInfo result = api.getHtlcInfoById(hash);
+                HtlcInfo result = api.getById(hash);
 
                 // Validate
                 assertNotNull(result);
@@ -267,7 +267,7 @@ public class ApiTest {
             private final String methodName;
 
             public GetHtlcProxyUnlockStatus() {
-                this.methodName = "embedded.htlc.getHtlcProxyUnlockStatus";
+                this.methodName = "embedded.htlc.getProxyUnlockStatus";
             }
 
             @ParameterizedTest
@@ -283,7 +283,7 @@ public class ApiTest {
                                 .withResponse(response));
 
                 // Execute
-                boolean result = api.getHtlcProxyUnlockStatus(addr);
+                boolean result = api.getProxyUnlockStatus(addr);
 
                 // Validate
                 assertEquals(result, expectedResult);
