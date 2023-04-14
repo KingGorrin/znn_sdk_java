@@ -18,7 +18,7 @@ To download and install Zenon SDK you currently have the following options.
 
 Download the following JARs and add them to your classpath:
 
-- `znn-java-sdk-0.0.3`
+- `znn-java-sdk-0.0.4`
 
 ## Usage
 
