@@ -22,7 +22,6 @@ public class Address implements Comparable<Address> {
     public static final Address STAKE_ADDRESS = parse("z1qxemdeddedxstakexxxxxxxxxxxxxxxxjv8v62");
     public static final Address SPROK_ADDRESS = parse("z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48");
     public static final Address ACCELERATOR_ADDRESS = parse("z1qxemdeddedxaccelerat0rxxxxxxxxxxp4tk22");
-    public static final Address BRIDGE_ADDRESS = parse("z1qzlytaqdahg5t02nz5096frflfv7dm3y7yxmg7");
 
     public static final Address[] EMBEDDED_CONTRACT_ADDRESSES = new Address[] { PLASMA_ADDRESS, PILLAR_ADDRESS,
             TOKEN_ADDRESS, SENTINEL_ADDRESS, SWAP_ADDRESS, STAKE_ADDRESS, ACCELERATOR_ADDRESS };
