@@ -26,6 +26,11 @@ public class TestHelper {
 
     public static AccountBlockTemplate createAccountBlockTemplate(String toAddres, String tokenStandard, long amount, String data)
     {
+        return createAccountBlockTemplate("z1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsggv2f", toAddres, tokenStandard, amount, data);
+    }
+    
+    public static AccountBlockTemplate createAccountBlockTemplate(String address, String toAddres, String tokenStandard, long amount, String data)
+    {
         JAccountBlockTemplate json = new JAccountBlockTemplate();
         json.version = 1;
         json.chainIdentifier = 1;
@@ -36,7 +41,7 @@ public class TestHelper {
         json.momentumAcknowledged = new JHashHeight();
         json.momentumAcknowledged.hash = "0000000000000000000000000000000000000000000000000000000000000000";
         json.momentumAcknowledged.height = 0L;
-        json.address = "z1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsggv2f";
+        json.address = address;
         json.toAddress = toAddres;
         json.amount = amount;
         json.tokenStandard = tokenStandard;

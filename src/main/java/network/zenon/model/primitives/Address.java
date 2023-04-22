@@ -20,11 +20,12 @@ public class Address implements Comparable<Address> {
     public static final Address SENTINEL_ADDRESS = parse("z1qxemdeddedxsentynelxxxxxxxxxxxxxwy0r2r");
     public static final Address SWAP_ADDRESS = parse("z1qxemdeddedxswapxxxxxxxxxxxxxxxxxxl4yww");
     public static final Address STAKE_ADDRESS = parse("z1qxemdeddedxstakexxxxxxxxxxxxxxxxjv8v62");
-    public static final Address SPROK_ADDRESS = parse("z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48");
+    public static final Address SPORK_ADDRESS = parse("z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48");
     public static final Address ACCELERATOR_ADDRESS = parse("z1qxemdeddedxaccelerat0rxxxxxxxxxxp4tk22");
+    public static final Address HTLC_ADDRESS = parse("z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw");
 
     public static final Address[] EMBEDDED_CONTRACT_ADDRESSES = new Address[] { PLASMA_ADDRESS, PILLAR_ADDRESS,
-            TOKEN_ADDRESS, SENTINEL_ADDRESS, SWAP_ADDRESS, STAKE_ADDRESS, ACCELERATOR_ADDRESS };
+            TOKEN_ADDRESS, SENTINEL_ADDRESS, SWAP_ADDRESS, STAKE_ADDRESS, ACCELERATOR_ADDRESS, SPORK_ADDRESS, HTLC_ADDRESS };
 
     public static Address parse(final String address) {
         Bech32.Bech32Data bech32 = Bech32.decode(address);

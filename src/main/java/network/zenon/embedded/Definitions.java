@@ -77,6 +77,19 @@ public class Definitions {
                     createParam("vote", "uint8")),
             createEntry("VoteByProdAddress", createParam("id", "hash"), createParam("vote", "uint8")) };
 
+    private static final JEntry[] SPORK_DEFINITION = new JEntry[] {
+            createEntry("CreateSpork", createParam("name", "string"), createParam("description", "string")),
+            createEntry("ActivateSpork", createParam("id", "hash")) };
+    
+    private static final JEntry[] HTLC_DEFINITION = new JEntry[] {
+            createEntry("Create", createParam("hashLocked", "address"), createParam("expirationTime", "int64"),
+                    createParam("hashType", "uint8"), createParam("keyMaxSize", "uint8"),
+                    createParam("hashLock", "bytes")),
+            createEntry("Reclaim", createParam("id", "hash")),
+            createEntry("Unlock", createParam("id", "hash"), createParam("preimage", "bytes")),
+            createEntry("DenyProxyUnlock"),
+            createEntry("AllowProxyUnlock") };
+
     // Common _DEFINITIONs of embedded methods
     private static final JEntry[] COMMON_DEFINITION = new JEntry[] { createEntry("DepositQsr"),
             createEntry("WithdrawQsr"), createEntry("CollectReward") };
@@ -89,5 +102,7 @@ public class Definitions {
     public static final Abi SWAP = Abi.parse(SWAP_DEFINITION);
     public static final Abi STAKE = Abi.parse(STAKE_DEFINITION);
     public static final Abi ACCELERATOR = Abi.parse(ACCELERATOR_DEFINITION);
+    public static final Abi SPORK = Abi.parse(SPORK_DEFINITION);
+    public static final Abi HTLC = Abi.parse(HTLC_DEFINITION);
     public static final Abi COMMON = Abi.parse(COMMON_DEFINITION);
 }

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Constants {
     // Global constants
-    public static final String ZNN_SDK_VERSION = "0.0.4";
+    public static final String ZNN_SDK_VERSION = "0.0.5";
     public static final String ZNN_ROOT_DIRECTORY = "znn";
 
     // https://github.com/zenon-network/go-zenon/blob/b2e6a98fa154d763571bb7af6b1c685d0d82497d/zenon/zenon.go#L41
@@ -80,4 +80,17 @@ public class Constants {
     public static final int SWAP_ASSET_DECAY_EPOCHS_OFFSET = 30 * 3;
     public static final int SWAP_ASSET_DECAY_TICK_EPOCHS = 30;
     public static final int SWAP_ASSET_DECAY_TICK_VALUE_PERCENTAGE = 10;
+    
+    // Spork
+    public static final int SPORK_NAME_MIN_LENGTH = 5;
+    public static final int SPORK_NAME_MAX_LENGTH = 40;
+    public static final int SPORK_DESCRIPTION_MAX_LENGTH = 400;
+
+    // Htlc
+    public static final int HTLC_PREIMAGE_MIN_LENGTH = 1;
+    public static final int HTLC_PREIMAGE_MAX_LENGTH = 255;
+    public static final int HTLC_PREIMAGE_DEFAULT_LENGTH = 32;
+    public static final int HTLC_TIMELOCK_UNIT_SEC = 60 * 60; // 1 hour
+    public static final int HTLC_TIMELOCK_MIN_SEC = HTLC_TIMELOCK_UNIT_SEC * 1; // 1 hour
+    public static final int HTLC_TIMELOCK_MAX_SEC = HTLC_TIMELOCK_UNIT_SEC * 24 * 30 * 12; // ~1 year
 }
